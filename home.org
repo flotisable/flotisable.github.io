@@ -1,0 +1,34 @@
+#+TITLE: Flotisable's Home
+#+AUTHOR: flotisable
+#+EMAIL: s09930698@gmail.com
+#+EXPORT_FILE_NAME: index
+#+OPTIONS: num:nil toc:nil author:t email:t creator:t
+
+-----
+* 倉庫
+  這裡會將一些我覺得自己比較有參考價值的倉庫列出來，如果對其他倉庫有興趣，可以到我的 [[https://github.com/flotisable][github profile]] 看看
+  - [[https://github.com/flotisable/Vimrc][我的 vim 設定]]
+  - [[https://github.com/flotisable/EmacsInit][我的 emacs 設定]]
+* 文章
+  這裡會放一些我自己寫的文章，希望對大家有幫助
+* 簡介
+  希望寫些自己會的東西，並讓其他人能夠有所收穫\\
+  也希望自己的倉庫可以對其他人有用(雖然應該蠻多自己用的東西)
+** 會的東西
+   - c++
+   - verilog
+   - git
+   - vim
+   - emacs
+   - org
+   - makefile
+   - bash script
+** 作業環境
+   - CentOS 7
+     - 桌面環境:   KDE 4.14.8
+     - 瀏覽器:     Google Chrome, Firefox
+     - 常用編輯器: nvim, emacs, vim, vscode
+     - 常用IDE:    Qt creator
+   - macOS Sierra 10.12.6
+     - 套件管理員: homebrew
+-----
