@@ -16,6 +16,7 @@ Copyright (C) 2017 Flotisable -->
 <link href="index.html#Top" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Move.html#Move" rel="up" title="Move">
+<link href="MoveBetweenLine.html#MoveBetweenLine" rel="next" title="MoveBetweenLine">
 <link href="MoveBasic.html#MoveBasic" rel="previous" title="MoveBasic">
 <style type="text/css">
 <!--
@@ -53,13 +54,13 @@ ul.no-bullet {list-style: none}
 <a name="MoveInLine"></a>
 <div class="header">
 <p>
-Previous: <a href="MoveBasic.html#MoveBasic" accesskey="p" rel="previous">MoveBasic</a>, Up: <a href="Move.html#Move" accesskey="u" rel="up">Move</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+Next: <a href="MoveBetweenLine.html#MoveBetweenLine" accesskey="n" rel="next">MoveBetweenLine</a>, Previous: <a href="MoveBasic.html#MoveBasic" accesskey="p" rel="previous">MoveBasic</a>, Up: <a href="Move.html#Move" accesskey="u" rel="up">Move</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
 <a name="Dan-Xing-Jian-De-Yi-Dong-"></a>
 <h4 class="subsection">3.1.2 單行間的移動</h4>
 
-<p>這個部份會介紹一下在編輯單行時 vim 的一些移動方式，基本上這個部份要之後配合 operator 來用會比較好用。關於 operator 之後會介紹到，現在不需要太清楚。首先來講講如何移動到行首與行尾，<tt class="key">0</tt> 會移動到行首，<tt class="key">$</tt> 會移動到行尾。還有另一種移動到行首的方式是 <tt class="key">^</tt>，只是這個行首的意義有點不一樣，<tt class="key">^</tt> 是移動到游標所在的那一行第一個非空白字元的字，而 <tt class="key">0</tt> 是移動到第一個字元。舉個例子，假設游標在 how 的 h 上
+<p>這個部份會介紹一下在編輯單行時 vim 的一些移動方式，基本上這個部份要之後配合 operator 來用會比較好用。關於 operator 之後會介紹到，現在不需要太清楚。首先來講講如何移動到行首與行尾，<kbd>0</kbd> 會移動到行首，<kbd>$</kbd> 會移動到行尾。還有另一種移動到行首的方式是 <kbd>^</kbd>，只是這個行首的意義有點不一樣，<kbd>^</kbd> 是移動到游標所在的那一行第一個非空白字元的字，而 <kbd>0</kbd> 是移動到第一個字元。舉個例子，假設游標在 how 的 h 上
 </p>
 <div class="example">
 <pre class="example">         1         2         3
@@ -70,7 +71,7 @@ Previous: <a href="MoveBasic.html#MoveBasic" accesskey="p" rel="previous">MoveBa
                   --------------&gt; $
 </pre></div>
 
-<p>值得注意的是 <tt class="key">^</tt>，<tt class="key">$</tt> 在 regular expression 上也是代表行首與行尾的意思，而 regular expression 在搜尋字串上是個蠻方便的工具，可以一起記一下 。其他的移動方式還有 <tt class="key">f</tt>, <tt class="key">F</tt>, <tt class="key">t</tt>, <tt class="key">T</tt>，我個人是覺得這比較適合配合 operator 來用。<tt class="key">f</tt> 與 <tt class="key">t</tt> 是在單行間找字，其代表的意義分別是 find 與 to，它們可以接受一個符號，並找到單行中離游標右方最近的那個符號。舉個例子，假設游標在 many 的 a 上
+<p>值得注意的是 <kbd>^</kbd>，<kbd>$</kbd> 在 regular expression 上也是代表行首與行尾的意思，而 regular expression 在搜尋字串上是個蠻方便的工具，可以一起記一下 。其他的移動方式還有 <kbd>f</kbd>, <kbd>F</kbd>, <kbd>t</kbd>, <kbd>T</kbd>，我個人是覺得這比較適合配合 operator 來用。<kbd>f</kbd> 與 <kbd>t</kbd> 是在單行間找字，其代表的意義分別是 find 與 to，它們可以接受一個符號，並找到單行中離游標右方最近的那個符號。舉個例子，假設游標在 many 的 a 上
 </p>
 <div class="example">
 <pre class="example">  Why vim has so many key bindings?
@@ -78,7 +79,7 @@ Previous: <a href="MoveBasic.html#MoveBasic" accesskey="p" rel="previous">MoveBa
                   -------&gt;          tb
 </pre></div>
 
-<p>在上面的例子可以看到，<tt class="key">f</tt> 會讓游標移到所要的符號上，而 <tt class="key">t</tt> 則是到所要的符號的前一個字元。而大寫的 <tt class="key">F</tt>，<tt class="key">T</tt> 則是往反方向找，它們會找離游標左方最近的符號。舉個例子，假設游標在 learn 的 r 上
+<p>在上面的例子可以看到，<kbd>f</kbd> 會讓游標移到所要的符號上，而 <kbd>t</kbd> 則是到所要的符號的前一個字元。而大寫的 <kbd>F</kbd>，<kbd>T</kbd> 則是往反方向找，它們會找離游標左方最近的符號。舉個例子，假設游標在 learn 的 r 上
 </p>
 <div class="example">
 <pre class="example">  Why I need to learn so many key bindings?
