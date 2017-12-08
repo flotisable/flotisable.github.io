@@ -87,7 +87,9 @@ Copyright @copyright{} 2017 Flotisable
     vim 作為可以完全使用鍵盤來做編輯的編輯器，想當然提供了許多的按鍵來做游標的移動。而這些移動方式主要是用在普通模式之下。除移動之外，接下來介紹的許多東西多為普通模式之下的按鍵，這也是我認為普通模式是 vim 中最強的的模式的原因，同時也是因為我主要只學到這些。各種移動方式並不一定要全部學會，只是學會後的確可以讓移動的速度加快。
 
 @menu
-* 基本的移動: MoveBasic
+* 基本的移動:   MoveBasic
+* 單行間的移動: MoveInLine
+* 行間的移動:   MoveBetweenLine
 @end menu
 
 @c begin subsection 基本的移動
@@ -98,6 +100,73 @@ Copyright @copyright{} 2017 Flotisable
 
     vim 的這種移動方式在沒有上下左右鍵或是像筆電鍵盤較小的情況下非常適用。用一用之後真的會有種回不去的感覺。不過對於較大有數字鍵的鍵盤，可能需要將鍵盤橋一下才好用，不然用久了右手手腕會不太舒服(還是這是我個人的問題)。@kbd{h}, @kbd{j}, @kbd{k}, @kbd{l}，一次只會移動一格，這樣子有時候要移動很久游標才會到自己想要的位置。這時候可以在按鍵前加上數字作為前綴，它會讓移動重複前綴數字的次數，像是 @kbd{10j} 就會向下移動十格。我個人是覺得這比較適合配合其他按鍵的時候使用，不過在不同行之間移動的時候也是不錯用啦。值得一提的是，vim 的普通模式下許多按鍵加上數字 n 作為前綴有著重複此按鍵 n 次的意思在，這也是讓 vim 按鍵強大的地方之一。
 @c end subsection 基本的移動
+
+@c begin subsection 單行間的移動
+@node MoveInLine
+@subsection 單行間的移動
+
+    這個部份會介紹一下在編輯單行時 vim 的一些移動方式，基本上這個部份要之後配合 operator 來用會比較好用。關於 operator 之後會介紹到，現在不需要太清楚。首先來講講如何移動到行首與行尾，@kbd{0} 會移動到行首，@kbd{$} 會移動到行尾。還有另一種移動到行首的方式是 @kbd{^}，只是這個行首的意義有點不一樣，@kbd{^} 是移動到游標所在的那一行第一個非空白字元的字，而 @kbd{0} 是移動到第一個字元。舉個例子，假設游標在 how 的 h 上
+
+@example
+         1         2         3
+123456789012345678901234567890123
+  I want to learn how to use vim.
+<-----------------                0
+  <---------------                ^
+                  --------------> $
+@end example
+
+    值得注意的是 @kbd{^}，@kbd{$} 在 regular expression 上也是代表行首與行尾的意思，而 regular expression 在搜尋字串上是個蠻方便的工具，可以一起記一下 。其他的移動方式還有 @kbd{f}, @kbd{F}, @kbd{t}, @kbd{T}，我個人是覺得這比較適合配合 operator 來用。@kbd{f} 與 @kbd{t} 是在單行間找字，其代表的意義分別是 find 與 to，它們可以接受一個符號，並找到單行中離游標右方最近的那個符號。舉個例子，假設游標在 many 的 a 上
+
+@example
+  Why vim has so many key bindings?
+                  -->               fy
+                  ------->          tb
+@end example
+
+    在上面的例子可以看到，@kbd{f} 會讓游標移到所要的符號上，而 @kbd{t} 則是到所要的符號的前一個字元。而大寫的 @kbd{F}，@kbd{T} 則是往反方向找，它們會找離游標左方最近的符號。舉個例子，假設游標在 learn 的 r 上
+
+@example
+  Why I need to learn so many key bindings?
+           <-------                         Fd
+       <-----------                         TI
+@end example
+
+    與基本的移動一樣，在前面加上數字作為前綴表示重複幾次。比如說，假設游標在 some 的 m 上
+
+@example
+  Can we learn some useful key bindings?
+    <------------                         2Fn
+                 ---------->              3te
+@end example
+
+@c end subsection 單行間的移動
+
+@c begin subsection 行間的移動
+@node MoveBetweenLine
+@subsection 行間的移動
+
+    通常我們在寫程式或是看文件時比較常用到的是行與行之間的移動，vim 在這方面也提供了不少按鍵來達到這件事。首先如果要跳到一個文件的任意行是用 @kbd{G}，前面加上數字作為前綴就會跳到指定的行數，比如 @kbd{50G} 就會跳到第 50 行。因為經常用到，所以vim 提供了另外的按鍵來跳到第一行，即 @kbd{gg}。另一種跳到指定行數的方式是在命令模式輸入行號，比如說 @kbd{:100}，就會跳到第 100 行。
+
+    vim 也提供了在目前所見範圍的移動，@kbd{H}, @kbd{M}, @kbd{L}，分別代表了 High, Middle, Low。直接舉個例子會比較清楚。
+
+@example
+  +---------------------------------------+
+  |1 #include <iostream>                  | <-- H
+  |2 using namespace std;                 |
+  |3                                      |
+  |4 int main()                           |
+  |5 @{                                    | <-- M
+  |6   cout << "vim is fun!\n";           |
+  |7   cin.get();                         |
+  |8   return 0;                          |
+  |9 @}                                    | <-- L
+  +---------------------------------------+
+@end example
+
+    vim 也提供了幾種捲動視窗的方式，像是捲動一頁用 @kbd{@key{CTRL}-F} ( forward, page down ) 與 @kbd{@key{CTRL}-B} ( backword, page up )，捲動半頁用 @kbd{@key{CTRL}-D} ( down ) 與 @kbd{@key{CTRL}-U} ( up )
+
+@c end subsection 行間的移動
 @c end section 自由自在的移動
 @c end chapter 我想知道多一點
 
