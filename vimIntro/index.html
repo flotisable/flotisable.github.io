@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 這是用來介紹 vim 文檔
+
+Copyright (C) 2017 Flotisable -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Vim 介紹 0.1.0: Top</title>
+
+<meta name="description" content="Vim 介紹 0.1.0: Top">
+<meta name="keywords" content="Vim 介紹 0.1.0: Top">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="#Top" rel="start" title="Top">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="../dir/index.html" rel="up" title="(dir)">
+<link href="Basic.html#Basic" rel="next" title="Basic">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<h1 class="settitle" align="center">Vim 介紹 0.1.0</h1>
+
+
+
+<a name="SEC_Contents"></a>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a name="toc-Wo-Zhi-Yao-Zhi-Dao-Zui-Ji-Ben-De-Sheng-Cun-Zhi-Shi-Jiu-Hao-Liao-" href="Basic.html#Basic">1 我只要知道最基本的生存知識就好了</a></li>
+  <li><a name="toc-Gei-Wo-Yu-Bu-Ru-Jiao-Wo-Ru-He-Diao-Yu-" href="Help.html#Help">2 給我魚不如教我如何釣魚</a></li>
+  <li><a name="toc-Wo-Xiang-Zhi-Dao-Duo-YiDian-" href="LearnMore.html#LearnMore">3 我想知道多一點</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Zi-You-Zi-Zai-De-Yi-Dong-" href="Move.html#Move">3.1 自由自在的移動</a>
+    <ul class="no-bullet">
+      <li><a name="toc-Ji-Ben-De-Yi-Dong-" href="MoveBasic.html#MoveBasic">3.1.1 基本的移動</a></li>
+      <li><a name="toc-Dan-Xing-Jian-De-Yi-Dong-" href="MoveInLine.html#MoveInLine">3.1.2 單行間的移動</a></li>
+      <li><a name="toc-Xing-Jian-De-Yi-Dong-" href="MoveBetweenLine.html#MoveBetweenLine">3.1.3 行間的移動</a></li>
+    </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+<a name="Top"></a>
+<div class="header">
+<p>
+Next: <a href="Basic.html#Basic" accesskey="n" rel="next">Basic</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="SEC_Top"></a>
+
+<p>Vim 是一個純文字編輯器，是從過去在 Unix 上流行的文字編輯器 Vi 所衍生出來的，其代表的意義是 Vi IMproved，也就是改良版的 Vi。Vim 與一般常見的文字編輯器有個很大的不同，它是一種模式編輯器( mode editor )，顧名思義它是透過不同模式的切換來做編輯。這帶來的好處是，藉由賦予不同模式不同的快捷鍵，Vim 可以使用英文字母的區域來達到大量的編輯效果。也就是說在鍵盤上我們輸入文字的區塊也可以是編輯文字的區塊，這使得在熟悉 Vim 的按鍵之後可以達到高速的編輯。而因為 Vim 的這個特性，所有文字編輯的功能都可以只靠鍵盤來做到，滑鼠就變得無用武之地了。
+</p>
+<p>捨棄滑鼠以及在同樣的鍵盤區塊所帶來的編輯效率在親身體驗之後真的會有很明顯的感受。因為手指需要移動的距離變小，所以可以很快的做到很多事。而 Vim 對於初學者的缺點是學習曲線較高，需要學一段時間才能有明顯的效果。Vim 支援的平台還蠻多元的，因此只要學會了，不管到什麼平台都能使用，學習的報酬率還是蠻高的。Vim 也同時提供了終端機與 GUI 的版本，如果想要比較漂亮的介面的話可以使用 GUI 的版本。雖然 Vim 可以設定使用滑鼠(在GUI中好像是預設值)，但我認為這樣就會失去了一些使用 Vim 的價值。
+</p>
+<p>Vim 除了高速的編輯與跨平台的優點之外，它也是個小而快的程式，在我的電腦中好像不到 10 MB。那麼接下來我會一步步介紹我所知道的 Vim 的功能，希望會對看這份文件的人有所幫助。
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Basic.html#Basic" accesskey="1">我只要知道最基本的生存知識就好了</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Help.html#Help" accesskey="2">給我魚不如教我如何釣魚</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="LearnMore.html#LearnMore" accesskey="3">我想知道多一點</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Basic.html#Basic" accesskey="n" rel="next">Basic</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>
