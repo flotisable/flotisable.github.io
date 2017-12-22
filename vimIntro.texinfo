@@ -91,6 +91,7 @@ Copyright @copyright{} 2017 Flotisable
 * 單行間的移動: MoveInLine
 * 行間的移動:   MoveBetweenLine
 * 文字間的移動: MoveBetweenWord
+* 其他:         OtherMotionRelated
 @end menu
 
 @c begin subsection 基本的移動
@@ -209,6 +210,18 @@ Copyright @copyright{} 2017 Flotisable
     可以偶爾嘗試看看文字間的移動，在寫程式或閱讀英文文件很方便喔！
 
 @c end subsection 文字間的移動
+
+@c subsection 其他
+@node OtherMotionRelated
+@subsection 其他
+
+    vim 的移動當然不只前面講的這些，vim 可是很複雜的呢，所以我也還沒參透。不過前面介紹的移動方式是比較基本的一些，熟悉一些可以讓文字編輯靈活一點。接下來講一、兩個跟移動相關的設定與按鍵。首先要提到的是，若要善用行間的移動，讓文字編輯器顯示行號是不可或缺的，畢竟要靠人腦慢慢計算這到底是第幾行或是這兩行差幾行不是很有效率，讓編輯器自己顯示可以讓生活更美好(是也沒這麼誇張)。總之來講講如何做這些設定，設定基本上都是靠命令模式處理，如果想要讓 vim 顯示行號，就在命令模式輸入 @kbd{set number}，這樣就會顯示行號了。如果想簡短一點可以打 @kbd{set nu}。相反的，如果你看行號不爽可以在命令模式輸入 @kbd{set nonumber} 或是 @kbd{set nonu} 來把它取消掉。
+
+    單純顯示行號主要是在閱讀程式的時候比較好看，但在配合 vim 的移動上還是有一些不方便，這時候可以使用相對行號。這基本上是為了 vim 的按鍵而生的設定，它會顯示游標所在行到各個行之間差幾行，配合 @kbd{j}，@kbd{k} 加上數字前綴會讓移動上更方便。要設定相對行號只要在命令模式輸入 @kbd{set relativenumber} 或 @kbd{set rnu} 就可以了，而取消則是 @kbd{set norelativenumber} 或 @kbd{set nornu}。
+
+    再來講個我覺得閱讀文件蠻方便的按鍵，@kbd{zz}，@kbd{zt} 與 @kbd{zb}。這三個按鍵分別會將游標所在的那一行移動到視窗的中間、最上面( top )與最下面( bottom )，這樣在閱讀文件時就不一定要用捲動的方式來調整所見的範圍，可以比較簡單的將文章喬到一個容易閱讀的位置，我個人是覺得不錯用啦，看各位喜不喜歡囉。順帶一提，@kbd{z} 跟 @kbd{g} 一樣是要配合其他按鍵才有作用，而就目前我所知 @kbd{z} 比較會用在閱讀相關的按鍵上，所以我是用 zoom 來記它的。
+
+@c end subsection 其他
 @c end section 自由自在的移動
 @c end chapter 我想知道多一點
 
