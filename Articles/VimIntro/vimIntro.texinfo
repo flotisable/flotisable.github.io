@@ -90,6 +90,8 @@ Copyright @copyright{} 2017 Flotisable
 * 基本的移動:   MoveBasic
 * 單行間的移動: MoveInLine
 * 行間的移動:   MoveBetweenLine
+* 文字間的移動: MoveBetweenWord
+* 其他:         OtherMotionRelated
 @end menu
 
 @c begin subsection 基本的移動
@@ -167,6 +169,59 @@ Copyright @copyright{} 2017 Flotisable
     vim 也提供了幾種捲動視窗的方式，像是捲動一頁用 @kbd{@key{CTRL}-F} ( forward, page down ) 與 @kbd{@key{CTRL}-B} ( backword, page up )，捲動半頁用 @kbd{@key{CTRL}-D} ( down ) 與 @kbd{@key{CTRL}-U} ( up )
 
 @c end subsection 行間的移動
+
+@c begin subsection 文字間的移動
+@node MoveBetweenWord
+@subsection 文字間的移動
+
+    一般使用文字編輯器當然是用來編輯文字的啦(廢話)，想當然爾 vim 提供了一些按鍵來做文字間的移動，讓編輯文字變得方便些。但畢竟 vim 還是從外國發展的，對於英文的支援當然比較好，不過主要也是因為最簡單的文字編碼莫過於 ASCII ，因此 1 byte 的字基本上都是英文，一般其他語系要在文字編輯器中顯示用 UTF-8 會是比較好的選擇，而這通常是 2 byte 以上的字元。當然文字編碼百百種，我也不是很懂，總之這裡講到的文字間的移動主要適用於英文。
+
+    vim 中在文字間移動主要也就四種，向前移動到字首是 @kbd{w} ( word )，向前移動到字尾是 @kbd{e} ( end )，向後移動到字首是 @kbd{b} ( back )，向後移動到字尾是 @kbd{ge}。這裡要提一下我指的向前是往文件尾巴移動，而向後是指往文件的開頭移動。順帶一提，在 vim 裡 @kbd{g} 就像是 @key{CTRL}，@key{ALT} 這種按鍵，本身不會有任何作用，要配合其他按鍵才會有作用。那麼還是舉個例子來讓這幾個按鍵清楚一點，假設游標在 word 的 r 上
+
+@example
+  Let's try to use the word motion in vim.
+                         --->               w
+                         ->                 e
+                       <-                   b
+                     <---                   ge
+@end example
+
+    同樣的，這些按鍵可以加上數字前綴來重複執行。舉個例子，假設游標在 with 的 t 上
+
+@example
+  Using word motion with number as prefix.
+                      ---------->           2w
+                      ----------->          3e
+  <-------------------                      4b
+@end example
+
+    在這裡我得說，@kbd{ge} 我自己是很少在用啦，感覺 @kbd{w}，@kbd{b}，@kbd{e} 這三個按鍵比較常用到。vim 還提供了另一種文字間的移動，只要將前面所講的按鍵改成大寫就行了，也就是 @kbd{W}，@kbd{B}，@kbd{E}，@kbd{gE} (注意 g 依舊是小寫)。這兩種有什麼差別呢，大寫的移動方式是用空白字元來區分文字，而空白字元一般指空白鍵、@key{TAB} 以及換行鍵。至於小寫的移動方式大致上是以英文、數字、_ 所組成的字當作文字，其他符號都視為一個字，而這可以另外做設定。舉個例子比較清楚，假設游標在 string 的 r 上
+
+@example
+    const vector<string> name = @{ "Bjarne Stroustrup", "Steve Jobs" @};
+                   ---->    w
+                   ------>  W
+                   --->     e
+                   ---->    E
+                 <-         b
+          <--------         B
+@end example
+
+    可以偶爾嘗試看看文字間的移動，在寫程式或閱讀英文文件很方便喔！
+
+@c end subsection 文字間的移動
+
+@c subsection 其他
+@node OtherMotionRelated
+@subsection 其他
+
+    vim 的移動當然不只前面講的這些，vim 可是很複雜的呢，所以我也還沒參透。不過前面介紹的移動方式是比較基本的一些，熟悉一些可以讓文字編輯靈活一點。接下來講一、兩個跟移動相關的設定與按鍵。首先要提到的是，若要善用行間的移動，讓文字編輯器顯示行號是不可或缺的，畢竟要靠人腦慢慢計算這到底是第幾行或是這兩行差幾行不是很有效率，讓編輯器自己顯示可以讓生活更美好(是也沒這麼誇張)。總之來講講如何做這些設定，設定基本上都是靠命令模式處理，如果想要讓 vim 顯示行號，就在命令模式輸入 @kbd{set number}，這樣就會顯示行號了。如果想簡短一點可以打 @kbd{set nu}。相反的，如果你看行號不爽可以在命令模式輸入 @kbd{set nonumber} 或是 @kbd{set nonu} 來把它取消掉。
+
+    單純顯示行號主要是在閱讀程式的時候比較好看，但在配合 vim 的移動上還是有一些不方便，這時候可以使用相對行號。這基本上是為了 vim 的按鍵而生的設定，它會顯示游標所在行到各個行之間差幾行，配合 @kbd{j}，@kbd{k} 加上數字前綴會讓移動上更方便。要設定相對行號只要在命令模式輸入 @kbd{set relativenumber} 或 @kbd{set rnu} 就可以了，而取消則是 @kbd{set norelativenumber} 或 @kbd{set nornu}。
+
+    再來講個我覺得閱讀文件蠻方便的按鍵，@kbd{zz}，@kbd{zt} 與 @kbd{zb}。這三個按鍵分別會將游標所在的那一行移動到視窗的中間、最上面( top )與最下面( bottom )，這樣在閱讀文件時就不一定要用捲動的方式來調整所見的範圍，可以比較簡單的將文章喬到一個容易閱讀的位置，我個人是覺得不錯用啦，看各位喜不喜歡囉。順帶一提，@kbd{z} 跟 @kbd{g} 一樣是要配合其他按鍵才有作用，而就目前我所知 @kbd{z} 比較會用在閱讀相關的按鍵上，所以我是用 zoom 來記它的。
+
+@c end subsection 其他
 @c end section 自由自在的移動
 @c end chapter 我想知道多一點
 
