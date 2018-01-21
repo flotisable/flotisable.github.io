@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 這是用來介紹 vim 文檔
+
+Copyright (C) 2017 Flotisable -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Vim 介紹 0.1.0: DeleteCopyPaste</title>
+
+<meta name="description" content="Vim 介紹 0.1.0: DeleteCopyPaste">
+<meta name="keywords" content="Vim 介紹 0.1.0: DeleteCopyPaste">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="CutCopyPaste.html#CutCopyPaste" rel="up" title="CutCopyPaste">
+<link href="VisualMode.html#VisualMode" rel="previous" title="VisualMode">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="DeleteCopyPaste"></a>
+<div class="header">
+<p>
+Previous: <a href="VisualMode.html#VisualMode" accesskey="p" rel="previous">VisualMode</a>, Up: <a href="CutCopyPaste.html#CutCopyPaste" accesskey="u" rel="up">CutCopyPaste</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Jian-Xia-Fu-Zhi-Yu-Tie-Shang-"></a>
+<h4 class="subsection">3.2.2 剪下複製與貼上</h4>
+
+<p>如果只能選取文字，那一點用也沒有，所以接下來會介紹如何複製或剪下選取的文字，並將它貼到其他地方。首先先來講一下在普通模式要如何刪除文字，<kbd>x</kbd> 和 <kbd>X</kbd>，功能分別為 <tt class="key">DELETE</tt> 和 <tt class="key">BACKSPACE</tt> 鍵，也就是刪除游標前的字元跟刪除游標下的字元。<kbd>x</kbd> 和 <kbd>X</kbd> 也可以在前面加上數字作前綴來重複操作。
+</p>
+<p>接下來講如何刪除和複製選取的文字，選好文字後按下 <kbd>d</kbd> ( delete ) 就會刪除選取的文字，而按下 <kbd>y</kbd> ( yank ) 則會複製選取的文字。順帶一提，<kbd>d</kbd> 和 <kbd>y</kbd> 兩個都是 vim 的運算子，詳細當然之後再說啦，現在只要會配合文字選取使用就好了。在介紹如何貼上文字之前，要講一個簡單的概念，在 vim 中剪下和刪除是同樣的意思，這和一般使用編輯器的操作不同。一般編輯器剪下和刪除是不同的概念，剪下就是等等要貼到別的地方，所以文字會存起來，而刪除則是不要這些文字，刪掉就掰掰了。但在 vim 中刪除的文字不論原因一概存起來，所以貼上的東西一定是剛剛刪除的東西。對一般人來說可能沒差啦，但我當初學到這個的時候覺得蠻訝異的，概念上差很多啊。
+</p>
+<p>回歸正題，貼上跟刪除字元很像，只是按鍵不同。<kbd>p</kbd> 對應 <kbd>x</kbd>，<kbd>P</kbd> 對應 <kbd>X</kbd>，而 p 是 paste 的意思，即貼上。那麼剪下、複製和貼上就是這樣啦，只要知道英文，相對應的按鍵即為其開頭文字作縮寫，不容易忘記。這裡講講幾個點，首先為什麼複製英文不是常見的 copy，而是要另外查才會知道的 yank 呢？( 還是只有我孤陋寡聞不知道 yank 是複製 ) 理由很簡單，就是 c 已經被拿去當別的功能啦，而 c 的功能和 d 很像，按鍵位置也很近，所以我想是因為這個原因才用比較少見的字當作複製。另外就是，在選取文字後，按下 <kbd>x</kbd> 其實和 <kbd>d</kbd> 一樣都可以刪掉選取的文字，因為兩個按鍵都是刪除文字，而兩者的差別呢，就在於 <kbd>d</kbd> 是運算子。在 visual mode 這兩個按鍵功能是一樣的，但在一般模式下運算子提供了更強大的功能，之後我應該會特別用一個篇幅介紹一下我所知道的運算子。
+</p>
+
+
+
+</body>
+</html>
