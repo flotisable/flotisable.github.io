@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 這是用來介紹 vim 文檔
+
+Copyright (C) 2017 Flotisable -->
+<!-- Created by GNU Texinfo 5.1, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>Vim 介紹 0.1.0: Operator</title>
+
+<meta name="description" content="Vim 介紹 0.1.0: Operator">
+<meta name="keywords" content="Vim 介紹 0.1.0: Operator">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="LearnMore.html#LearnMore" rel="up" title="LearnMore">
+<link href="DeleteCopyPaste.html#DeleteCopyPaste" rel="previous" title="DeleteCopyPaste">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Operator"></a>
+<div class="header">
+<p>
+Previous: <a href="CutCopyPaste.html#CutCopyPaste" accesskey="p" rel="previous">CutCopyPaste</a>, Up: <a href="LearnMore.html#LearnMore" accesskey="u" rel="up">LearnMore</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Qiang-Da-De-Yun-Suan-Zi-"></a>
+<h3 class="section">3.3 強大的運算子</h3>
+
+<p>運算子( operator )是 vim 裡面一個強大的功能，主要是因為 vim 的運算子都有共同的運作方式，只要知道這些運作方式，學了一個運算子如何使用，之後碰到其他運算子就可以比照辦理。而且運算子還能配合其他功能，像是移動，來達到高效的操作。也就是說，可以將一些學過得東西串連起來用，造就了運算子的強大。接下來會以前面提到過的運算子 d 所為例子，介紹運算子的共同運作方式。
+</p>
+<p>1. 配合 visual mode
+</p>
+<p>前面也提過，只要在 visual mode 選取文字後再按下 d 就可以將選取的文字刪除。也就是說利用 visual mode 選取文字後，按下運算子，運算子就會作用在選取的文字上。
+</p>
+<p>2. operator + motion
+</p>
+<p>vim 提供了許多不同的移動方式，而運算子可以透過 operator + motion 這個 pattern 來活用各種不同的移動方式。比如說，<kbd>dl</kbd> 會刪掉游標右邊一個字，也就是按下 x，<kbd>d5j</kbd> 可以刪掉五行文字，游標在一個字的字首時 <kbd>d2w</kbd> 可以刪掉右邊兩個字，<kbd>dG</kbd> 可以刪掉游標到檔案結尾的文字。
+</p>
+<p>3. operator + text object
+</p>
+<p>除了配合不同的移動方式外，vim 還為運算子提供了稱為 text object 的文字選取方式。text object 就是將一般寫文章或是程式的單位當成一整個選取對象，像是一個段落，一個{} 區塊等。比如說，用 operator + motion 的方式要刪兩個文字需要游標在字首並按下 <kbd>d2w</kbd>，用 text object 的方式則是 <kbd>2daw</kbd>，daw 也就是 delete a word，刪掉一個文字的意思。text object 除了在選取對象上比 motion 的方式適合撰寫時的單位外，也蠻容易理解其意思的。另外要提的是，同樣刪除一個單位，以文字為例，text object 有兩種不同的選取方式，iw ( in word ) 和 aw ( a word )。這兩者的差別呢，用下面的句子做範例，假設游標在 test 的 e 上
+</p>
+<div class="example">
+<pre class="example">  This is a test sentence.
+  This is a sentence.       daw
+  This is a  sentence.      diw
+</pre></div>
+
+<p>aw 會將空白字元也包含進去，而 iw 則不包含空白字元，或是只包含空白字元。同樣的選取方式適用在不同的 text object 上。有幾個常用的 text object 像是 w ( word ), s ( sentence ), p ( paragraph ), &quot; ( c++ 字串 ), {,} ( c++ 的區塊 )等。詳細可以 <kbd>:help text-object</kbd> 從 vim 的文檔中得知。
+</p>
+<p>4. 運算子按兩次
+</p>
+<p>當同一個運算子按兩次，像是 <kbd>dd</kbd> 或 <kbd>yy</kbd>，運算子操作的單位就會是一行。所以 <kbd>5dd</kbd> 跟 <kbd>d5j</kbd> 同樣都可以刪除五行文字。
+</p>
+
+<p>善用運算子就像善用移動一樣可以讓文字編輯的速度加快，而運算子串連不同功能讓 vim 可以用相對簡單的方式來做到強大的功能，有空的話就多玩玩不同的操作方式吧。詳細有哪些運算子請 <kbd>:help operator</kbd> 觀看 vim 文檔。
+</p>
+
+
+
+</body>
+</html>
