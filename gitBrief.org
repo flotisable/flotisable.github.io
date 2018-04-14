@@ -212,3 +212,53 @@
    #+END_EXAMPLE
 
    HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 internet 這個分支。
+
+* 轉職
+
+  最後要來介紹如何跟伺服器端做溝通，這在多人開發時很常用到。
+  基本上用 git clone 的方式建立倉庫，對於伺服器端的設定就被處理好了。
+  可以用 git status 來查看。
+  下面是我另外一個倉庫 git status 的資訊
+  
+  #+BEGIN_EXAMPLE
+  On branch master
+  Your branch is up to date with 'github/master'.
+
+  nothing to commit, working tree clean
+  #+END_EXAMPLE
+
+  可以看到這個分支連接到了 github/master 的伺服器端分支。
+  如果類似這種訊息，就可以確定伺服器端的設定 ok 了。
+  這時候就可以用 git pull 來將伺服器端分支合併到本地端分支，而 git push 則能將本地端分支合併到伺服器端分支。
+  要注意的是，如果伺服器端分支的版本跟本地端分支有衝突時，必須先 git pull 拉下來解決衝突後才可以 git push 給伺服器端。
+  如果只想要同步一下伺服器端資料而不想合併到本地端的分支的話，可以用 git fetch。
+  git pull 基本上等於 git fetch + git merge。
+  
+  再來講講如果沒有設定好連結的伺服器端要如何處理。
+  最簡單是每次 git push 跟 git pull 都指定伺服器端網址與分支，像是
+
+  #+BEGIN_EXAMPLE
+  git pull https://github.com/git/git.git master
+  #+END_EXAMPLE
+
+  可是每次這樣太累了，我們可以用 git remote 紀錄伺服器端的位置
+
+  #+BEGIN_EXAMPLE
+  git remote add github https://github.com/git/git.git
+  #+END_EXAMPLE
+  
+  上面指令會用 github 紀錄 https://github.com/git/git.git 的位置，所以用
+
+  #+BEGIN_EXAMPLE
+  git pull github master
+  #+END_EXAMPLE
+
+  來取代剛剛的 pull 指令。至於要直接讓本地端分支連結到伺服器端分支，要使用
+
+  #+BEGIN_EXAMPLE
+  git branch --set-upstream-to=github master
+  #+END_EXAMPLE
+
+  來將現在的分支連結到 github 的 master 分支。這樣之後的 git pull 跟 git push 對象預設就會是 github 的 master 分支。
+  另外就是，用 git remote -v 可以看到遠端伺服器的設定。
+  而 git branch -vv 可以看到每個本地分支的詳細設定( 包括連結到的遠端分支 )
