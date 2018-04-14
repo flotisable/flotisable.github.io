@@ -115,3 +115,100 @@
   這讓版本的儲存又多了一層，我們可以修改後再決定要提交哪些檔案，而不是所有修改檔案都要提交。
   而且可以用 stage 作暫存，不用到 commit 才會真正儲存。從 stage 復原比從 commit 復原相對較為方便。
   接下來要講一點 git 好用的功能: branch
+
+* 升級
+
+  git 有一個方便開發的功能叫做分支，分支的特性讓我們可以針對不同需求讓版本的更迭不是線性的一條線。
+  我先講講分支怎麼使用，再簡單介紹一兩個使用的方式。
+  在還沒建立新的分支前，我們可以先看看 git status
+
+  #+BEGIN_EXAMPLE
+  On branch master
+  Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   gitBrief.org
+
+  Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.#gitBrief.org
+
+  no changes added to commit (use "git add" and/or "git commit -a")
+  #+END_EXAMPLE
+
+  這是我寫到這邊的 git status。重點在於第一行，我們可以看到在預設的情況下我們是在 master 的分支。
+  那麼我們來建立新的分支，輸入下列指令
+
+  #+BEGIN_EXAMPLE
+  git branch develop
+  #+END_EXAMPLE
+
+  這樣我們就建立了一個名為 develop 的分支。直接使用 git branch 可以看到現在這個倉庫所擁有的分支。
+  我們可以利用 git checkout 來切換不同的分支
+
+  #+BEGIN_EXAMPLE
+  git checkout develop
+  #+END_EXAMPLE
+
+  這樣我們就會切換到 develop 這個分支。
+
+  我們可以在不同分支做不同的修改與提交，等到覺得時機到了，我們可以將兩個分支做合併。
+  假設我們在 master 提交了名為 test.txt 的檔案，而 develop 在 master 之後提交了 temp.txt 的檔案。
+  也就是說整個版本可以看成這樣
+
+  #+BEGIN_EXAMPLE
+  +----------+    +----------+
+  | test.txt |--->| test.txt |
+  |          |    | temp.txt |
+  +----------+    +----------+
+        ^               ^
+      master          develop
+  #+END_EXAMPLE
+
+  現在我們可以 checkout 到 master 分支，然後輸入
+
+  #+BEGIN_EXAMPLE
+  git merge develop
+  #+END_EXAMPLE
+
+  這樣就會將 develop 這個分支並到 master 中。現在整個版本可以看成這樣
+
+  #+BEGIN_EXAMPLE
+  +----------+    +----------+
+  | test.txt |--->| test.txt |
+  |          |    | temp.txt |
+  +----------+    +----------+
+                        ^
+                  master, develop
+  #+END_EXAMPLE
+
+  這樣我們就會分支的基本使用了，至於可以怎麼用這些分支，以下介紹兩種方式。
+  當然還有很多使用方式，這就要靠各位自己探索了。
+
+** 依性質建立分支
+
+   比方說，我們希望 master 是穩定沒問題的版本，並利用 develop 作為開發版。
+   我們可以在 develop 做任意的嘗試，等到覺得夠穩定了在合併到 master 之中。
+
+** 依功能建立分支
+
+   我們可以將 master 作為 base，並在不同分支開發不同功能。
+   比如 ui 分支開發使用者介面，internet 分支開發連網功能。
+   等到某項功能開發完就可以合併到 master 中。
+   這種使用分支的方式比較容易碰到不同分支對同一份檔案做修改的問題，所幸 git 合併的功能還不錯，沒有太大的衝突都可以順利的合併。
+   真正遇到 git 無法解決的衝突，git 會將決定權交給使用者。
+   合併後並不會做提交，而是將有衝突的檔案讓使用者做修改，等使用者確定沒問題再依一般方式做 stage 與提交。
+
+   有衝突的檔案會在檔案中用下面方式標示衝突點
+
+   #+BEGIN_EXAMPLE
+   <<<<<<<<<<<<< HEAD
+   if( a == b ) return;
+   =============
+   if( a < b ) break;
+   >>>>>>>>>>>>> internet
+   #+END_EXAMPLE
+
+   HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 internet 這個分支。
