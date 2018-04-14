@@ -8,6 +8,7 @@
 -----
 
 * git 與版本控制
+
   git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
   任何被修改過得檔案都可以被視為不同的版本，而版本控制顧名思義就是協助使用者管理不同版本的軟體。
   在程式開發上常常需要做這些版本的管理，因為修改程式很容易發生原本可以正常運作，改完卻死掉的狀態。
@@ -40,3 +41,77 @@
   當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽[[https://git-scm.com][官網]]與 google，這方面我不太熟。
 
 * 初心者
+
+  首先，在第一次使用 git 是要先做一些設定。因為 git 強制要求每次儲存一個版本時要附上修改者的名字與電子郵件。
+  請在終端機輸入以下指令做設定
+
+  #+BEGIN_EXAMPLE
+  git config --global user.name flotisable
+  git config --global user.email s09930698@gmail.com
+  #+END_EXAMPLE
+
+  上面是我自己的設定，給大家當參考用。使用時將 flotisable, s09930698@gmail.com 分別改成自己的名字跟電子郵件即可。
+  需要說明的是 git 將設定檔分為三個層級
+
+  - 系統設定檔:   加 --system 選項
+  - 使用者設定檔: 加 --global 選項
+  - 倉庫設定檔:   預設
+
+
+  越下面層的設定會蓋掉上一層的設定，可以視個人喜好做調整。
+
+  接著我們要來建立 git 的倉庫。先到一個自己想要讓 git 做版本控制的資料夾，然後輸入以下指令
+  
+  #+BEGIN_EXAMPLE
+  git init
+  #+END_EXAMPLE
+
+  這樣就會建立好 git 做版本控制所需要的資料。
+  在資料夾底下會出現名為 .git 的資料夾，我們稱這個資料夾為一個倉庫( repository )，我自己是簡稱 repo。
+  裡面存放的就是 git 對各個版本的紀錄以及一些其他的相關資料。
+  而這個倉庫所在的資料夾被稱為工作資料夾( working directory )。
+  
+  接著我們要來試著做一次提交( commit )。
+  當我們對工作資料夾裡的檔案做修改或是新增檔案後，可以用 git status 來看看現在這個資料夾的狀態。
+  git 也有良好的提示告訴我們現在可以對這些檔案做什麼。
+  假設我們新增一個名為 test.txt 的檔案，如果現在輸入 git status，可以看到它還沒被追綜。
+  我們要先將它做 stage( 不知道怎麼翻 )，請輸入以下指令
+
+  #+BEGIN_EXAMPLE
+  git add test.txt
+  #+END_EXAMPLE
+  
+  再用 git status 查看時可以看到它會被作為提交的對象。確認 ok 後，就可以提交這次的版本。
+  我們使用 git commit 做提交。輸入之後它會跳出編輯器讓我們編寫提交訊息，作為對這個版本的描述。
+  印象中預設編輯器會是 vim，但是可以透過設定 core.editor 做改變。
+  比方說我們想用 emacs 做編輯器，可以輸入以下指令
+
+  #+BEGIN_EXAMPLE
+  git config --global core.editor emacs
+  #+END_EXAMPLE
+
+  這樣之後做提交時就可以用 emacs 來撰寫提交訊息。
+  做完提交之後我們可以利用 git log 來觀看過去的提交訊息。
+  這樣我們就會了 git 的基本使用，簡單列一下會用到的指令
+
+  - git config 做設定
+  - git init 建立新的 repo
+  - git status 觀看現在工作資料夾的狀態
+  - git add 將要提交的檔案做 stage
+  - git commit 提交檔案
+  - git log 查看過去的提交訊息
+
+    
+  另外提個幾點，除了 git init 可以建立新的倉庫外，也可以用 git clone 來複製已存在的倉庫。
+  比如說要複製 git 的官方倉庫，可以輸入以下指令
+
+  #+BEGIN_EXAMPLE
+  git clone https://github.com/git/git.git
+  #+END_EXAMPLE
+
+  這樣就會產生新的資料夾名為 git，而這就是 git 這個倉庫的工作資料夾。進到裡面後就可以對 git 的原始碼做改動。
+  另外就是 git 與其他版本控制系統比較不同的一點( 在我有限的知識內 )，git 對於一次的提交分成了兩階段。
+  第一階段為 stage，第二階段才是 commit。
+  這讓版本的儲存又多了一層，我們可以修改後再決定要提交哪些檔案，而不是所有修改檔案都要提交。
+  而且可以用 stage 作暫存，不用到 commit 才會真正儲存。從 stage 復原比從 commit 復原相對較為方便。
+  接下來要講一點 git 好用的功能: branch
