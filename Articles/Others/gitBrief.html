@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-05 日 13:13 -->
+<!-- 2018-08-05 日 13:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git 簡介</title>
@@ -237,9 +237,9 @@ for the JavaScript code in this tag.
 
 <hr />
 
-<div id="outline-container-orgeaf3366" class="outline-2">
-<h2 id="orgeaf3366">git 與版本控制</h2>
-<div class="outline-text-2" id="text-orgeaf3366">
+<div id="outline-container-orgc4542a6" class="outline-2">
+<h2 id="orgc4542a6">git 與版本控制</h2>
+<div class="outline-text-2" id="text-orgc4542a6">
 <p>
 git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 任何被修改過的檔案都可以被視為不同的版本，而版本控制顧名思義就是協助使用者管理不同版本的軟體。
@@ -291,14 +291,14 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 <p>
 上面幾個好處並不只限於 git，而且是從我的角度出發，實際還是以每個人各自己體驗做考量。
 接下來會開始介紹 git 的基本使用，請注意因為我是終端愛好者而且姑且算是程式設計師，所以只會介紹終端機的指令。
-當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽<a href="https://git-scm.com">官網</a>與 google，這方面我不太熟，不過我還是擠出了一個 gui 版的介紹，請看<a href="https://flotisable.github.io/Articles/Others/gitBriefGui.html">git 簡介 GUI 版</a>。
+當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽<a href="https://git-scm.com">官網</a>與 google，這方面我不太熟，不過我還是擠出了一個 gui 版的介紹，請看<a href="https://flotisable.github.io/Articles/Others/GitGui/gitBriefGui.html">git 簡介 GUI 版</a>。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8e28ba9" class="outline-2">
-<h2 id="org8e28ba9">初心者</h2>
-<div class="outline-text-2" id="text-org8e28ba9">
+<div id="outline-container-org785caa5" class="outline-2">
+<h2 id="org785caa5">初心者</h2>
+<div class="outline-text-2" id="text-org785caa5">
 <p>
 首先，在第一次使用 git 時要先做一些設定。因為 git 強制要求每次儲存一個版本時要附上修改者的名字與電子郵件。
 請在終端機輸入以下指令做設定
@@ -417,9 +417,9 @@ git clone https://github.com/git/git.git
 </div>
 </div>
 
-<div id="outline-container-org5a84b10" class="outline-2">
-<h2 id="org5a84b10">升級</h2>
-<div class="outline-text-2" id="text-org5a84b10">
+<div id="outline-container-org502ca2f" class="outline-2">
+<h2 id="org502ca2f">升級</h2>
+<div class="outline-text-2" id="text-org502ca2f">
 <p>
 git 有一個方便開發的功能叫做分支，分支的特性讓我們可以針對不同需求讓版本的更迭不是線性的一條線。
 我先講講分支怎麼使用，再簡單介紹一兩個使用的方式。
@@ -516,9 +516,9 @@ git merge develop
 </p>
 </div>
 
-<div id="outline-container-org583241a" class="outline-3">
-<h3 id="org583241a">依性質建立分支</h3>
-<div class="outline-text-3" id="text-org583241a">
+<div id="outline-container-org959c87e" class="outline-3">
+<h3 id="org959c87e">依性質建立分支</h3>
+<div class="outline-text-3" id="text-org959c87e">
 <p>
 比方說，我們希望 master 是穩定沒問題的版本，並利用 develop 作為開發版。
 我們可以在 develop 做任意的嘗試，等到覺得夠穩定了在合併到 master 之中。
@@ -526,9 +526,9 @@ git merge develop
 </div>
 </div>
 
-<div id="outline-container-orgffd0d0b" class="outline-3">
-<h3 id="orgffd0d0b">依功能建立分支</h3>
-<div class="outline-text-3" id="text-orgffd0d0b">
+<div id="outline-container-org161e895" class="outline-3">
+<h3 id="org161e895">依功能建立分支</h3>
+<div class="outline-text-3" id="text-org161e895">
 <p>
 我們可以將 master 作為 base，並在不同分支開發不同功能。
 比如 ui 分支開發使用者介面，internet 分支開發連網功能。
@@ -557,9 +557,9 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </div>
 </div>
 
-<div id="outline-container-org8c22faf" class="outline-2">
-<h2 id="org8c22faf">轉職</h2>
-<div class="outline-text-2" id="text-org8c22faf">
+<div id="outline-container-org9b52554" class="outline-2">
+<h2 id="org9b52554">轉職</h2>
+<div class="outline-text-2" id="text-org9b52554">
 <p>
 最後要來介紹如何跟伺服器端做溝通，這在多人開發時很常用到。
 基本上用 git clone 的方式建立倉庫，對於伺服器端的設定就被處理好了。
@@ -632,9 +632,9 @@ git branch --set-upstream-to=github master
 </div>
 </div>
 
-<div id="outline-container-orgbccb3d8" class="outline-2">
-<h2 id="orgbccb3d8">結語</h2>
-<div class="outline-text-2" id="text-orgbccb3d8">
+<div id="outline-container-org2af718f" class="outline-2">
+<h2 id="org2af718f">結語</h2>
+<div class="outline-text-2" id="text-org2af718f">
 <p>
 以上就是我對 git 的簡單介紹，希望看這篇文章的人能對 git 有個簡單的認識與學會基本的使用。
 我會將這篇文章轉成 pdf 放在 <a href="https://github.com/flotisable/Articles">github</a> 供想看的人離線觀看。
@@ -659,7 +659,7 @@ git branch --set-upstream-to=github master
 <div id="postamble" class="status">
 <p class="date">Date: 2018-04-13 五 00:00</p>
 <p class="author">Author: Flotisable</p>
-<p class="date">Created: 2018-08-05 日 13:13</p>
+<p class="date">Created: 2018-08-05 日 13:20</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="http://orgmode.org">Org</a> mode 9.1.4)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
