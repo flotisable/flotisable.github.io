@@ -44,7 +44,7 @@
 
   上面幾個好處並不只限於 git，而且是從我的角度出發，實際還是以每個人各自己體驗做考量。
   接下來會開始介紹 git 的基本使用，請注意因為我是終端愛好者而且姑且算是程式設計師，所以只會介紹終端機的指令。
-  當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽[[https://git-scm.com][官網]]與 google，這方面我不太熟，不過我還是擠出了一個 gui 版的介紹，請看[[https://flotisable.github.io/Articles/Others/gitBriefGui.html][git 簡介 GUI 版]]。
+  當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽[[https://git-scm.com][官網]]與 google，這方面我不太熟，不過我還是擠出了一個 gui 版的介紹，請看[[https://flotisable.github.io/Articles/Others/GitGui/gitBriefGui.html][git 簡介 GUI 版]]。
 
 * 初心者
 
