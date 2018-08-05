@@ -13,6 +13,7 @@
   這裡會放一些我自己寫的文章，希望對大家有幫助
   - [[https://flotisable.github.io/VimIntro][Vim 的介紹]]
   - [[./Articles/Others/gitBrief.html][git簡介]]
+  - [[./Articles/Others/GitGui/gitBriefGui.html][git簡介GUI版]]
 * 簡介
   希望寫些自己會的東西，並讓其他人能夠有所收穫\\
   也希望自己的倉庫可以對其他人有用(雖然應該蠻多自己用的東西)

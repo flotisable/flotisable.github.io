@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-08-05 日 13:13 -->
+<!-- 2018-08-05 日 13:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>git 簡介</title>
+<title>git 簡介 GUI 版</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="Flotisable" />
+<meta name="author" content="Flotisble" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -229,17 +229,18 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">git 簡介</h1>
+<h1 class="title">git 簡介 GUI 版</h1>
 <p>
-因為之前聽到實驗室的同學跟學弟有提到，想說就來簡單介紹一下 git 是什麼東西。
-然後講講一些基本的使用這樣。
+這篇文章基本上就只是將之前寫的『 git 簡介 』把所有指令的部分改成相對應的 gui 操作，剩下基本上都是照抄(懶得重寫)。
+昨天興致一來想到 git 本身自帶簡易版的 gui，所以就自己試了一下如何用這內建的 gui 做簡單的操作。
+因為自己本身不用 git 的 gui，只是想說還是有人習慣用 gui，所以就還是介紹一下 gui 上的操作。
 </p>
 
 <hr />
 
-<div id="outline-container-orgeaf3366" class="outline-2">
-<h2 id="orgeaf3366">git 與版本控制</h2>
-<div class="outline-text-2" id="text-orgeaf3366">
+<div id="outline-container-orgdcaf911" class="outline-2">
+<h2 id="orgdcaf911">git 與版本控制</h2>
+<div class="outline-text-2" id="text-orgdcaf911">
 <p>
 git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 任何被修改過的檔案都可以被視為不同的版本，而版本控制顧名思義就是協助使用者管理不同版本的軟體。
@@ -290,34 +291,75 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 
 <p>
 上面幾個好處並不只限於 git，而且是從我的角度出發，實際還是以每個人各自己體驗做考量。
-接下來會開始介紹 git 的基本使用，請注意因為我是終端愛好者而且姑且算是程式設計師，所以只會介紹終端機的指令。
-當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽<a href="https://git-scm.com">官網</a>與 google，這方面我不太熟，不過我還是擠出了一個 gui 版的介紹，請看<a href="https://flotisable.github.io/Articles/Others/gitBriefGui.html">git 簡介 GUI 版</a>。
+接下來會開始介紹 git 的基本使用，這篇主要是為使用 gui 的人考量，所以會用 gui 做介紹。
+喜歡用指令介面的人可以參考 <a href="https://flotisable.github.io/Articles/Others/gitBrief.html">git 簡介</a> 這篇文章。
+本文採用的 gui 介面為 mac 上 git 版本 2.17.1 的內建 gui，理論上在各平台應該都長得差不多。
+在安裝完官方的 git 後，應該可以找到 git gui 的 icon，如果找不到請直接在指令介面輸入 git gui &amp; 開啟。
+如果想要使用更美觀的 gui 介面，還請自行上網搜尋。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8e28ba9" class="outline-2">
-<h2 id="org8e28ba9">初心者</h2>
-<div class="outline-text-2" id="text-org8e28ba9">
+<div id="outline-container-org297ee82" class="outline-2">
+<h2 id="org297ee82">初心者</h2>
+<div class="outline-text-2" id="text-org297ee82">
+<p>
+先放個 gui 剛開啟的介面(不知道為啥我的介面是英文的，也許本身就是這樣，懶得找原因了)
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitGui.png" alt="gitGui.png" width="60%" />
+</p>
+</div>
+
 <p>
 首先，在第一次使用 git 時要先做一些設定。因為 git 強制要求每次儲存一個版本時要附上修改者的名字與電子郵件。
-請在終端機輸入以下指令做設定
+不過不知道為啥，我使用 git gui 時必須建立倉庫才能做設定，所以首先我們先建立 git 的倉庫。
+點一下 create new repository 後會詢問要創建 git 倉庫的位置。
 </p>
 
-<pre class="example">
-git config --global user.name flotisable
-git config --global user.email s09930698@gmail.com
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitCreateRepo.png" alt="gitCreateRepo.png" width="60%" />
+</p>
+</div>
+
+<p>
+選好要讓 git 做版本控制的資料夾後，按下 create。
+這樣就會建立好 git 做版本控制所需要的資料。
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitEmptyRepo.png" alt="gitEmptyRepo.png" width="60%" />
+</p>
+</div>
+
+<p>
+在資料夾底下會出現名為 .git 的資料夾，我們稱這個資料夾為一個倉庫( repository )，我自己是簡稱 repo。
+裡面存放的就是 git 對各個版本的紀錄以及一些其他的相關資料。
+而這個倉庫所在的資料夾被稱為工作資料夾( working directory )。
+</p>
+
+<p>
+接著就可以來做設定了，打開 preference 來做設定。
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitSettings.png" alt="gitSettings.png" width="60%" />
+</p>
+</div>
 
 <p>
 上面是我自己的設定，給大家當參考用。使用時將 flotisable, s09930698@gmail.com 分別改成自己的名字跟電子郵件即可。
-需要說明的是 git 將設定檔分為三個層級
+需要說明的是 git 將設定檔分為三個層級，不過 gui 好像只能設定兩個層級
 </p>
 
 <ul class="org-ul">
-<li>系統設定檔:   加 &#x2013;system 選項</li>
-<li>使用者設定檔: 加 &#x2013;global 選項</li>
-<li>倉庫設定檔:   預設</li>
+<li>使用者設定檔: 右半邊設定</li>
+<li>倉庫設定檔:   左半邊設定</li>
 </ul>
 
 
@@ -325,89 +367,94 @@ git config --global user.email s09930698@gmail.com
 越下面層的設定會蓋掉上一層的設定，可以視個人喜好做調整。
 </p>
 
-<p>
-接著我們要來建立 git 的倉庫。先到一個自己想要讓 git 做版本控制的資料夾，然後輸入以下指令
-</p>
-
-<pre class="example">
-git init
-</pre>
-
-<p>
-這樣就會建立好 git 做版本控制所需要的資料。
-在資料夾底下會出現名為 .git 的資料夾，我們稱這個資料夾為一個倉庫( repository )，我自己是簡稱 repo。
-裡面存放的就是 git 對各個版本的紀錄以及一些其他的相關資料。
-而這個倉庫所在的資料夾被稱為工作資料夾( working directory )。
-</p>
 
 <p>
 接著我們要來試著做一次提交( commit )。
-當我們對工作資料夾裡的檔案做修改或是新增檔案後，可以用 git status 來看看現在這個資料夾的狀態。
-git 也有良好的提示告訴我們現在可以對這些檔案做什麼。
-假設我們新增一個名為 test.txt 的檔案，如果現在輸入 git status，可以看到它還沒被追綜。
-我們要先將它做暫存( stage )，請輸入以下指令
+當我們對工作資料夾裡的檔案做修改或是新增檔案後，可以按下視窗下面的 rescan 來看看現在這個資料夾的狀態。
 </p>
 
-<pre class="example">
-git add test.txt
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitRescan.png" alt="gitRescan.png" width="60%" />
+</p>
+</div>
 
 <p>
-再用 git status 查看時可以看到它會被作為提交的對象。確認 ok 後，就可以提交這次的版本。
-我們使用 git commit 做提交。輸入之後它會跳出編輯器讓我們編寫提交訊息，作為對這個版本的描述。
-印象中預設編輯器會是 vim，但是可以透過設定 core.editor 做改變。
-比方說我們想用 emacs 做編輯器，可以輸入以下指令
+假設我們新增一個名為 test.txt 的檔案，如果現在按下 rescan，可以看到它還沒被追綜。
 </p>
 
-<pre class="example">
-git config --global core.editor emacs
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitUntracked.png" alt="gitUntracked.png" width="60%" />
+</p>
+</div>
 
 <p>
-這樣之後做提交時就可以用 emacs 來撰寫提交訊息。
-做完提交之後我們可以利用 git log 來觀看過去的提交訊息。
-下面是這篇文章的 git log 的一部分，作為參考
+我們要先將它做暫存( stage )，請按下 stage changed，它會詢問是否要暫存，選 yes。
 </p>
 
-<pre class="example">
-commit 5b377dcda5b03d4b06d73a3049bc20614a46051f
-Author: flotisable &lt;s09930698@gmail.com&gt;
-Date:   Fri Apr 13 20:42:19 2018 +0800
 
-finish introduction
-
-commit 1cb882956c35df7e4037d1af9836c5ae8cfeda47
-Author: flotisable &lt;s09930698@gmail.com&gt;
-Date:   Fri Apr 13 20:42:05 2018 +0800
-
-first commit
-</pre>
+<div class="figure">
+<p><img src="./images/gitStageConfirm.png" alt="gitStageConfirm.png" width="60%" />
+</p>
+</div>
 
 <p>
-這樣我們就會了 git 的基本使用，簡單列一下會用到的指令
+就可以發現 test.txt 跑到 staged changes 了。確認 ok 後，就可以提交這次的版本。
+在視窗下面的 commit message 輸入提交訊息後，可以按下 commit 做提交。
 </p>
 
-<ul class="org-ul">
-<li>git config 做設定</li>
-<li>git init 建立新的 repo</li>
-<li>git status 觀看現在工作資料夾的狀態</li>
-<li>git add 將要提交的檔案做 stage</li>
-<li>git commit 提交檔案</li>
-<li>git log 查看過去的提交訊息</li>
-</ul>
 
+<div class="figure">
+<p><img src="./images/gitCommitMessage.png" alt="gitCommitMessage.png" width="60%" />
+</p>
+</div>
 
 <p>
-另外提個幾點，除了 git init 可以建立新的倉庫外，也可以用 git clone 來複製已存在的倉庫。
-比如說要複製 git 的官方倉庫，可以輸入以下指令
+做完提交之後我們可以利用 repository 的 visualize master's history 來觀看過去的提交訊息。
 </p>
 
-<pre class="example">
-git clone https://github.com/git/git.git
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitMenuHistory.png" alt="gitMenuHistory.png" width="60%" />
+</p>
+</div>
 
 <p>
-這樣就會產生新的資料夾名為 git，而這就是 git 這個倉庫的工作資料夾。進到裡面後就可以對 git 的原始碼做改動。
+它會開啟專門用來看歷史紀錄的 gui 程式 gitk。
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitLog.png" alt="gitLog.png" width="60%" />
+</p>
+</div>
+
+<p>
+這樣我們就會了 git 的基本使用
+</p>
+
+<p>
+另外提個幾點，除了 create new repository 可以建立新的倉庫外，也可以用 clone existing repository 來複製已存在的倉庫。
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitGui.png" alt="gitGui.png" width="60%" />
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./images/gitClone.png" alt="gitClone.png" width="60%" />
+</p>
+</div>
+
+<p>
+比如說要複製 git 的官方倉庫，source location 可以輸入 <a href="https://github.com/git/git.git">https://github.com/git/git.git</a>。
+至於 target directory 就是想將這個倉庫放在哪個本地端的資料夾，必須是不存在的資料夾。
+</p>
+
+<p>
 另外就是 git 與其他版本控制系統比較不同的一點( 在我有限的知識內 )，git 對於一次的提交分成了兩階段。
 第一階段為 stage，第二階段才是 commit。
 這讓版本的儲存又多了一層，我們可以修改後再決定要提交哪些檔案，而不是所有修改檔案都要提交。
@@ -417,51 +464,62 @@ git clone https://github.com/git/git.git
 </div>
 </div>
 
-<div id="outline-container-org5a84b10" class="outline-2">
-<h2 id="org5a84b10">升級</h2>
-<div class="outline-text-2" id="text-org5a84b10">
+<div id="outline-container-org6b833c0" class="outline-2">
+<h2 id="org6b833c0">升級</h2>
+<div class="outline-text-2" id="text-org6b833c0">
 <p>
 git 有一個方便開發的功能叫做分支，分支的特性讓我們可以針對不同需求讓版本的更迭不是線性的一條線。
 我先講講分支怎麼使用，再簡單介紹一兩個使用的方式。
-在還沒建立新的分支前，我們可以先看看 git status
+在還沒建立新的分支前，我們可以先看看 git gui 左上角
 </p>
 
-<pre class="example">
-On branch master
-Changes not staged for commit:
-(use "git add &lt;file&gt;..." to update what will be committed)
-(use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
 
-modified:   gitBrief.org
-
-Untracked files:
-(use "git add &lt;file&gt;..." to include in what will be committed)
-
-.#gitBrief.org
-
-no changes added to commit (use "git add" and/or "git commit -a")
-</pre>
+<div class="figure">
+<p><img src="./images/gitCurrentBranch.png" alt="gitCurrentBranch.png" width="60%" />
+</p>
+</div>
 
 <p>
-這是我寫到這邊的 git status。重點在於第一行，我們可以看到在預設的情況下我們是在 master 的分支。
-那麼我們來建立新的分支，輸入下列指令
+我們可以看到在預設的情況下我們是在 master 的分支。
+那麼我們來建立新的分支，使用 branch 的 create
 </p>
 
-<pre class="example">
-git branch develop
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitCreateBranch.png" alt="gitCreateBranch.png" width="60%" />
+</p>
+</div>
 
 <p>
-這樣我們就建立了一個名為 develop 的分支。直接使用 git branch 可以看到現在這個倉庫所擁有的分支。
-我們可以利用 git checkout 來切換不同的分支
+來建一個名為 develop 的分支
 </p>
 
-<pre class="example">
-git checkout develop
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitCreateDevelop.png" alt="gitCreateDevelop.png" width="60%" />
+</p>
+</div>
 
 <p>
-這樣就會切換到 develop 這個分支。
+這樣我們就建立了一個名為 develop 的分支。預設創建完會直接跳到那個分支，左下角可以做設定。
+如果不想跳到那個分支，可以將 checkout after creation 的選項取消。
+我們可以從 branch 的 checkout 來看現在這個倉庫所擁有的分支。
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitMenuCheckout.png" alt="gitMenuCheckout.png" width="60%" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/gitBranch.png" alt="gitBranch.png" width="60%" />
+</p>
+</div>
+
+<p>
+同時也可以用這個介面來切換不同分支
 </p>
 
 <p>
@@ -480,12 +538,40 @@ git checkout develop
 </pre>
 
 <p>
-現在我們可以 checkout 到 master 分支，然後輸入
+從 gitk 看長這樣
 </p>
 
-<pre class="example">
-git merge develop
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitVersionTree.png" alt="gitVersionTree.png" width="60%" />
+</p>
+</div>
+
+<p>
+現在我們可以 checkout 到 master 分支，選擇 merge 的 local merge
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitMenuMerge.png" alt="gitMenuMerge.png" width="60%" />
+</p>
+</div>
+
+<p>
+然後選擇 develop 來合併
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitMerge.png" alt="gitMerge.png" width="60%" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/gitMergeResult.png" alt="gitMergeResult.png" width="60%" />
+</p>
+</div>
 
 <p>
 這樣就會將 develop 這個分支並到 master 中。現在整個版本可以看成這樣
@@ -501,14 +587,14 @@ git merge develop
 </pre>
 
 <p>
-簡單整理一下用到的指令
+從 gitk 看長這樣
 </p>
 
-<ul class="org-ul">
-<li>git branch 創建分支與觀看分支訊息</li>
-<li>git checkout 切換分支</li>
-<li>git merge 合併分支</li>
-</ul>
+
+<div class="figure">
+<p><img src="./images/gitVersionTreeMerged.png" alt="gitVersionTreeMerged.png" width="60%" />
+</p>
+</div>
 
 <p>
 這樣我們就會分支的基本使用了，至於可以怎麼用這些分支，以下介紹兩種方式。
@@ -516,9 +602,9 @@ git merge develop
 </p>
 </div>
 
-<div id="outline-container-org583241a" class="outline-3">
-<h3 id="org583241a">依性質建立分支</h3>
-<div class="outline-text-3" id="text-org583241a">
+<div id="outline-container-orge2f6a8b" class="outline-3">
+<h3 id="orge2f6a8b">依性質建立分支</h3>
+<div class="outline-text-3" id="text-orge2f6a8b">
 <p>
 比方說，我們希望 master 是穩定沒問題的版本，並利用 develop 作為開發版。
 我們可以在 develop 做任意的嘗試，等到覺得夠穩定了在合併到 master 之中。
@@ -526,9 +612,9 @@ git merge develop
 </div>
 </div>
 
-<div id="outline-container-orgffd0d0b" class="outline-3">
-<h3 id="orgffd0d0b">依功能建立分支</h3>
-<div class="outline-text-3" id="text-orgffd0d0b">
+<div id="outline-container-org7086189" class="outline-3">
+<h3 id="org7086189">依功能建立分支</h3>
+<div class="outline-text-3" id="text-org7086189">
 <p>
 我們可以將 master 作為 base，並在不同分支開發不同功能。
 比如 ui 分支開發使用者介面，internet 分支開發連網功能。
@@ -557,86 +643,113 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </div>
 </div>
 
-<div id="outline-container-org8c22faf" class="outline-2">
-<h2 id="org8c22faf">轉職</h2>
-<div class="outline-text-2" id="text-org8c22faf">
+<div id="outline-container-org24bcfa8" class="outline-2">
+<h2 id="org24bcfa8">轉職</h2>
+<div class="outline-text-2" id="text-org24bcfa8">
 <p>
 最後要來介紹如何跟伺服器端做溝通，這在多人開發時很常用到。
-基本上用 git clone 的方式建立倉庫，對於伺服器端的設定就被處理好了。
-可以用 git status 來查看。
-下面是我另外一個倉庫 git status 的資訊
+基本上用 clone existing repository 的方式建立倉庫，對於伺服器端的設定就被處理好了。
+可以從 remote 來查看
 </p>
-
-<pre class="example">
-On branch master
-Your branch is up to date with 'github/master'.
-
-nothing to commit, working tree clean
-</pre>
 
 <p>
-可以從第二行看到這個分支連接到了 github/master 的伺服器端分支。
-如果類似這種訊息，就可以確定伺服器端的設定 ok 了。
-這時候就可以用 git pull 來將伺服器端分支合併到本地端分支，而 git push 則能將本地端分支合併到伺服器端分支。
-要注意的是，如果伺服器端分支的版本跟本地端分支有衝突時，必須先 git pull 拉下來解決衝突後才可以 git push 給伺服器端。
-如果只想要同步一下伺服器端資料而不想合併到本地端的分支的話，可以用 git fetch。
-git pull 基本上等於 git fetch + git merge。
+如果有設定好伺服器端
 </p>
+
+
+<div class="figure">
+<p><img src="./images/gitMenuRemote.png" alt="gitMenuRemote.png" width="60%" />
+</p>
+</div>
+
+<p>
+如果沒設定好伺服器端
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitMenuRemoteNo.png" alt="gitMenuRemoteNo.png" width="60%" />
+</p>
+</div>
+
+<p>
+要同步一下伺服器端資料時就選擇 remote 的 fetch from
+</p>
+
+<p>
+這時候就可以用 merge local merge 中的 tracking branch 來將伺服器端分支合併到本地端分支
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitMergeRemote.png" alt="gitMergeRemote.png" width="60%" />
+</p>
+</div>
+
+<p>
+而 remote 的 push 則能將本地端分支合併到伺服器端分支
+</p>
+
+
+<div class="figure">
+<p><img src="./images/gitMenuPush.png" alt="gitMenuPush.png" width="60%" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/gitPush.png" alt="gitPush.png" width="60%" />
+</p>
+</div>
 
 <p>
 再來講講如果沒有設定好連結的伺服器端要如何處理。
-最簡單是每次 git push 跟 git pull 都指定伺服器端網址與分支，像是
+最簡單是每次 push 都指定伺服器端網址與分支，在 arbitrary location 輸入伺服器位置即可
 </p>
 
-<pre class="example">
-git pull https://github.com/git/git.git master
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitPushNoRemote.png" alt="gitPushNoRemote.png" width="60%" />
+</p>
+</div>
 
 <p>
-可是每次這樣太累了，我們可以用 git remote 紀錄伺服器端的位置
+可是每次這樣太累了，我們可以用 remote 的 add 紀錄伺服器端的位置
 </p>
 
-<pre class="example">
-git remote add github https://github.com/git/git.git
-</pre>
+
+<div class="figure">
+<p><img src="./images/gitMenuRemoteAdd.png" alt="gitMenuRemoteAdd.png" width="60%" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./images/gitRemoteAdd.png" alt="gitRemoteAdd.png" width="60%" />
+</p>
+</div>
 
 <p>
-上面指令會用 github 紀錄 <a href="https://github.com/git/git.git">https://github.com/git/git.git</a> 的位置，所以用
+上面輸入的資料指令會用 github 紀錄 <a href="https://github.com/git/git.git">https://github.com/git/git.git</a> 的位置
 </p>
-
-<pre class="example">
-git pull github master
-</pre>
 
 <p>
-來取代剛剛的 pull 指令。至於要直接讓本地端分支連結到伺服器端分支，要使用
+可以看到現在可以 fetch github 了
 </p>
 
-<pre class="example">
-git branch --set-upstream-to=github master
-</pre>
 
-<p>
-來將現在的分支連結到 github 的 master 分支。這樣之後的 git pull 跟 git push 對象預設就會是 github 的 master 分支。
-另外就是，用 git remote -v 可以看到遠端伺服器的設定。
-而 git branch -vv 可以看到每個本地分支的詳細設定( 包括連結到的遠端分支 )
-簡單整理用到的指令
+<div class="figure">
+<p><img src="./images/gitNewRemote.png" alt="gitNewRemote.png" width="60%" />
 </p>
-
-<ul class="org-ul">
-<li>git pull 從伺服端拉取資料並合併</li>
-<li>git fetch 從伺服端拉取資料</li>
-<li>git push 將資料推到伺服端</li>
-<li>git remote 管理遠端設定</li>
-</ul>
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgbccb3d8" class="outline-2">
-<h2 id="orgbccb3d8">結語</h2>
-<div class="outline-text-2" id="text-orgbccb3d8">
+<div id="outline-container-orgccf74f9" class="outline-2">
+<h2 id="orgccf74f9">結語</h2>
+<div class="outline-text-2" id="text-orgccf74f9">
 <p>
-以上就是我對 git 的簡單介紹，希望看這篇文章的人能對 git 有個簡單的認識與學會基本的使用。
+以上就是我對 git gui 的簡單介紹，希望看這篇文章的人能對 git 有個簡單的認識與學會 gui 基本的使用。
 我會將這篇文章轉成 pdf 放在 <a href="https://github.com/flotisable/Articles">github</a> 供想看的人離線觀看。
 如果想看更詳細的介紹，git 官網有別人寫的<a href="https://git-scm.com/book/zh-tw/v1">免費電子書</a>，而且有中文版本。
 我基本上也是看那本書學的。
@@ -646,10 +759,9 @@ git branch --set-upstream-to=github master
 <hr />
 
 <p>
-之前在學弟提到還有跟實驗室同學介紹時就有在思考要怎麼寫這篇了。
-結果拖了一兩個星期才生出來。
-還有 vim 的介紹要寫呢。
-但現在有點多事，而且又動力不足，只能慢慢找時間做了
+感覺內建的 gui 功能有些限制，不過簡單的操作應該不是問題。
+如果要複雜的操作可能就得找一下其他的 gui，或是直接回歸原本使用指令介面了。
+從這篇文章後 pdf 檔應該不會用 odt 轉了，而是用 latex 的 backend，這樣應該比較好看。
 </p>
 
 <hr />
@@ -657,9 +769,9 @@ git branch --set-upstream-to=github master
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Date: 2018-04-13 五 00:00</p>
-<p class="author">Author: Flotisable</p>
-<p class="date">Created: 2018-08-05 日 13:13</p>
+<p class="date">Date: 2018-08-05 日 00:00</p>
+<p class="author">Author: Flotisble</p>
+<p class="date">Created: 2018-08-05 日 13:14</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.1 (<a href="http://orgmode.org">Org</a> mode 9.1.4)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
