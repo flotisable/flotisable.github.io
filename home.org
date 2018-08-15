@@ -16,6 +16,7 @@
   - [[./Articles/Others/GitGui/gitBriefGui.html][git 簡介 GUI 版]]
   - [[./Articles/Others/verilogCircuitDesign.html][關於 verilog 設計的電路]]
   - [[./Articles/Others/EDABrief.html][我所知道的 EDA]]
+  - [[./Articles/Others/IDE_editorRecord.html][想來記錄自己用過的 IDE 與文字編輯器]]
 * 簡介
   希望寫些自己會的東西，並讓其他人能夠有所收穫\\
   也希望自己的倉庫可以對其他人有用(雖然應該蠻多自己用的東西)
