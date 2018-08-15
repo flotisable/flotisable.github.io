@@ -5,8 +5,9 @@
 #+ODT_STYLES_FILE: "../articles.ott"
 #+LATEX_HEADER: \usepackage{CJKutf8}
 #+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
-#+LATEX_HEADER: \AtEndDocument{ \end{CJK} }
+#+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
 
+#+LATEX: \newpage
 這篇文章基本上就只是將之前寫的『 git 簡介 』把所有指令的部分改成相對應的 gui 操作，剩下基本上都是照抄(懶得重寫)。
 昨天興致一來想到 git 本身自帶簡易版的 gui，所以就自己試了一下如何用這內建的 gui 做簡單的操作。
 因為自己本身不用 git 的 gui，只是想說還是有人習慣用 gui，所以就還是介紹一下 gui 上的操作。

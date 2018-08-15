@@ -5,8 +5,9 @@
 #+ODT_STYLES_FILE: "./articles.ott"
 #+LATEX_HEADER: \usepackage{CJKutf8}
 #+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
-#+LATEX_HEADER: \AtEndDocument{ \end{CJK} }
+#+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
 
+#+LATEX: \newpage
 因為之前聽到實驗室的同學跟學弟有提到，想說就來簡單介紹一下 git 是什麼東西。
 然後講講一些基本的使用這樣。
 
