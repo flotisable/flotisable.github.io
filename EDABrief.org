@@ -1,0 +1,96 @@
+#+TITLE: 我所知道的 EDA
+#+AUTHOR: Flotisable
+#+DATE: <2017-09-22 五>
+#+OPTIONS: toc:nil creator:t num:nil
+#+LATEX_HEADER: \usepackage{CJKutf8}
+#+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
+#+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
+
+#+LATEX: \newpage
+
+這篇文章是以前在 facebook 的網誌上寫的，現在只是把它用 org mode 重新排版。
+
+-----
+
+EDA，英文全稱是 Electronic Design Automation，中文直翻為電子設計自動化。
+也有人會稱為 CAD，Computer Aided Design，電腦輔助設計。
+不過狹義來說 EDA 主要指的應該還是電子相關的自動化。
+
+直觀來看，其實就是在電子相關領域的自動化，也就是讓許多設計上不適合人來做，或是過於繁瑣的事，可以讓電腦來幫我們完成。
+算是在幫電路設計人員做一套工具來讓他們使用。
+
+第一次知道這個名詞是在大三的時候，一門課名為「電子設計自動化導論」。
+不過大多數人就算看到這個名稱還是不知所以然（基本上我想多數的專門課都是這樣），以下我會簡單介紹我所知道的相關知識，希望能讓不太清楚的人能有一些認識（雖然有多少人會看都是個問題了，基本上就是寫開心的）。
+
+在電機領域中，現在比較流行的一個領域是電子，主要就是在做比較小的電路，像是手機晶片、電腦 CPU......等。
+而概略來分的話，電子領域又可以分成三塊，數位、類比、EDA。
+數位與類比是比較偏向電路設計方面的領域，而 EDA 則較為偏向程式設計方面。
+簡言之的話，EDA 可以說是在做程式設計上的最佳化問題（當然不全然是這樣），主因是因為現在的晶片動輒幾百萬甚至幾億顆電晶體，因此就算是電腦來處理也是要花上一些時間。
+為了要讓電路設計更為快速，必然要在相關的問題上研究如何讓問題的解決時間縮短。
+
+基本上只要是可以讓電腦來做的事，都可以是自動化要處理的項目，像是電路的模擬、電路化簡......等。
+我們在學習電子相關的課程時，也經常用到相關的軟體，像是 hspice, virtuoso, ISE 等。
+我在學習中接觸到的主要是目前主流的數位電路相關的自動化，因此主要會講這方面，當然也有其他方面的研究，像是類比電路的自動layout、設計高頻電路的輔助軟體等，但我對這些並不熟悉。
+
+現今數位電路設計的設計流程大致可以以下面的圖示來解釋
+
+system level design ---> HDL circuit design ---> synthesis ---> physical design ---> manufacture ---> testing ---> tapeout
+
+而自動化的部份主要在 HDL circuit design 之後到 tapeout 之間，另外還可以加上驗證（Verification）。以下會做簡單的介紹
+
+-----
+
+* Synthesis
+
+  又可以分成 high level synthesis 與一般的 synthesis，電路設計人員一般使用 Hardware Description Language ( HDL, 硬體描述語言 )來設計電路，通常稱為RTL( Register Transfer Level ) level，而 high level synthesis 主要是將 RTL 像是程式碼的 code 轉換成 gate level 的邏輯電路（AND, OR, NOT等）並做一些電路的化簡與優化。
+  synthesis 則是將這些 gate level 電路再轉換到 transistor level 的電路。
+
+  目前數位電路基本上是以 cell base 來做設計，也就是有已經用 CMOS 設計好的 AND, OR, NOT等基本邏輯閘，而這些 cell 又和製程有關，因此 synthesis 的過程中又可以有兩種最佳化方式，technology dependent optimization 與 technology independent optimization。
+  在 high level synthesis 中，因為 gate 與製程不相關，因此最佳化為 technology independent，而在 synthesis 轉換成 transistor level 時，就會使用到設計好的 cell ，和製程相關為 technology dependent，這個 gate 與 transistor 的對應又稱為 technology mapping。
+
+  在電路最佳化時，不同的電路儲存方式有其適合的最佳化問題，目前常用的結構有，Truth Table，SOP( Sum Of Product )，BDD( Binary Decision Diagram )，AIG( And Inverter Graph )，如果有興趣的話上網應該都查的到資料。
+
+* Verification
+  verification 主要做的是確保電路在做最佳化之後不會與原本的電路不同，或是確認設計的電路與想要的功能是不是一樣。
+  當設計好晶片下線時，需要花費大量的金錢，如果不在下線前做驗證確保功能無誤的話，失敗的成本是很高的，因此我認為驗證是設計中很重要的一環。
+  在與安全性相關的設計中更是突顯了驗證的重要性。
+
+  在驗證方面常常會需要解兩種問題，SAT ( Boolean Satisfiability ) 與 QBF ( Quantified Boolean Formula )，而現在也有現成的 SAT solver 可以使用，因此如果有要做相關的研究，可以使用這些 solver，miniSat 就是其中一種。
+
+  在 synthesis 與 verification 方面，有一個 Berkeley 所作的開源軟體 abc 專門在處理相關的問題，因此對這方面有興趣的話也可以研究一下這個軟體。
+  因為實驗室有在用就來推銷一下，不過我得說的是， abc 的文檔不是很好，因此若要自己研究需要花一段時間。有興趣的話我可以賣一下學長，可以找他學。
+
+* Physical Design
+
+  physical design 主要是將 synthesis 完的 transistor level 電路轉成製作電路時所要的 layout 圖，基本上就是一堆矩形所構成的圖，在製作電晶體時會根據layout圖做成光罩，用來產生電晶體所需的元件。
+
+  physical design 主要又可分為 floor plan, placement, routing。
+  floor plan主要是將電路設計的一塊塊模組做擺放，而 placement 則是對模組內的電晶體做擺放，routing是將這些放好的元件連接起來（我對這些方面沒這麼熟，可能會有講錯）。
+
+  因為在 physical design 主要會處理圖形上的問題，所以多少會用到一些 graph 相關的演算法。
+
+* Testing
+  
+  testing 主要是在晶片做出來之後做測試，因為只能依靠晶片的 I/O pin 做測試，所以難度很高，加上要測試電路所有功能基本上是不可能的，因此會有一些特別的技術做測試。
+  ATPG ( Automatic Test Pattern Generation ) 是其中一種產生測資的方式，根據已知的電路資訊，盡量產生最少的測資來完整測試電路。
+
+  在 testing 方面我所知道的很少，因此詳細還是得詢問相關人員。
+  值得一提的是在電路設計上為了配合與減少 testing 的難度，有所謂的 DFT ( Design For Test ) 與 BIST ( Build In Self Test ) 技術。
+
+-----
+
+基本上我對數位電路自動化的部份只知道這些，接下來簡單講講其他相關的知識。
+目前 EDA 領域有兩家大廠，synopsys （新思科技）與 cadence (益華電腦)，學校中會用到的 EDA 軟體多出自這兩家，像 hspice, laker, design vision 都是 synopsys 的軟體，而 virtuoso, SOC encounter, ncverilog, pspice 則為 cadence 的軟體。
+而 cad contest 為一個與 EDA 相關的比賽，每年都會舉辦，有些題目甚至是以目前廠商面臨的問題為基礎來出的，看看競賽的題目也可以對 EDA 有一些認識。
+
+以上就是目前我對 EDA 領域的一些認識，提及的資訊可能還蠻少的，但希望對於不認識的人可以有些簡單的概念。
+因為目前我只是一個小咖，對於一些概念可能還不是那麼清楚，因此如果有講錯或說不清楚的地方，還請比較了解的人可以提出來。
+那麼這篇文章就是這樣了，希望對觀看的各位有所幫助。
+
+-----
+
+嗯...雖然覺得很多人對 EDA 的認識不多所以想介紹一下，不過自己懂的也不是很多，而且講的也不是很清楚，希望不要讓看的人對 EDA 有誤會阿。 
+總之以我這顆弱弱的腦袋只能講這些了。
+最近想寫寫一些 linux 或編輯器相關的文章，不知道何時才有心寫，又能寫的多好呢（基本上應該好不到哪去），也還有 C++ 的文章停滯在那邊......算了，反正是寫開心的，也不一定會有多少人看，就自己看開心就好了吧。
+
+-----
