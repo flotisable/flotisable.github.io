@@ -2,7 +2,9 @@
 #+AUTHOR: Flotisable
 #+DATE: <2019-02-13 週三>
 #+OPTIONS: toc:nil creator:t num:nil
+#+ODT_STYLES_FILE: "./articles.ott"
 #+LATEX_HEADER: \usepackage{CJKutf8}
+#+LATEX_HEADER: \hypersetup{unicode}
 #+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
 #+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
 
@@ -462,3 +464,4 @@
   在自動化上面可以有不錯的幫助。
   也可以將很多事統一用 make 來做到，
   個人是覺得很方便啦。
+-----
