@@ -1,5 +1,5 @@
-#+TITLE: Flotisable's Home
-#+AUTHOR: Flotisable
+#+TITLE: 飄殘的家
+#+AUTHOR: 飄殘
 #+EMAIL: s09930698@gmail.com
 #+EXPORT_FILE_NAME: index
 #+OPTIONS: num:nil toc:nil author:t email:t creator:t
@@ -31,12 +31,5 @@
    - org
    - makefile
    - bash script
-** 作業環境
-   - CentOS 7
-     - 桌面環境:   KDE 4.14.8
-     - 瀏覽器:     Google Chrome, Firefox
-     - 常用編輯器: nvim, emacs, vim, vscode
-     - 常用IDE:    Qt creator
-   - macOS Sierra 10.12.6
-     - 套件管理員: homebrew
+   - perl
 -----
