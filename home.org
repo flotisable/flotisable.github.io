@@ -11,6 +11,7 @@
   - [[https://github.com/flotisable/EmacsInit][我的 emacs 設定]]
 * 文章
   這裡會放一些我自己寫的文章，希望對大家有幫助
+  - [[./Articles/Others/LatexBrief/latexBrief.html][latex 簡介]]
   - [[./Articles/Others/emacsBrief.html][emacs 簡介]]
   - [[./Articles/Others/makeBrief.html][makefile 簡介]]
   - [[https://flotisable.github.io/VimIntro][Vim 的介紹]]
@@ -32,4 +33,5 @@
    - makefile
    - bash script
    - perl
+   - latex
 -----
