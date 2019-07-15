@@ -1,0 +1,316 @@
+#+TITLE: git 簡介
+#+AUTHOR: Flotisable
+#+DATE: <2018-04-13 Fri>
+#+OPTIONS: toc:nil creator:t num:nil
+#+ODT_STYLES_FILE: "./articles.ott"
+#+LATEX_HEADER: \usepackage{CJKutf8}
+#+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
+#+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
+
+#+LATEX: \newpage
+因為之前聽到實驗室的同學跟學弟有提到，想說就來簡單介紹一下 git 是什麼東西。
+然後講講一些基本的使用這樣。
+
+-----
+
+* git 與版本控制
+
+  git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
+  任何被修改過的檔案都可以被視為不同的版本，而版本控制顧名思義就是協助使用者管理不同版本的軟體。
+  在程式開發上常常需要做這些版本的管理，因為修改程式很容易發生原本可以正常運作，改完卻死掉的狀態。
+  如果有保存之前的版本，就可以比較差異，甚至是直接回復到過去的版本。
+  傳統上可以用資料夾或壓縮檔分別儲存不同的版本，但是人工維護多個版本很容易就會發生搞錯或是讓整個版本資訊變得很亂的狀況。
+  因此為懶而懶的程式設計師就開發了用來取代人工的版本控制系統。
+  當然，版本控制系統並不受限於程式原始碼，只要是檔案都可以透過版本控制系統做管理，像這份文件就透過 git 做管理。
+
+  版本控制系統又簡單分成集中式與分散式，其中 git 是屬於分散式的版本控制系統。
+  這兩種版本控制系統主要的差異在於版本儲存的方式。
+  集中式的系統只將版本儲存於伺服端，而要使用到的人都只能透過這唯一的伺服端做操作。
+  分散式的系統則是所有使用這些版本的使用者都會有一份完整的版本資料。
+  這使得其中一端的資料毀損時可以透過任何擁有版本資料的人復原，同時不必因為受限於網路無法存取伺服端而讓開發停滯。
+
+  目前我個人使用 git 一年半左右的經驗是覺得使用 git 有以下好處
+
+  1. 備份資料
+
+     這樣開發程式如果要大改時就可以毫無忌憚的亂改，反正掛掉時可以隨時回復。
+
+  2. 多人開發
+
+     因為 git 可以將不同的版本很容易的做合併，在多人開發時就不必擔心檔案不同步的問題。
+
+  3. 檔案傳輸
+
+     這是我個人偏好，因為我常在不同電腦與系統間轉換，而使用 git 就可以很簡單的透過第三方伺服端傳輸檔案。
+
+  上面幾個好處並不只限於 git，而且是從我的角度出發，實際還是以每個人各自己體驗做考量。
+  接下來會開始介紹 git 的基本使用，請注意因為我是終端愛好者而且姑且算是程式設計師，所以只會介紹終端機的指令。
+  當然 git 也有提供 GUI 供喜歡圖形介面的人使用，詳情請洽[[https://git-scm.com][官網]]與 google，這方面我不太熟，不過我還是擠出了一個 gui 版的介紹，請看[[https://flotisable.github.io/Articles/Others/GitGui/gitBriefGui.html][git 簡介 GUI 版]]。
+
+* 初心者
+
+  首先，在第一次使用 git 時要先做一些設定。因為 git 強制要求每次儲存一個版本時要附上修改者的名字與電子郵件。
+  請在終端機輸入以下指令做設定
+
+  #+BEGIN_EXAMPLE
+  git config --global user.name flotisable
+  git config --global user.email s09930698@gmail.com
+  #+END_EXAMPLE
+
+  上面是我自己的設定，給大家當參考用。使用時將 flotisable, s09930698@gmail.com 分別改成自己的名字跟電子郵件即可。
+  需要說明的是 git 將設定檔分為三個層級
+
+  - 系統設定檔:   加 --system 選項
+  - 使用者設定檔: 加 --global 選項
+  - 倉庫設定檔:   預設
+
+
+  越下面層的設定會蓋掉上一層的設定，可以視個人喜好做調整。
+
+  接著我們要來建立 git 的倉庫。先到一個自己想要讓 git 做版本控制的資料夾，然後輸入以下指令
+  
+  #+BEGIN_EXAMPLE
+  git init
+  #+END_EXAMPLE
+
+  這樣就會建立好 git 做版本控制所需要的資料。
+  在資料夾底下會出現名為 .git 的資料夾，我們稱這個資料夾為一個倉庫( repository )，我自己是簡稱 repo。
+  裡面存放的就是 git 對各個版本的紀錄以及一些其他的相關資料。
+  而這個倉庫所在的資料夾被稱為工作資料夾( working directory )。
+  
+  接著我們要來試著做一次提交( commit )。
+  當我們對工作資料夾裡的檔案做修改或是新增檔案後，可以用 git status 來看看現在這個資料夾的狀態。
+  git 也有良好的提示告訴我們現在可以對這些檔案做什麼。
+  假設我們新增一個名為 test.txt 的檔案，如果現在輸入 git status，可以看到它還沒被追綜。
+  我們要先將它做暫存( stage )，請輸入以下指令
+
+  #+BEGIN_EXAMPLE
+  git add test.txt
+  #+END_EXAMPLE
+  
+  再用 git status 查看時可以看到它會被作為提交的對象。確認 ok 後，就可以提交這次的版本。
+  我們使用 git commit 做提交。輸入之後它會跳出編輯器讓我們編寫提交訊息，作為對這個版本的描述。
+  印象中預設編輯器會是 vim，但是可以透過設定 core.editor 做改變。
+  比方說我們想用 emacs 做編輯器，可以輸入以下指令
+
+  #+BEGIN_EXAMPLE
+  git config --global core.editor emacs
+  #+END_EXAMPLE
+
+  這樣之後做提交時就可以用 emacs 來撰寫提交訊息。
+  做完提交之後我們可以利用 git log 來觀看過去的提交訊息。
+  下面是這篇文章的 git log 的一部分，作為參考
+  
+  #+BEGIN_EXAMPLE
+  commit 5b377dcda5b03d4b06d73a3049bc20614a46051f
+  Author: flotisable <s09930698@gmail.com>
+  Date:   Fri Apr 13 20:42:19 2018 +0800
+  
+  finish introduction
+  
+  commit 1cb882956c35df7e4037d1af9836c5ae8cfeda47
+  Author: flotisable <s09930698@gmail.com>
+  Date:   Fri Apr 13 20:42:05 2018 +0800
+  
+  first commit
+  #+END_EXAMPLE
+
+  這樣我們就會了 git 的基本使用，簡單列一下會用到的指令
+
+  - git config 做設定
+  - git init 建立新的 repo
+  - git status 觀看現在工作資料夾的狀態
+  - git add 將要提交的檔案做 stage
+  - git commit 提交檔案
+  - git log 查看過去的提交訊息
+
+    
+  另外提個幾點，除了 git init 可以建立新的倉庫外，也可以用 git clone 來複製已存在的倉庫。
+  比如說要複製 git 的官方倉庫，可以輸入以下指令
+
+  #+BEGIN_EXAMPLE
+  git clone https://github.com/git/git.git
+  #+END_EXAMPLE
+   
+  這樣就會產生新的資料夾名為 git，而這就是 git 這個倉庫的工作資料夾。進到裡面後就可以對 git 的原始碼做改動。
+  另外就是 git 與其他版本控制系統比較不同的一點( 在我有限的知識內 )，git 對於一次的提交分成了兩階段。
+  第一階段為 stage，第二階段才是 commit。
+  這讓版本的儲存又多了一層，我們可以修改後再決定要提交哪些檔案，而不是所有修改檔案都要提交。
+  而且可以用 stage 作暫存，不用到 commit 才會真正儲存。從 stage 復原比從 commit 復原相對較為方便。
+  接下來要講一點 git 好用的功能: branch
+
+* 升級
+
+  git 有一個方便開發的功能叫做分支，分支的特性讓我們可以針對不同需求讓版本的更迭不是線性的一條線。
+  我先講講分支怎麼使用，再簡單介紹一兩個使用的方式。
+  在還沒建立新的分支前，我們可以先看看 git status
+
+  #+BEGIN_EXAMPLE
+  On branch master
+  Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   gitBrief.org
+
+  Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.#gitBrief.org
+
+  no changes added to commit (use "git add" and/or "git commit -a")
+  #+END_EXAMPLE
+
+  這是我寫到這邊的 git status。重點在於第一行，我們可以看到在預設的情況下我們是在 master 的分支。
+  那麼我們來建立新的分支，輸入下列指令
+
+  #+BEGIN_EXAMPLE
+  git branch develop
+  #+END_EXAMPLE
+
+  這樣我們就建立了一個名為 develop 的分支。直接使用 git branch 可以看到現在這個倉庫所擁有的分支。
+  我們可以利用 git checkout 來切換不同的分支
+
+  #+BEGIN_EXAMPLE
+  git checkout develop
+  #+END_EXAMPLE
+
+  這樣就會切換到 develop 這個分支。
+
+  我們可以在不同分支做不同的修改與提交，等到覺得時機到了，可以將兩個分支做合併。
+  假設我們在 master 提交了名為 test.txt 的檔案，而 develop 在 master 之後提交了 temp.txt 的檔案。
+  也就是說整個版本可以看成這樣
+
+  #+BEGIN_EXAMPLE
+  +----------+    +----------+
+  | test.txt |--->| test.txt |
+  |          |    | temp.txt |
+  +----------+    +----------+
+        ^               ^
+      master          develop
+  #+END_EXAMPLE
+
+  現在我們可以 checkout 到 master 分支，然後輸入
+
+  #+BEGIN_EXAMPLE
+  git merge develop
+  #+END_EXAMPLE
+
+  這樣就會將 develop 這個分支並到 master 中。現在整個版本可以看成這樣
+
+  #+BEGIN_EXAMPLE
+  +----------+    +----------+
+  | test.txt |--->| test.txt |
+  |          |    | temp.txt |
+  +----------+    +----------+
+                        ^
+                  master, develop
+  #+END_EXAMPLE
+
+  簡單整理一下用到的指令
+
+  - git branch 創建分支與觀看分支訊息
+  - git checkout 切換分支
+  - git merge 合併分支
+
+  這樣我們就會分支的基本使用了，至於可以怎麼用這些分支，以下介紹兩種方式。
+  當然還有很多使用方式，這就要靠各位自己探索了。
+
+** 依性質建立分支
+
+   比方說，我們希望 master 是穩定沒問題的版本，並利用 develop 作為開發版。
+   我們可以在 develop 做任意的嘗試，等到覺得夠穩定了在合併到 master 之中。
+
+** 依功能建立分支
+
+   我們可以將 master 作為 base，並在不同分支開發不同功能。
+   比如 ui 分支開發使用者介面，internet 分支開發連網功能。
+   等到某項功能開發完就可以合併到 master 中。
+   這種使用分支的方式比較容易碰到不同分支對同一份檔案做修改的問題，所幸 git 合併的功能還不錯，沒有太大的衝突都可以順利的合併。
+   真正遇到 git 無法解決的衝突，git 會將決定權交給使用者。
+   合併後並不會做提交，而是將有衝突的檔案讓使用者做修改，等使用者確定沒問題再依一般方式做 stage 與提交。
+
+   有衝突的檔案會在檔案中用下面方式標示衝突點
+
+   #+BEGIN_EXAMPLE
+   <<<<<<<<<<<<< HEAD
+   if( a == b ) return;
+   =============
+   if( a < b ) break;
+   >>>>>>>>>>>>> internet
+   #+END_EXAMPLE
+
+   HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 internet 這個分支。
+
+* 轉職
+
+  最後要來介紹如何跟伺服器端做溝通，這在多人開發時很常用到。
+  基本上用 git clone 的方式建立倉庫，對於伺服器端的設定就被處理好了。
+  可以用 git status 來查看。
+  下面是我另外一個倉庫 git status 的資訊
+  
+  #+BEGIN_EXAMPLE
+  On branch master
+  Your branch is up to date with 'github/master'.
+
+  nothing to commit, working tree clean
+  #+END_EXAMPLE
+
+  可以從第二行看到這個分支連接到了 github/master 的伺服器端分支。
+  如果類似這種訊息，就可以確定伺服器端的設定 ok 了。
+  這時候就可以用 git pull 來將伺服器端分支合併到本地端分支，而 git push 則能將本地端分支合併到伺服器端分支。
+  要注意的是，如果伺服器端分支的版本跟本地端分支有衝突時，必須先 git pull 拉下來解決衝突後才可以 git push 給伺服器端。
+  如果只想要同步一下伺服器端資料而不想合併到本地端的分支的話，可以用 git fetch。
+  git pull 基本上等於 git fetch + git merge。
+  
+  再來講講如果沒有設定好連結的伺服器端要如何處理。
+  最簡單是每次 git push 跟 git pull 都指定伺服器端網址與分支，像是
+
+  #+BEGIN_EXAMPLE
+  git pull https://github.com/git/git.git master
+  #+END_EXAMPLE
+
+  可是每次這樣太累了，我們可以用 git remote 紀錄伺服器端的位置
+
+  #+BEGIN_EXAMPLE
+  git remote add github https://github.com/git/git.git
+  #+END_EXAMPLE
+  
+  上面指令會用 github 紀錄 https://github.com/git/git.git 的位置，所以用
+
+  #+BEGIN_EXAMPLE
+  git pull github master
+  #+END_EXAMPLE
+
+  來取代剛剛的 pull 指令。至於要直接讓本地端分支連結到伺服器端分支，要使用
+
+  #+BEGIN_EXAMPLE
+  git branch --set-upstream-to=github master
+  #+END_EXAMPLE
+
+  來將現在的分支連結到 github 的 master 分支。這樣之後的 git pull 跟 git push 對象預設就會是 github 的 master 分支。
+  另外就是，用 git remote -v 可以看到遠端伺服器的設定。
+  而 git branch -vv 可以看到每個本地分支的詳細設定( 包括連結到的遠端分支 )
+  簡單整理用到的指令
+
+  - git pull 從伺服端拉取資料並合併
+  - git fetch 從伺服端拉取資料
+  - git push 將資料推到伺服端
+  - git remote 管理遠端設定
+
+* 結語
+
+  以上就是我對 git 的簡單介紹，希望看這篇文章的人能對 git 有個簡單的認識與學會基本的使用。
+  我會將這篇文章轉成 pdf 放在 [[https://github.com/flotisable/Articles][github]] 供想看的人離線觀看。
+  如果想看更詳細的介紹，git 官網有別人寫的[[https://git-scm.com/book/zh-tw/v1][免費電子書]]，而且有中文版本。
+  我基本上也是看那本書學的。
+  那麼感謝各位讀到這裡的人。
+  
+-----
+
+之前在學弟提到還有跟實驗室同學介紹時就有在思考要怎麼寫這篇了。
+結果拖了一兩個星期才生出來。
+還有 vim 的介紹要寫呢。
+但現在有點多事，而且又動力不足，只能慢慢找時間做了
+
+-----
