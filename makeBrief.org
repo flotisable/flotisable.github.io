@@ -1,0 +1,467 @@
+#+TITLE: Makefile 簡介
+#+AUTHOR: Flotisable
+#+DATE: <2019-02-13 週三>
+#+OPTIONS: toc:nil creator:t num:nil
+#+ODT_STYLES_FILE: "./articles.ott"
+#+LATEX_HEADER: \usepackage{CJKutf8}
+#+LATEX_HEADER: \hypersetup{unicode}
+#+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
+#+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
+
+#+LATEX: \newpage
+
+有鑑於實驗室有些同學跟學弟不知道怎麼用 makefile，
+因為個人覺得很好用，
+所以就雞婆的想來介紹一下。
+-----
+* Makefile 是什麼
+  makefile 是對 make 這種程式所讀取的檔案的統稱，
+  常被用於程式建置( build )的自動化。
+  但 makefile 並不只能用在程式原始碼上，
+  就算是一般的檔案也沒問題。
+  make 程式本質上是依據 makefile 所描述的規則，
+  對於一個 *目標* 在 *什麼條件* 下要 *做什麼* 。
+  所以只要需要依據一定條件做事，
+  就可以利用 makefile 做自動化。
+  比如說，我們在寫完一份報告後，
+  要將報告相關的檔案壓成 zip 檔。
+  那麼這個 zip 檔就是我們的目標，
+  而條件就是報告被修改，
+  要做的事就是壓縮檔案。
+  
+  make 程式有不同變體，
+  在這篇文章中，我只會介紹 [[https://www.gnu.org/software/make][GNU make]] 這個我比較熟悉的 make。
+  至於例子，因為我比較習慣用在 c++ 專案中，
+  所以會以 c++ 編譯的例子為主。
+* 基本使用
+  就像前面提過的，makefile 中主要是描述一些規則( rule )。
+  每個規則都是由下列三個項目所組成
+
+  - 目標( target )
+
+    要被產生的檔案。
+
+  - 條件( prerequisite )
+
+    可以是檔案或是其他目標。
+    條件可以是空的。
+
+  - 步驟( recipe )
+
+    基本上是 shell 中的指令。
+    
+  其語法為
+
+  #+BEGIN_SRC makefile
+  target: prerequisite
+      recipe
+  #+END_SRC
+  
+  這個規則所描述的是：
+  當 *目標* 不存在，或是當 *條件* 發生改變時，
+  就根據 *步驟* 來產生 *目標* 。
+  
+  在 c++ 中常見的例子是一個目的檔在原始檔被修改後要重新編譯，
+  假設原始碼名稱為 test.cpp，
+  在 makefile 中可以寫成
+  
+  #+BEGIN_SRC makefile
+    test.o: test.cpp
+      g++ -c -o test.cpp
+  #+END_SRC
+  
+  這樣子當 test.o 不存在或是 test.cpp 被修改後，
+  make 就會根據所寫的步驟重新編譯出 test.o。
+  值得一提的是，每個步驟必須由 tab 做開頭，
+  不能是空白或是其他字元，一定要是 tab 才行。
+  雖然有辦法對這個做設定，在這不在本篇文章所涵蓋的範圍。
+  另外就是，步驟中所描述的指令預設會用系統的 shell 作執行，
+  而每一行指令會是用不同的子行程做執行( 也就是各自獨立的意思 )，
+  當然這也可以做設定。
+
+  如果一行中所要描述的指令太長的話，
+  可以用 =\= 來連接兩行作為一行，如以下例子
+
+  #+BEGIN_SRC makefile
+    test.o: test.cpp
+      g++ -std=c++11 -O2 -c \
+      -o test.cpp
+  #+END_SRC
+  
+  而如果想要寫一些註解的話， =#= 後到該行結束為止都會是註解
+
+  #+BEGIN_SRC makefile
+    test.o: test.cpp # 這是註解
+      g++ -c -o test.cpp # compile test.o
+  #+END_SRC
+  
+  當一份 makefile 裡有多條規則時，預設會只執行第一條規則。
+  可以藉由在參數指令目標來選擇要執行的規則。
+  比如我們有以下 makefile
+
+  #+BEGIN_SRC makefile
+    program: test.o
+      g++ -o program test.o
+
+    test.o: test.cpp
+      g++ -c -o test.o test.cpp
+  #+END_SRC
+  
+  如果直接執行 make，make 會根據第一條規則看要不要產生 program。
+  而我們可以在參數加上 test.o 來指定說要執行第二條規則。
+
+  #+BEGIN_SRC sh
+    make test.o
+  #+END_SRC
+  
+  順帶一提，
+  如果一條規則的條件是另一條規則的目標的話，
+  則 make 會先去執行另一條規則，
+  再執行原本的規則。
+  以上面 makefile 為例，
+  在執行 program 這條規則前。
+  因為 test.o 是另一條規則的目標，
+  所以會先看 test.o 存不存在以及 test.cpp 有沒有被修改，
+  來判斷要不要重新編譯 test.o。
+  然後再看 test.o 有沒有修改來判斷要不要重新編譯 program。
+
+* 變數
+** 一般變數
+   有時候我們會想要修改 makefile 的一些部份，
+   但這些部分在很多地方被用到，
+   比如說要改變編譯用的程式( gcc 改 g++ 之類的 )。
+   或是想要重複使用同樣的指令片段，
+   比如說編譯 c++ 原始碼的參數都一樣。
+   這時候就可以使用變數。
+   在設定變數時常用有兩種方式，
+   利用 === 或 =:== 。
+   這兩種方式的差別在於，
+   用 =:== 設定會展開變數，
+   而 === 則是變數被使用時才展開。
+   比如
+
+   #+BEGIN_SRC makefile
+     flag  := -std=c++11
+     flag1 =  ${flag} # flag1 為 ${flag}
+     flag2 := ${flag} # flag2 為 -std=c++11
+
+     test.o: test.cpp
+       g++ ${flag1} -c -o test.o test.cpp # flag1 展開成 -std=c++11
+   #+END_SRC
+   
+   我個人習慣用 =:== ，
+   主要是因為使用變數時才展開變數理論上執行速度會比較慢，
+   尤其是變數被大量使用時影響會比較大。
+   不過 === 應該也有適用的地方，
+   但我就不熟悉了。
+   使用變數的方式主要也有兩種方式，
+   一個是用 =$(= =)= 來包住變數，
+   一個是用 =${= =}= 來包住變數。
+   而這兩種方式基本上沒差。
+   我個人習慣用 =${= =}= ，
+   主要是可以跟後面介紹的函式作區別。
+   其實直接在變數名稱前加 =$= 就可以用使用變數了，
+   但如果變數名稱後面直接接著文字時會有問題。
+   我個人是習慣統一用一種方式。
+
+   #+BEGIN_SRC makefile
+     abc       := abc
+     variable1 := $abcdef   # variable1 為空字串( 因為 ${abcdef} 未設定，預設為空字串 )
+     variable2 := ${abc}def # variable2 為 abcdef
+   #+END_SRC
+   
+   有時候我們會想要將在變數後面加上新的值而不想覆蓋原本的值，
+   這時候可以用 =+== ，
+   比如
+
+   #+BEGIN_SRC makefile
+     variable1 := abc
+     variable1 += def # variable1 為 abc def
+   #+END_SRC
+   
+   有些常用的變數或是環境變數習慣上會用全部大寫表示，
+   下面為一個使用例子
+
+   #+BEGIN_SRC makefile
+     CXX      := g++
+     CXXFLAGS := -std=c++11
+     LD       := g++
+     LDFLAGS  :=
+     PROG     := test
+
+     ${PROG}: test.o
+       ${LD} ${LDFLAGS} -o ${PROG} test.o
+
+     test.o: test.cpp
+       ${CXX} ${CXXFLAGS} -c -o test.o test.cpp
+   #+END_SRC
+** 自動變數
+   make 支援一些特別的變數，
+   這些變數會根據規則而改變。
+   會用的話寫 makefile 會方便些，
+   但並不一定要會。
+   這裡只介紹幾個我個人常用的自動變數( 主要是因為 c++ 專案常用 )。
+
+   比較常用的就三個，分別如下
+
+   - =$@=
+
+     這個變數會展開成規則的目標。
+
+   - =$<=
+
+     這個變數會展開成規則的第一個條件。
+
+   - =$^=
+
+     這個變數會展開成規則的所有條件。
+
+   下面直接用一個例子來使用這些變數，
+   假設我們的 c++ 專案有 main.cpp, Test.h, Test.cpp 三個檔案
+
+   #+BEGIN_SRC makefile
+     CXX      := g++
+     CXXFLAGS := -std=c++11
+     LD       := g++
+     LDFLAGS  :=
+     PROG     := test
+
+     ${PROG}: main.o Test.o
+       ${LD} ${LDFLAGS} -o $@ $^ # $@ 為 test, $^ 為 main.o Test.o
+
+     main.o: main.cpp
+       ${CXX} ${CXXFLAGS} -o $@ $< # $@ 為 main.o, $< 為 main.cpp
+
+     Test.o: Test.cpp Test.h
+       ${CXX} ${CXXFLAGS} -o $@ $< # $@ 為 Test.o, $< 為 Test.cpp
+   #+END_SRC
+* 函式
+  make 提供了一些函式方便做文字的處理，
+  這裡一樣只介紹幾個常用的，
+  其他需要用的時候再查詢即可。
+  而函式的呼叫方式是用 =$(= =)= 將函式的名稱與參數包起來。
+  以下採用 gnu make info 文件的函式格式。
+
+  - $(subst FROM,To,TEXT)
+
+    這個函式會將 TEXT 中的 FROM 取代成 TO。
+    比如
+
+    #+BEGIN_SRC makefile
+      SRCS := main.cpp test.cpp
+      OBJS := $(subst .cpp,.o,${SRCS})  # OBJS 為 main.o test.o
+    #+END_SRC
+    
+  - $(wildcard PATTERN)
+
+    可以使用一些 shell 常用的 wildcard 來得到檔案名稱。
+    假設我們的資料夾下有 main.cpp, test.cpp
+
+    #+BEGIN_SRC makefile
+      SRCS :=$(wildcard *.cpp) # SRCS 為 main.cpp test.cpp
+    #+END_SRC
+    
+  - $(shell COMMAND)
+
+    用 shell 執行 COMMAND，並傳回結果。
+
+    #+BEGIN_SRC makefile
+      variable := $(shell echo abc) # variable 為 abc
+    #+END_SRC
+* 其他好用功能
+** pattern rule
+   我們可以在 makefile 中利用匹配的方式來描述一些規則，
+   比如我們在編譯 c++ 原始碼時，通常會將 .cpp 編譯成 .o 檔。
+   這可以用下面的 pattern rule 描述
+
+   #+BEGIN_SRC makefile
+     %.o: %.cpp
+       g++ -c -o $@ $<
+   #+END_SRC
+   
+   其中 =%= 是匹配符號，
+   如果 test.o 為目標或是條件，
+   那 makefile 就會自動有以下規則存在
+
+   #+BEGIN_SRC makefile
+     test.o: test.cpp
+       g++ -c -o $@ $<
+   #+END_SRC
+   
+   這在處理大量類似規則時會很方便。
+** 隱式規則
+   make 程式其實偷偷提供了一些常用的規則，
+   如果知道的話在撰寫 makefile 時可以精簡一些。
+   這些隱式規則基本上都是以 pattern rule 的方式存在。
+   在 gnu make，可以用 =-p= 參數來顯示預設的隱式規則。
+** 包含其他檔案
+   有時候將所有的規則寫在一份 makefile 的話，
+   整份 makefile 可能會勒勒登。
+   我們可以將 makefile 分割，
+   再用 *include* 這個關鍵字將檔案包進來。
+
+   #+CAPTION: settings
+   #+BEGIN_SRC makefile
+     CXX      := g++
+     CXXFLAGS := -std=c++11
+     LD       := g++
+     LDFLAGS  :=
+     PROG     := test
+   #+END_SRC
+
+   #+CAPTION: makefile
+   #+BEGIN_SRC makefile
+     include settings
+
+     ${PROG}: main.o
+       ${LD} ${LDFLAGS} -o $@ $^
+
+     main.o: main.cpp
+       ${CXX} ${CXXFLAGS} -c -o $@ $<
+   #+END_SRC
+   
+   這等同於
+
+   #+BEGIN_SRC makefile
+     CXX      := g++
+     CXXFLAGS := -std=c++11
+     LD       := g++
+     LDFLAGS  :=
+     PROG     := test
+
+     ${PROG}: main.o
+       ${LD} ${LDFLAGS} -o $@ $^
+
+     main.o: main.cpp
+       ${CXX} ${CXXFLAGS} -c -o $@ $<
+   #+END_SRC
+** 假目標( Phony Target )
+   有些時候，我們並不想要產生目標檔案，
+   比如常見的 clean 目標 ，
+   這個目標純粹是方便使用並不想產生 clean 這個檔案。
+   或是就算檔案存在我們仍想要更新目標檔案。
+   我們可以在 makefile 中加入 =.PHONY= 關鍵字來完成這些事。
+
+   #+BEGIN_SRC makefile
+     .PHONY: clean
+
+     clean:
+       rm *.o
+   #+END_SRC
+
+   =.PHONY= 會告訴 make 那些目標是假目標，
+   不會產生目標檔案，
+   所以不管目標檔案存不存在都會執行步驟的部分。
+   這讓我們比較容易將 make 所要做的事切割成更小部分。
+   比如說我們想用 make 預設目標來做到編譯程式、產生文檔和做單元測試，
+   我們可以將預設目標切成幾個小目標，其中可以用假目標做分類。
+
+   #+BEGIN_SRC makefile
+     all: program docs unit-test
+
+     program:
+     # 編譯程式
+
+     docs:
+     # 產生文檔
+
+     unit-test:
+     # 做單元測試
+   #+END_SRC
+   
+   順帶一題，
+   習慣上會用 all 作為 make 的預設目標。
+
+** 根據目標設定變數
+   很多時候我們會想要根據要產生的目標對變數做一些修改，
+   比如我們想依照 release 和 debug 目標設定不一樣的 CXXFLAGS。
+   可以用下面的寫法
+
+   #+BEGIN_SRC makefile
+     CXXFLAGS := -std=c++11
+
+     release: CXXFLAGS += -DNDEBUG -O2
+     release:
+     # 編譯程式
+
+     debug: CXXFLAGS += -g -Wall
+     debug:
+     # 編譯程式
+   #+END_SRC
+   
+   也就是在原本寫條件的部分改成寫變數的設定。
+   要注意的是這跟一般的規則要分開來寫。
+* 實例: 自動產生 c++ 原始碼規則
+  #+BEGIN_SRC makefile -n -r
+    CXX      := g++
+    CXXFLAGS := -std=c++11
+    LD       := g++
+    LDFLAGS  :=
+    PROG     := test
+
+    OBJS := $(subst .cpp,.o,$(wildcard *.cpp))									#(ref:objs)
+
+    ${PROG}: ${OBJS}																						#(ref:program)
+      ${LD} ${LDFLAGS} -o $@ $^
+
+    -include $(subst .o,.d,${OBJS})															#(ref:include)
+
+    %.o: %.d																										#(ref:o-dep-d)
+
+    %.d: %.cpp
+      ${CXX} ${CXXFLAGS} -MM -MT '$(subst .d,.o,$@) $@' $< > $@	#(ref:dep)
+  #+END_SRC
+
+  這個自動產生規則的 makefile 是根據 gnu make info 文件的介紹，
+  然後我再稍微調整成自己喜歡的格式寫成的。
+
+  第 [[(objs)]] 行取得 makefile 所在的資料夾中所有的 .cpp 檔，
+  並將這些檔案對應的 .o 檔名稱產生出來。
+  第 [[(program)]] 行就只是一般程式編譯的規則。
+  第 [[(include)]] 行則根據 .o 檔將對應的 .d 檔包含進來。
+  前面加上 =-= 是因為第一次編譯時 .d 檔不存在，
+  這時候 include 會報錯，
+  加了 =-= 會讓 make 忽略錯誤繼續執行。
+  因為當一個 .o 檔的條件改變時( 比如 .cpp 檔 include 新的標頭檔 )，
+  就應該重新編譯，所以加上了第 [[(o-dep-d)]] 的 pattern rule。
+  最後當原始檔改變時有可能要更新 .o 檔的條件，
+  所以加上 .d 與 .cpp 的 pattern rule。
+  並用第 [[(dep)]] 行的指令產生 .d 檔。
+
+  這裡要額外說明幾點，
+  首先是第 [[(dep)]] 行的指令。
+  g++ 加上 =-MM= 參數後會分析原始碼並產生 makefile 的規則。
+  而 =-MT= 可以將規則的目標改成指定的目標，
+  在這裡是從原本的只有 .o 檔改成 .o 與 .d。
+  產生的規則會被儲存到 .d 檔。
+  這裡應用了 gnu make 的一個特性，
+  當被 include 的檔產生改變時，
+  make 會自動重新 make 同樣的目標。
+  這使得 .d 檔被產生後，
+  make 會根據新加的條件重新編譯程式。
+  同時這裡還利用了隱式規則，
+  gnu make 有一條隱式規則可以簡化看成是
+
+  #+BEGIN_SRC makefile
+    %.o: %.cpp
+      ${CXX} ${CXXFLAGS} -c -o $@ $<
+  #+END_SRC
+  
+  所以只要設定好變數，產生好條件，
+  不用寫步驟也能執行( 雖然也沒差幾行 )。
+
+  我曾經想過產生 .d 檔感覺資料夾會很亂，
+  而也在書上看人講過不用產生 .d 檔自動產生條件的方法。
+  但關於這點，曾有人探討過如何寫執行速度快的 makefile，
+  裡面提到產生 .d 檔速度會比較快( 基本上就是用空間換取時間 )。
+  詳情可以看 [[http://aegis.sourceforge.net/auug97.pdf][Recursive Make Considered Harmful]] 。
+* 小結
+  我是盡量將我覺得 makefile 好用的部分做個簡單的介紹，
+  希望能讓大家稍微了解一下。
+  但 makefile 本身還有很多花樣可以玩，
+  有興趣可以再自行研究。
+  學會寫 makefile 的話，
+  在自動化上面可以有不錯的幫助。
+  也可以將很多事統一用 make 來做到，
+  個人是覺得很方便啦。
+-----
