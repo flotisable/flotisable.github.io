@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-07-15 週一 19:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>我所知道的 EDA</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Flotisable" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">我所知道的 EDA</h1>
+<p>
+這篇文章是以前在 facebook 的網誌上寫的，現在只是把它用 org mode 重新排版。
+</p>
+
+<hr />
+
+<p>
+EDA，英文全稱是 Electronic Design Automation，中文直翻為電子設計自動化。
+也有人會稱為 CAD，Computer Aided Design，電腦輔助設計。
+不過狹義來說 EDA 主要指的應該還是電子相關的自動化。
+</p>
+
+<p>
+直觀來看，其實就是在電子相關領域的自動化，也就是讓許多設計上不適合人來做，或是過於繁瑣的事，可以讓電腦來幫我們完成。
+算是在幫電路設計人員做一套工具來讓他們使用。
+</p>
+
+<p>
+第一次知道這個名詞是在大三的時候，一門課名為「電子設計自動化導論」。
+不過大多數人就算看到這個名稱還是不知所以然（基本上我想多數的專門課都是這樣），以下我會簡單介紹我所知道的相關知識，希望能讓不太清楚的人能有一些認識（雖然有多少人會看都是個問題了，基本上就是寫開心的）。
+</p>
+
+<p>
+在電機領域中，現在比較流行的一個領域是電子，主要就是在做比較小的電路，像是手機晶片、電腦 CPU&#x2026;&#x2026;等。
+而概略來分的話，電子領域又可以分成三塊，數位、類比、EDA。
+數位與類比是比較偏向電路設計方面的領域，而 EDA 則較為偏向程式設計方面。
+簡言之的話，EDA 可以說是在做程式設計上的最佳化問題（當然不全然是這樣），主因是因為現在的晶片動輒幾百萬甚至幾億顆電晶體，因此就算是電腦來處理也是要花上一些時間。
+為了要讓電路設計更為快速，必然要在相關的問題上研究如何讓問題的解決時間縮短。
+</p>
+
+<p>
+基本上只要是可以讓電腦來做的事，都可以是自動化要處理的項目，像是電路的模擬、電路化簡&#x2026;&#x2026;等。
+我們在學習電子相關的課程時，也經常用到相關的軟體，像是 hspice, virtuoso, ISE 等。
+我在學習中接觸到的主要是目前主流的數位電路相關的自動化，因此主要會講這方面，當然也有其他方面的研究，像是類比電路的自動layout、設計高頻電路的輔助軟體等，但我對這些並不熟悉。
+</p>
+
+<p>
+現今數位電路設計的設計流程大致可以以下面的圖示來解釋
+</p>
+
+<p>
+system level design &#x2014;&gt; HDL circuit design &#x2014;&gt; synthesis &#x2014;&gt; physical design &#x2014;&gt; manufacture &#x2014;&gt; testing &#x2014;&gt; tapeout
+</p>
+
+<p>
+而自動化的部份主要在 HDL circuit design 之後到 tapeout 之間，另外還可以加上驗證（Verification）。以下會做簡單的介紹
+</p>
+
+<hr />
+
+<div id="outline-container-orgec8c123" class="outline-2">
+<h2 id="orgec8c123">Synthesis</h2>
+<div class="outline-text-2" id="text-orgec8c123">
+<p>
+又可以分成 high level synthesis 與一般的 synthesis，電路設計人員一般使用 Hardware Description Language ( HDL, 硬體描述語言 )來設計電路，通常稱為RTL( Register Transfer Level ) level，而 high level synthesis 主要是將 RTL 像是程式碼的 code 轉換成 gate level 的邏輯電路（AND, OR, NOT等）並做一些電路的化簡與優化。
+synthesis 則是將這些 gate level 電路再轉換到 transistor level 的電路。
+</p>
+
+<p>
+目前數位電路基本上是以 cell base 來做設計，也就是有已經用 CMOS 設計好的 AND, OR, NOT等基本邏輯閘，而這些 cell 又和製程有關，因此 synthesis 的過程中又可以有兩種最佳化方式，technology dependent optimization 與 technology independent optimization。
+在 high level synthesis 中，因為 gate 與製程不相關，因此最佳化為 technology independent，而在 synthesis 轉換成 transistor level 時，就會使用到設計好的 cell ，和製程相關為 technology dependent，這個 gate 與 transistor 的對應又稱為 technology mapping。
+</p>
+
+<p>
+在電路最佳化時，不同的電路儲存方式有其適合的最佳化問題，目前常用的結構有，Truth Table，SOP( Sum Of Product )，BDD( Binary Decision Diagram )，AIG( And Inverter Graph )，如果有興趣的話上網應該都查的到資料。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga3c5284" class="outline-2">
+<h2 id="orga3c5284">Verification</h2>
+<div class="outline-text-2" id="text-orga3c5284">
+<p>
+verification 主要做的是確保電路在做最佳化之後不會與原本的電路不同，或是確認設計的電路與想要的功能是不是一樣。
+當設計好晶片下線時，需要花費大量的金錢，如果不在下線前做驗證確保功能無誤的話，失敗的成本是很高的，因此我認為驗證是設計中很重要的一環。
+在與安全性相關的設計中更是突顯了驗證的重要性。
+</p>
+
+<p>
+在驗證方面常常會需要解兩種問題，SAT ( Boolean Satisfiability ) 與 QBF ( Quantified Boolean Formula )，而現在也有現成的 SAT solver 可以使用，因此如果有要做相關的研究，可以使用這些 solver，miniSat 就是其中一種。
+</p>
+
+<p>
+在 synthesis 與 verification 方面，有一個 Berkeley 所作的開源軟體 abc 專門在處理相關的問題，因此對這方面有興趣的話也可以研究一下這個軟體。
+因為實驗室有在用就來推銷一下，不過我得說的是， abc 的文檔不是很好，因此若要自己研究需要花一段時間。有興趣的話我可以賣一下學長，可以找他學。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2dc454" class="outline-2">
+<h2 id="orgb2dc454">Physical Design</h2>
+<div class="outline-text-2" id="text-orgb2dc454">
+<p>
+physical design 主要是將 synthesis 完的 transistor level 電路轉成製作電路時所要的 layout 圖，基本上就是一堆矩形所構成的圖，在製作電晶體時會根據layout圖做成光罩，用來產生電晶體所需的元件。
+</p>
+
+<p>
+physical design 主要又可分為 floor plan, placement, routing。
+floor plan主要是將電路設計的一塊塊模組做擺放，而 placement 則是對模組內的電晶體做擺放，routing是將這些放好的元件連接起來（我對這些方面沒這麼熟，可能會有講錯）。
+</p>
+
+<p>
+因為在 physical design 主要會處理圖形上的問題，所以多少會用到一些 graph 相關的演算法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ce4497" class="outline-2">
+<h2 id="org7ce4497">Testing</h2>
+<div class="outline-text-2" id="text-org7ce4497">
+<p>
+testing 主要是在晶片做出來之後做測試，因為只能依靠晶片的 I/O pin 做測試，所以難度很高，加上要測試電路所有功能基本上是不可能的，因此會有一些特別的技術做測試。
+ATPG ( Automatic Test Pattern Generation ) 是其中一種產生測資的方式，根據已知的電路資訊，盡量產生最少的測資來完整測試電路。
+</p>
+
+<p>
+在 testing 方面我所知道的很少，因此詳細還是得詢問相關人員。
+值得一提的是在電路設計上為了配合與減少 testing 的難度，有所謂的 DFT ( Design For Test ) 與 BIST ( Build In Self Test ) 技術。
+</p>
+
+<hr />
+
+<p>
+基本上我對數位電路自動化的部份只知道這些，接下來簡單講講其他相關的知識。
+目前 EDA 領域有兩家大廠，synopsys （新思科技）與 cadence (益華電腦)，學校中會用到的 EDA 軟體多出自這兩家，像 hspice, laker, design vision 都是 synopsys 的軟體，而 virtuoso, SOC encounter, ncverilog, pspice 則為 cadence 的軟體。
+而 cad contest 為一個與 EDA 相關的比賽，每年都會舉辦，有些題目甚至是以目前廠商面臨的問題為基礎來出的，看看競賽的題目也可以對 EDA 有一些認識。
+</p>
+
+<p>
+以上就是目前我對 EDA 領域的一些認識，提及的資訊可能還蠻少的，但希望對於不認識的人可以有些簡單的概念。
+因為目前我只是一個小咖，對於一些概念可能還不是那麼清楚，因此如果有講錯或說不清楚的地方，還請比較了解的人可以提出來。
+那麼這篇文章就是這樣了，希望對觀看的各位有所幫助。
+</p>
+
+<hr />
+
+<p>
+嗯&#x2026;雖然覺得很多人對 EDA 的認識不多所以想介紹一下，不過自己懂的也不是很多，而且講的也不是很清楚，希望不要讓看的人對 EDA 有誤會阿。 
+總之以我這顆弱弱的腦袋只能講這些了。
+最近想寫寫一些 linux 或編輯器相關的文章，不知道何時才有心寫，又能寫的多好呢（基本上應該好不到哪去），也還有 C++ 的文章停滯在那邊&#x2026;&#x2026;算了，反正是寫開心的，也不一定會有多少人看，就自己看開心就好了吧。
+</p>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-09-22 週五 00:00</p>
+<p class="author">Author: Flotisable</p>
+<p class="date">Created: 2019-07-15 週一 19:48</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.2 (<a href="https://orgmode.org">Org</a> mode 9.2.3)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

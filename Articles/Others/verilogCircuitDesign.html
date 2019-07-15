@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-07-15 週一 19:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>關於用 Verilog 設計的電路</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Flotisable" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">關於用 Verilog 設計的電路</h1>
+<p>
+這篇文章是以前寫在 facebook 網誌上的，現在把它用 org mode 排版而已。
+</p>
+
+<hr />
+
+<p>
+有鑑於今天去 DSD 幫室友及同學 Debug 遇到的問題，突然很想講一些關於 verilog 設計電路的想法。
+當然我自己在設計電路這方面的經驗也不是說很充足，所以這充其量只能說是我自己設計上的想法與知識，並不一定對每個人都適用。
+</p>
+
+<hr />
+
+<div id="outline-container-org63317b2" class="outline-2">
+<h2 id="org63317b2">寫出來的 code 與所合成出來的電路之間的關係</h2>
+<div class="outline-text-2" id="text-org63317b2">
+<p>
+在我們學校一般在學 verilog 的時候，因為大一計概課的學習 c++ 寫程式的關係，多半的人在寫電路時習慣會以寫程式的思維去寫。
+當然 verilog 會被設計出來，也有部分原因是希望以類似寫程式的方式來描述電路，但是我認為這算是熟悉電路設計後以人類較直觀的方式讓 code 的可讀性與可維護性增加時的方法，本質上還是應該以電路的角度去思考，才能設計出比較沒有問題的電路。
+</p>
+
+<p>
+而我覺得在學習 verilog 時最大的基本是，我們應該知道寫出來的電路應該會長成怎樣，比如說是一顆邏輯閘、一個解碼器或是一個正反器( flip-flop )等等。
+基本上如果知道自己設計的電路長怎樣，在發生錯誤時會比較知道問題可能是出在哪裡。
+在初學 verilog 時，大部分的人都不知道自己的電路長成什麼樣子，可能也不會去思考它到底會是什麼樣子，所以常常會出現意想不到的 bug，就算有一點經驗的人可能也很難幫忙 debug，因為難以理解這個電路的運作。
+</p>
+
+<p>
+在這裡我想講一兩個絕大多數電路會出現的電路與它相應的code，雖然這在DSD這門課老師也會講，但是我想多半的人不會去注意，更何況是理解為什麼。
+在大半的電路中都會出現兩個經典的電路：多工器與D型正反器( D flip-flop )，而解碼器可能也蠻常出現的。
+</p>
+
+<p>
+首先講講最簡單的多工器，它的code就只有一兩行而已，就像下面這樣
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog"><span style="color: #ffad29; font-weight: bold;">if</span>( s ) out = a;
+<span style="color: #ffad29; font-weight: bold;">else</span>    out = b;
+</pre>
+</div>
+
+<p>
+或者是一行的code
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog">out = ( s ) ? a : b;
+</pre>
+</div>
+
+<p>
+這樣的語法在很多電路都會看到，所以很多電路都是由一對多工器組成的。
+而多工器本身就有 if else 這樣的含意，因為多工器是藉由選擇線來判斷要將哪一條訊號送出去，而if就是在做判斷，可想而知對應的電路也就是多工器。
+</p>
+
+<p>
+先講講解碼器，解碼器其實跟多工器蠻有關係的，因為多選擇線的多工器就是解碼器與一堆多工器的組合，而其相對應的code就是下面這樣
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog"><span style="color: #ffad29; font-weight: bold;">case</span>( counter )
+
+  2'd0 : enable = 4'b1110;
+  2'd1 : enable = 4'b1101;
+  2'd2 : enable = 4'b1011;
+  2'd3 : enable = 4'b0111;
+
+<span style="color: #ffad29; font-weight: bold;">endcase</span>
+</pre>
+</div>
+
+<p>
+或是更簡單的兩行
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog">enable = 4'b1111;
+enable[counter] = 1'b0;
+</pre>
+</div>
+
+<p>
+解碼器的本質就是根據輸入讓其中一條輸出改變，而 case 是根據判斷訊號，讓其中一個狀況被處理，兩者間是等價的，因此 case 對應的電路就會是解碼器。
+而第二種寫法是一種比較技巧性的寫法，是先讓輸出有個預設值，然後根據輸入來改變相對應的輸出，這種寫法就比較是寫程式的思維，不過要知道的是它可以對應到解碼器。
+</p>
+
+<p>
+最後要講一下 D 型正反器，一個有同步( synchronous ) set 與 reset 正緣觸發的 D flip-flop 長這樣
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog"><span style="color: #ffad29; font-weight: bold;">always</span> <span style="color: #34cae2;">@</span>( <span style="color: #ffad29; font-weight: bold;">posedge</span> clock )
+<span style="color: #34cae2;">begin</span>
+
+  <span style="color: #ffad29; font-weight: bold;">if</span>( reset )    D &lt;= 1'b0;
+  <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span>( set ) D &lt;= 1'b1;
+  <span style="color: #ffad29; font-weight: bold;">else</span>           D &lt;= Q;
+
+<span style="color: #34cae2;">end</span>
+</pre>
+</div>
+
+<p>
+需要注意的是一個電路是不是 flip-flop 並不是根據 always 或 clock 來判斷，而是 always 的觸發條件有沒有 posedge 跟 negedge。
+這算是 EDA 上合成( synthesis )的一個規則，主要是因為要判斷 code 是不是 flip-flop 有難度，因此訂下一種規範。
+一個 flip-flop 在 always 的出發條件中只能有三種訊號：clock, set, reset，而且只能是 posedge 或 negedge。
+</p>
+
+<p>
+而判斷這三中訊號哪個是哪個也是有規範的：如果有 set, reset，那麼這兩個訊號一定要出現在 always 內最外層的兩個 if，而觸發條件中剩下的就是 clock 訊號。
+至於是 set 還是 reset，就是看資料給的值是 1 還是 0，一般習慣上是 set 會讓資料變成 1，reset 會讓資料變成 0。
+</p>
+
+<p>
+所以把上面的文字改成較易懂的code大概是這樣
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog"><span style="color: #ffad29; font-weight: bold;">always</span> <span style="color: #34cae2;">@</span>( { <span style="color: #ffad29; font-weight: bold;">posedge</span> | <span style="color: #ffad29; font-weight: bold;">negedge</span> } clock [ <span style="color: #34cae2;">or</span> { <span style="color: #ffad29; font-weight: bold;">posedge</span> | <span style="color: #ffad29; font-weight: bold;">negedge</span> } set ]
+          [ <span style="color: #34cae2;">or</span> { <span style="color: #ffad29; font-weight: bold;">posedge</span> | <span style="color: #ffad29; font-weight: bold;">negedge</span> } reset ] )
+<span style="color: #34cae2;">begin</span>
+
+  <span style="color: #ffad29; font-weight: bold;">if</span>( {set | reset} )
+  <span style="color: #ffad29; font-weight: bold;">else</span>
+    <span style="color: #ffad29; font-weight: bold;">if</span>( {reset | set} )
+    <span style="color: #ffad29; font-weight: bold;">else</span>
+    <span style="color: #34cae2;">begin</span>
+      <span style="color: #74af68;">/*</span><span style="color: #74af68;">&#20854;&#20182;&#29376;&#27841;*/</span>
+    <span style="color: #34cae2;">end</span>
+
+<span style="color: #34cae2;">end</span>
+</pre>
+</div>
+
+<p>
+上面的{}表示括號中只會有其中一個詞存在，而每個詞用|分隔，[]表示可有可無，斜體表示可以是其他名字。
+當然上面的兩個 if 不一定要有，可以兩個都有，或只有一個，或是都沒有，不過一般比較常見的是一個 if。
+</p>
+
+<p>
+另外就是同步( synchronous )與非同步( asyncrhonous )的問題，判斷是同步還是非同步是看 set 跟 reset 訊號有沒有在 sensitivity list裡面，有的話就是非同步，反之則為同步。
+這個原因就在於 sensitivity list 中的訊號若有變動，那 always 就會被執行，若是 set 跟 reset 在 sensitivity list 裡面，只要有變動，always 就會執行，跟 clock 沒有關係，所以是非同步。
+</p>
+
+<p>
+而上面的 code 為什麼是 D 型 flip-flop，這是因為在 verilog code 中我們只會有 = 或 &lt;= 來給訊號值，而這就跟 D flip-flop 直接接受輸入的值是同樣的概念。
+</p>
+
+<p>
+基本上絕大多數電路都是以上三種電路元件所組成的，因此搞清楚這三個電路就可以知道比較複雜的 code 大概會長成怎樣。
+雖然講了這麼多，但能不能理解與應用還是要看自己有沒有要以這種思維去思考，我講的可能也沒有多好，所以只能做個參考，不見得沒個人都懂，經驗也是個重要的因素。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1f924d5" class="outline-2">
+<h2 id="org1f924d5">一些較容易與習慣使用的設計思維</h2>
+<div class="outline-text-2" id="text-org1f924d5">
+<p>
+對於用 verilog 來設計電路，我自己是建議先去思考電路的 block diagram，想想電路畫出來應該是怎麼樣，畫出來的電路會如何運作，這樣的話只要照著畫出來的電路，map 到相對應的 code 在做些修正，就可以做出自己所想的電路。
+</p>
+
+<p>
+今天 DSD 最有感觸的是有人用組合電路( combinational circuit )來設計 led 跑馬燈，不是說不行，而是這很難，如果做得出來其實也是有一定的水準在，因為這種電路相對有 flip-flop, register 的序向電路( sequential circuit )來說難度較高。
+所以若是要用較容易的方式來設計電路，最好採用狀態機的方式。
+</p>
+
+<p>
+狀態機的電路基本上是以三個元素所構成的：代表現在的狀態的暫存器( register )、決定下一個狀態的組合電路、決定輸出的組合電路。
+也就是說可以以三個 always 構成，分別處理簡單的電路，讓設計簡化。
+以除頻器為例，可以把它看成這個樣子
+</p>
+
+<div class="org-src-container">
+<pre class="src src-verilog"><span style="color: #ffad29; font-weight: bold;">module</span> <span style="color: #00ede1; font-weight: bold;">ClockDivider</span>(
+  <span style="color: #34cae2;">output</span> out_clock,
+
+  <span style="color: #34cae2;">input</span> clock,
+  <span style="color: #34cae2;">input</span> reset );
+
+  <span style="color: #34cae2;">reg</span> out_clock;
+  <span style="color: #34cae2;">reg</span> [ 5:0 ] counter,
+              counter_next;
+
+  <span style="color: #ffad29; font-weight: bold;">always</span> <span style="color: #34cae2;">@</span>( counter ) <span style="color: #74af68;">// </span><span style="color: #74af68;">&#36664;&#20986;</span>
+  <span style="color: #34cae2;">begin</span>
+
+    out_clock = counter[5];
+
+  <span style="color: #34cae2;">end</span>
+
+  <span style="color: #ffad29; font-weight: bold;">always</span> <span style="color: #34cae2;">@</span>( counter ) <span style="color: #74af68;">// </span><span style="color: #74af68;">&#27770;&#23450;&#19979;&#19968;&#20491;&#29376;&#24907;</span>
+  <span style="color: #34cae2;">begin</span>
+
+    counter_next = counter + 1'b1;
+
+  <span style="color: #34cae2;">end</span>
+
+  <span style="color: #ffad29; font-weight: bold;">always</span> <span style="color: #34cae2;">@</span>( <span style="color: #ffad29; font-weight: bold;">posedge</span> clock <span style="color: #34cae2;">or</span> <span style="color: #ffad29; font-weight: bold;">posedge</span> reset ) <span style="color: #74af68;">// </span><span style="color: #74af68;">&#29694;&#22312;&#29376;&#24907;&#26283;&#23384;&#22120;</span>
+  <span style="color: #34cae2;">begin</span>
+
+    <span style="color: #ffad29; font-weight: bold;">if</span>( reset ) counter &lt;= 6'd0;
+    <span style="color: #ffad29; font-weight: bold;">else</span>        counter &lt;= counter_next;
+
+  <span style="color: #34cae2;">end</span>
+
+<span style="color: #ffad29; font-weight: bold;">endmodule</span>
+</pre>
+</div>
+
+<p>
+雖然在複雜的電路分成三個 always 來描述可以讓整體的 code 比較容易閱讀，但有時候適時的將其中兩個 always 合併反而能讓 code 比較簡潔，這就看個人的喜好了。
+</p>
+
+<p>
+另外在 reset 方面，一般習慣用非同步 reset，這會讓電路變得容易處理，合成出來的電路面積似乎也比較小。
+同步的 reset 會有要與 clock 配合的問題在，如果在有多個頻率的clock存在的電路，reset的時間點就會變得很重要，處理上比較複雜，換來的好處是電路比較穩定。
+</p>
+
+<p>
+還有一個寫 verilog 的習慣是，會在組合電路中使用 <code>，而在序向電路中使用 &lt;=，這種習慣主要是讓電路的錯誤減少，有時候電路會因為 =、&lt;</code> 而產生意想不到的反應，這在 debug 上比較有難度。
+</p>
+
+<p>
+值得一提的是 code 的 warning，初學者習慣上不會去理會 warning，當然沒有除掉 warning 並不一定會出問題，但是若是問題出在這些 warning上，這時要 debug 會完全不知道是哪裡的問題，所以 warning 能除掉就除掉。
+而除 warning 也是一個很好的學習，看得懂 warning 是因什麼而引起會讓我們對自己設計的電路如何被合成更為了解。
+有些 warning 在自己的電路中是正常現象，像是有選擇頻率的電路基本上都會有 gating clock 的 warning 存在，gating clock 是因為在 clock 給到 flip-flop 的 clock 接腳前會經過組合電路，這會造成一些 testing 上的困難，所以才會有warning存在。
+</p>
+
+<p>
+最需要除掉的 warning 是 latch 的產生，latch 的存在常會令電路死在奇怪的地方，可能要比較有經驗的人才知道原因。
+而 latch 的產生是因為 if 沒有 else 或是 case 沒有 default，也就是沒有列出所有情況時會產生 latch。
+這是一個 synthesis 的假設，如果一個訊號在某些情況沒給值，預設是原值，這在組合電路中就會合出 latch。
+</p>
+
+<p>
+另外要提的是 simulation，在燒電路之前最好先寫 testbench 跑 simulation，並盡可能將所有狀況跑過，這能減少做出電路後出問題的機會。
+值得一提的是 simulation 過並不保證合成的電路會正常運作，simulation 過只是減少合成的電路出錯的機會。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org253300c" class="outline-2">
+<h2 id="org253300c">我自己認為不錯的 coding style 與設計方法</h2>
+<div class="outline-text-2" id="text-org253300c">
+<p>
+最後講幾個我自己推薦的設計方式，多半是從我自己寫 c++ 得來的經驗。
+首先就是 module 的使用，在設計電路時最好先思考能不能把它拆成更小的單位，因為越小的單位設計上越簡單，同時也就代表出錯機會的下降，而能拆成多個 module 通常也意味著重複使用，例如七段顯示器電路，只要第一次好好設計，只後只要將這個 module 拿來用即可。
+所以建議能將電路拆成多個 module 就拆成多個 module。
+以 DSD 的電路為例，通常可以把電路拆成至少四塊：主電路、七段顯示器電路、七段顯示器控制電路、key pad電路，後面三者的重複使用率也很高，因此各自成一個 module 有很大的好處。
+</p>
+
+<p>
+第二個是 module 分檔案處理，有些人雖然會寫多個 module，但是會將全部的 module 全部寫在同一份檔案，雖然撰寫時方便，但是在閱讀上會有些資訊過多。
+以將撲克牌擺放來說，全部 52 張放成一個 column，跟 4 個 column，每個 column 有 13 張，哪一種會比較容易看，這是同樣的概念。
+將 module 分檔案相當於多幾個 column，這可以讓 code 在閱讀與修改上變得較為容易。
+</p>
+
+<p>
+還有就是 always 的使用，建議將性質相近的訊號放在同一個 always 處理，這樣子在 debug 與修改時比較容易做處理
+</p>
+
+<hr />
+
+<p>
+雖然還有一些想法，不過打到累了，就這樣吧( 而且剛才用 fb 寫一直出問題 )。
+如果能對一些人有幫助的話就太好了，不過我想會看的人應該也不多吧，是不是真的能幫到人又是另一個問題了。
+總之最壞的情況就是一個人在碎碎念然後自己講得很開心這樣。
+之後應該也會來寫一篇講講EDA，不過要開始忙 cad contest 了，是不是會寫又會是另外一個大問題，而且 c++ 的介紹也都沒寫&#x2026;&#x2026;就這樣吧。
+今天就是突然想講這些。  
+</p>
+
+<hr />
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-04-14 週五 00:00</p>
+<p class="author">Author: Flotisable</p>
+<p class="date">Created: 2019-07-15 週一 19:48</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.2 (<a href="https://orgmode.org">Org</a> mode 9.2.3)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

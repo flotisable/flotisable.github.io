@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-07-15 週一 19:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LaTeX 簡介</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Flotisable" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">LaTeX 簡介</h1>
+<p>
+因為最近寫論文用 LaTeX 用蠻多的，
+加上 LaTeX 用來作為純文字寫文件的工具是個不錯的選擇，
+所以就想來簡單的介紹一下。
+</p>
+<hr />
+<div id="outline-container-orge5bd0e8" class="outline-2">
+<h2 id="orge5bd0e8">LaTeX 是什麼</h2>
+<div class="outline-text-2" id="text-orge5bd0e8">
+<p>
+LaTeX 的前身是 Tex。
+TeX 是一個由 Donald Ervin Knuth 所開發的排版軟體，
+尤其在數學公式上呈現不錯的效果。
+但是其語法(一般稱 plaintex)要用來撰寫文件仍是不太方便，
+所以 Leslie Lamport 就基於 Tex 建了一層較適合一般使用者寫文件的語法，
+即為 LaTeX。
+LaTeX 與一般 office word 所使用的 WYSIWYG(所見即所得) 理念不太一樣，
+它傾向將「文件內容」與「文件排版」這兩件事分開。
+一般常聽到的優點是這樣可以專注於文件的內容本身，
+這點本身並沒有錯，
+但就我學到現在的感覺，
+這需要一定的使用經驗，
+以及稍微了解如何自訂 LaTeX command 才有機會做到。
+因為內容與排版分離的理念，
+使用者也分為撰寫內容與撰寫排版的人，
+一個好處是寫內容的人只要套用不同人寫的排版，
+就可以輕易產生不同排版的文件，
+也因此現在很多學術領域都會使用 LaTeX 作為撰寫論文的工具(漂亮的數學公式加上容易切換排版)。
+但缺點在於，
+一般使用者想根據自身需求調整排版相對是不容易的。
+</p>
+
+<p>
+如果是對排版很要求的使用者，
+那我想 LaTeX 並不會是一個比較好的選擇，
+稍微知道世上有這個東西就好了。
+但如果對於排版不太計較，
+而且喜歡用純文字檔寫文件，
+LaTeX 是個不錯的選擇。
+值得一提的是，
+雖然 LaTeX 提供了強大的文件撰寫功能，
+但對於輕量型的文件，
+還是用 Markdown 或 Org Mode 這種語言比較方便。
+另外稍微講講 LaTeX 的發音，
+TeX 這個字是來自希臘文，
+所以念法是 technical 中 tech 的音。
+至於 La 一般有兩種念法，
+large 的 la 或是 less 的 le。
+</p>
+</div>
+</div>
+<div id="outline-container-org51d690f" class="outline-2">
+<h2 id="org51d690f">開始使用 LaTeX</h2>
+<div class="outline-text-2" id="text-org51d690f">
+<p>
+前面也提過了，
+LaTeX 主要是排版軟體，
+我們透過其支援的語法來描述文件，
+然後透過它來做排版，
+所以要使用 LaTeX 首先就是得安裝相關的軟體。
+TeX 相關的軟體發展到現在已經變得很複雜了，
+所以通常安裝就是直接安裝一整套系統。
+我自己使用的是 <a href="https://www.tug.org/texlive/">texlive</a> 這套系統，
+基本上主流的 Windows, MacOS, Linux 都支援，
+當然也有其它的系統，
+可以自己上網找找。
+另外如果不喜歡自己安裝而想使用網頁來編寫，
+也有相關的網站提供這種服務，
+像是 <a href="https://www.overleaf.com/">overleaf</a>。
+環境建好後，
+如果是使用網頁或 GUI 的人，
+我想稍微找一下按幾個按鍵就行了。
+至於終端機使用者，
+可以用 latex 這個指令吃要排版的檔案產生 dvi 檔，
+或是用 pdflatex 產生比較常見的 pdf 檔。
+</p>
+</div>
+</div>
+<div id="outline-container-orgdd04098" class="outline-2">
+<h2 id="orgdd04098">基本的 LaTeX 文件</h2>
+<div class="outline-text-2" id="text-orgdd04098">
+<p>
+首先簡單介紹一下 LaTeX 的 command，
+LaTeX 的 command 基本上都是由 <code>\</code> 開頭，
+而 command 的參數由 <code>{</code>, <code>}</code> 給予，
+如果有選項則多由 <code>[</code>, <code>]</code> 給予。
+另外 LaTeX 會用 <code>%</code> 作為註解符號，
+從 <code>%</code> 到該行結尾都會被視為註解。
+</p>
+
+<p>
+接著來介紹一下一個可以被 LaTeX 軟體所接收的最小文件，
+基本上長成這樣
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr">1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr">4: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+<p>
+來稍微解釋一下，
+第一行的 <code>\documentclass</code> 是一個 LaTeX 的 command，
+用來設定這份文件的類別，
+LaTeX 提供幾個基本的類別，像是 article, report, book。
+基本上類別決定了整個文件的排版格式，
+所以藉由設定不同的類別，
+便能更改不同的排版。
+最後兩行的 <code>\begin{document}</code>, <code>\end{document}</code>
+中間便是我們所要撰寫的文件內容。
+在 LaTeX 中，
+我們稱一組 <code>\begin</code>, <code>\end</code> 為一個 environment。
+另外通常稱 <code>\documentclass</code> 和 <code>\begin{document}</code>
+間的內容為 preamble。
+</p>
+
+<p>
+下面是一個簡單文件的排版結果
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr">1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr">4: </span>
+<span class="linenr">5: </span>  This is a test of latex document. 
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/simpleLatex.png" alt="simpleLatex.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbf060ad" class="outline-2">
+<h2 id="orgbf060ad">撰寫文件</h2>
+<div class="outline-text-2" id="text-orgbf060ad">
+<p>
+介紹完基本的 LaTeX 文件，
+我們就接著介紹一些一般文件常需要的功能如何在 LaTeX 達成吧。
+</p>
+</div>
+<div id="outline-container-orgee6c359" class="outline-3">
+<h3 id="orgee6c359">文件結構</h3>
+<div class="outline-text-3" id="text-orgee6c359">
+<p>
+首先在 LaTeX 中，
+空白行是很重要的，
+因為一個空白行分隔了兩個段落，
+這會導致排版有些差異。
+所以除非你覺得文字描述已經到一個段落，
+不要隨便加空白行(愛亂加的人在這)。
+至於空白字元，像是空白、Tab 、換行，
+LaTeX 都會自動忽略。
+一般習慣會讓一個句子自成一行，
+這些句子再透過 LaTeX 將它接起來就好了。
+如果想要強制換行，
+可以用 <code>\\</code> 或是 <code>\newline</code> 。
+</p>
+
+<p>
+至於章節的設置，
+LaTeX 提供 <code>\chapter</code>, <code>\section</code>, <code>\subsection</code>,<br />
+<code>\subsubsection</code>
+這些 command，
+其參數即為章節的名稱。
+比如說我們接著要講 Document Structure 這個 section，
+只要加上一行 <code>\section{Document Structure}</code> 就可以了。
+<code>\chapter</code> 是要比較注意的點，
+不是所有的文件類別都可以用，
+在基本的類別中只有 report, book 可以用 <code>\chapter</code> 。
+另外可以透過 <code>\tableofcontents</code> 來自動產生目錄。
+如果想要在 pdf 檔中可以直接從目錄跳到該章節，
+可以在 preamble 中加上 <code>\usepackage{hyperref}</code> 這個 command。
+package 是 LaTeX 用來提供額外功能的方法，
+而 hyperref 這個 package 會自動產生連結讓文件可以從目錄跳到各個章節。
+使用各種 package 是 LaTeX 強大的地方，
+同時也是它的痛點，
+因為 package 實在是太多了。
+</p>
+
+<p>
+下面是一個利用章節相關 command 寫成的文件範例，
+值得注意的是，
+為了產生目錄，
+如果是從終端機執行 latex 命令，
+我們會需要執行兩次。
+第一次 latex 會產生副檔名為 toc 的檔案，
+裡面存了目錄的資料，
+第二次執行時 latex 會利用這個 toc 檔產生目錄。
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr"> 1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>  Below is a table of contents.
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>  <span style="color: #ffad29; font-weight: bold;">\tableofcontents</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>  We will go to the test section.
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>  <span style="color: #ffad29; font-weight: bold;">\section</span>{<span style="color: #00ede1; font-weight: bold;">Test</span>}
+<span class="linenr">12: </span>
+<span class="linenr">13: </span>    We are in the test section.
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>  <span style="color: #ffad29; font-weight: bold;">\section</span>{<span style="color: #00ede1; font-weight: bold;">Next Section</span>}
+<span class="linenr">16: </span>
+<span class="linenr">17: </span>    Here is the next section.
+<span class="linenr">18: </span>
+<span class="linenr">19: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/documentStructure.png" alt="documentStructure.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org62dbdd7" class="outline-3">
+<h3 id="org62dbdd7">列表</h3>
+<div class="outline-text-3" id="text-org62dbdd7">
+<p>
+如果想要產生一個列表，
+我們會需要使用 itemize 或 enumerate 這兩種 environment。
+其中 enumerate 是用來產生數字列表的。
+列表中的每一個項目都由 <code>\item</code> 開頭，
+也可以在每個項目內再插個列表。
+</p>
+
+<p>
+下面是一個範例
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr"> 1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>  This is a list
+<span class="linenr"> 6: </span>  <span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">itemize</span>}
+<span class="linenr"> 7: </span>    <span style="color: #ffad29; font-weight: bold;">\item</span> Item1
+<span class="linenr"> 8: </span>    <span style="color: #ffad29; font-weight: bold;">\item</span> Item2
+<span class="linenr"> 9: </span>      <span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">enumerate</span>}
+<span class="linenr">10: </span>        <span style="color: #ffad29; font-weight: bold;">\item</span> Item1
+<span class="linenr">11: </span>        <span style="color: #ffad29; font-weight: bold;">\item</span> Item2
+<span class="linenr">12: </span>      <span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">enumerate</span>}
+<span class="linenr">13: </span>  <span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">itemize</span>}
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/list.png" alt="list.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc687f45" class="outline-3">
+<h3 id="orgc687f45">圖片</h3>
+<div class="outline-text-3" id="text-orgc687f45">
+<p>
+就我所知 LaTeX 本身好像沒有提供插入圖片的功能，
+都是要靠 package 來達成。
+一般常用的是 graphicx 這個 package，
+要插入一個圖片可以用 <code>\includegraphics</code> 這個 command，
+它的參數是圖片的路徑，
+另外也有選項可以設定圖片大小。
+比如：
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #ffad29; font-weight: bold;">\includegraphics</span>[scale=0.5]{<span style="color: #23d7d7;">abc.png</span>}
+</pre>
+</div>
+<p>
+可以設定圖片為 abc.png，然後縮小成一半的大小，
+而
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #ffad29; font-weight: bold;">\includegraphics</span>[width=120pt]{<span style="color: #23d7d7;">test.pdf</span>}
+</pre>
+</div>
+<p>
+可以設定圖片為 test.pdf，然後寬度為 120pt。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc5e9ed0" class="outline-3">
+<h3 id="orgc5e9ed0">表格</h3>
+<div class="outline-text-3" id="text-orgc5e9ed0">
+<p>
+LaTeX 提供了 tabular 這個 environment 來製作一個表格，
+它的參數決定了表格的欄數與對齊方式。
+每個欄位由 <code>&amp;</code> 分隔，每一行由 <code>\\</code> 分隔，
+另外可以用 <code>\hline</code> 來畫橫線。
+下面是一個例子
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr"> 1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>  <span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">tabular</span>}{|l|cr|}
+<span class="linenr"> 6: </span>    <span style="color: #ffad29; font-weight: bold;">\hline</span>
+<span class="linenr"> 7: </span>    field1      &amp; field2 &amp; feild3 <span style="color: #ff4242; font-weight: bold;">\\</span>
+<span class="linenr"> 8: </span>    <span style="color: #ffad29; font-weight: bold;">\hline</span>
+<span class="linenr"> 9: </span>    second line &amp; field2 &amp; field3 <span style="color: #ff4242; font-weight: bold;">\\</span>
+<span class="linenr">10: </span>    thrid line  &amp; test   &amp; end    <span style="color: #ff4242; font-weight: bold;">\\</span>
+<span class="linenr">11: </span>    <span style="color: #ffad29; font-weight: bold;">\hline</span>
+<span class="linenr">12: </span>  <span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">tabular</span>}
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/table.png" alt="table.png" />
+</p>
+</div>
+
+<p>
+可以看到在 tabular 的參數中，
+我們用 <code>|</code> 來表示要畫一條直線，
+l, c, r，分別代表置左、置中、置右。
+</p>
+</div>
+</div>
+<div id="outline-container-org6c2bba9" class="outline-3">
+<h3 id="org6c2bba9">數學公式</h3>
+<div class="outline-text-3" id="text-org6c2bba9">
+<p>
+在 LaTeX 描述數學公式還蠻複雜的，
+這裡只簡單講幾個點。
+首先 LaTeX 處理文字的數學公式的方式是不同的，
+而數學公式又分為文字模式(text mode)與展示模式(display mode)。
+文字模式可以用 <code>$</code>, <code>$</code> 框住來達成，
+而展示模式則是用 equation 這個 environment。
+基本上 LaTeX 將數學公式的每個字母都當成一個數學上的變數，
+而數字就是數字。
+加減乘除分別可以用 <code>+</code>, <code>-</code>, <code>\times</code>, <code>\frac</code> 做到，
+下面是一個例子
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #e67128;">$f(x) = \frac{a + b}{c - d \times e}$</span>
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/basicMath.png" alt="basicMath.png" />
+</p>
+</div>
+
+<p>
+上下標分別可以用 <code>^</code>, <code>_</code> 來描述，
+如果上下標是個複雜的式子，
+可以用 <code>{</code>, <code>}</code> 框起來。
+下面展示一個稍微複雜的例子，
+也可以看到文字模式與展示模式的些微差異
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span style="color: #e67128;">$\sum^n_{i=0}\alpha_ix^i$</span>
+
+<span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">equation</span>}
+  <span style="color: #ffad29; font-weight: bold;">\sum</span>^n_{i=0} <span style="color: #ffad29; font-weight: bold;">\alpha</span>_i x^i
+<span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">equation</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/equation.png" alt="equation.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org87f7023" class="outline-3">
+<h3 id="org87f7023">純文字</h3>
+<div class="outline-text-3" id="text-org87f7023">
+<p>
+如果像我寫這篇文章，或是要在文件中顯示程式碼，
+我們可以用 verbatim 這個 environment。
+它會將所有包住的文字用打字機的字型顯示(就是一般文字編輯器會看到的字型，不要跟我說筆記本是文字編輯器)。
+如果只是想將幾個字用打字機字型顯示，
+可以用 <code>\texttt</code> 這個 command。
+下面是個例子
+</p>
+<div class="org-src-container">
+<pre class="src src-latex">Below is a source code of <span style="color: #ffad29; font-weight: bold;">\texttt</span>{C++} program
+<span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">verbatim</span>}
+#include&lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+  return 0;
+}
+<span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">verbatim</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/verbatim.png" alt="verbatim.png" />
+</p>
+</div>
+
+<p>
+如果想要更複雜的操作程式碼的顯示，
+可以參考 listings 這個 package。
+</p>
+</div>
+</div>
+<div id="outline-container-org48ad8aa" class="outline-3">
+<h3 id="org48ad8aa">中文</h3>
+<div class="outline-text-3" id="text-org48ad8aa">
+<p>
+用 LaTeX 要寫中文得使用 package 來達成，
+其中一個比較有名的 package 是 CJK。
+使用方式很簡單，首先在 preamble 加上 <code>\usepckage{CJK}</code> ，
+然後在文件中想要插入中文的部分用 CJK 這個 environment 包起來。
+這個 enironment 有兩個參數，
+第一個參數是設定文字編碼，
+根據自己寫的文件編碼繁體中文常見的有 Bg5 和 UTF8 ，
+第二個參數是設定字體，常見的有 bkai(標楷體) 和 bsmi(細明體)。
+下面是一個範例
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr"> 1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #ffad29; font-weight: bold;">\usepackage</span>{<span style="color: #23d7d7;">CJK</span>}
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>  <span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">CJK</span>}{UTF8}{bkai}
+<span class="linenr"> 8: </span>  &#36889;&#26159;&#19968;&#20491;&#20013;&#25991;&#31684;&#20363;&#12290;
+<span class="linenr"> 9: </span>  <span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">CJK</span>}
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/cjk.png" alt="cjk.png" />
+</p>
+</div>
+
+<p>
+LaTeX 本身對非英語系語言支援不太好，
+CJK 這個 package 是利用編碼轉換來處理中日韓的文字，
+但在一些特殊情況仍會有問題。
+如果想要較好的中文支援，
+可以選用 XeLaTeX 來做排版軟體，
+它預設支援 UTF 的編碼。
+而在 XeLaTeX 中需要改用 xeCJK package 來處理中文，
+只要在 preamble 加上 <code>\usepackage{xeCJK}</code> 就可以支援中文了，
+至於字體可以用 <code>\setCJKmainfont</code> 做設定，
+基本上作業系統上支援的字體都可以用，
+很方便。
+如果有特殊需求想要中文直書，
+只要在設定字體時多加選項即可，
+下面是個在 Windows 上的範例
+</p>
+<div class="org-src-container">
+<pre class="src src-latex"><span class="linenr"> 1: </span><span style="color: #ffad29; font-weight: bold;">\documentclass</span>{<span style="color: #23d7d7;">article</span>}
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #ffad29; font-weight: bold;">\usepackage</span>{<span style="color: #23d7d7;">xeCJK</span>}
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #ffad29; font-weight: bold;">\setCJKmainfont</span>[RawFeature={vertical:+vert}]{&#27161;&#26999;&#39636;}
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span style="color: #ffad29; font-weight: bold;">\begin</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>  &#36889;&#26159;&#20013;&#25991;&#30452;&#26360;&#30340;&#28204;&#35430;&#12290;
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #ffad29; font-weight: bold;">\end</span>{<span style="color: #00ede1; font-weight: bold;">document</span>}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./Images/cjkVert.png" alt="cjkVert.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfc0bc65" class="outline-2">
+<h2 id="orgfc0bc65">更深入了解 LaTeX</h2>
+<div class="outline-text-2" id="text-orgfc0bc65">
+<p>
+想要更深入的了解如何使用 LaTeX，
+我想上網應該都蠻多資源的。
+至於本地端的話，
+可以到安裝路經中找各種文檔，
+終端機的話可以用 texdoc 程式來叫出文檔。
+其中 lshort 是個介紹 LaTeX 蠻完整的文檔，
+我 LaTeX 基本上都是從這學的。
+它有簡體中文翻譯 lshort-chinese，
+裡面也多介紹了如何在 LaTeX 寫中文。
+</p>
+</div>
+</div>
+<div id="outline-container-org669e0f1" class="outline-2">
+<h2 id="org669e0f1">小結</h2>
+<div class="outline-text-2" id="text-org669e0f1">
+<p>
+基本的 LaTeX 介紹就是這樣了，
+剩下更複雜的功能就得從文檔自學跟從經驗中學著如何使用。
+當然如果身邊有個會 LaTeX 的人直接問應該是比較快啦。
+大概就是這樣。
+</p>
+<hr />
+<p>
+嘛，想說好久沒寫些自嗨的教學文章，
+所以就寫了這一篇。
+當然也有這篇文章可以成為實驗室學弟妹學習文件的妄想，
+不過就不要想太多了。
+不的不說 LaTeX 的確是不錯的排版系統，
+尤其對我這種對純文字檔有種偏執的人。
+但過於複雜也的確是它的缺點，
+要用的精學習曲線會有點高。
+要寫像這篇比較簡易的文章，
+還是用 Org Mode 比較順阿。
+不過要搞定 LaTeX backend 時還是要一點相關知識才行。
+廢話完了，
+還得來想想碩論該怎麼解決啊&#x2026;
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2019-07-14 週日 00:00</p>
+<p class="author">Author: Flotisable</p>
+<p class="date">Created: 2019-07-15 週一 19:49</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.2 (<a href="https://orgmode.org">Org</a> mode 9.2.3)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

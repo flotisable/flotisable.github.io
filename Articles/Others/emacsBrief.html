@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-07-15 週一 19:47 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs 簡介</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="飄殘" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Emacs 簡介</h1>
+<p>
+之前簡單介紹過 vim 了，所以就想也來簡單介紹一下 emacs。
+加上之前在推坑學弟用 emacs org mode，如果不知道 emacs 基本操作也很難繼續使用。
+所以就誕生這篇文章啦！
+</p>
+<hr />
+<p>
+在開始介紹之前先講講一點我接觸 emacs 的原因。
+基本上我碰 emacs 完全就是想說作為 vim 的對手以及古老的編輯器之一，
+我應該找時間來玩玩看。
+加上曾聽說 emacs org mode 是個強大的筆記工具，
+但聽別人說一點感覺的沒有，還是要實際自己用過才有感覺。
+基本上我時候使用 vim 居多，使用 emacs 主要都是在用 org mode (不管是寫文章還是做投影片、還可以作時間規劃)。
+再加上安裝了提供 vim key binding 的套件，所以對 emacs 原生的按鍵功能並不算太熟(雖說比起不會用的人來說算熟了)。
+對於 emacs 我能介紹的肯定是比 vim 還要來的少的，所以真的就是很基本的介紹。
+那麼我們來進入正題吧！
+</p>
+<div id="outline-container-org74ce6b4" class="outline-2">
+<h2 id="org74ce6b4">Emacs 是什麼</h2>
+<div class="outline-text-2" id="text-org74ce6b4">
+<p>
+依照一般的套路，當然要先講講 Emacs 到底是什麼(但會看這篇的人應該也多少有些認識了吧)。
+Emacs 是 Editor MACroS 的縮寫，也就是說是個提供巨集功能的編輯器。
+最初的開發者是提出 GNU 計畫的 Richard Stallman 與 Guy Lewis Steele Jr.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>，
+現在也仍作為 GNU 計畫下的項目持續開發中。
+Emacs 與 vim 一樣提供了終端機版與圖形介面，
+但是和 vim 較適合在終端機使用相反，Emacs 使用圖形介面會有完整的功能。
+這跟 Emacs 採用修飾鍵(Ctrl, Alt 等)來做編輯功能而不是像 vim 採用符號鍵有關。
+而這也使得 Emacs 的編輯方式比起 vim 更像是現在常見的筆記本、Nodepad++、Vscode 等編輯器，
+同時也有人戲稱 Emacs 是 Escape, Meta, Alt, Ctrl, Super (都是鍵盤上的修飾鍵)的縮寫。
+Emacs 不像 vim 有多種編輯模式，而是讓每種檔案類型有各自的主模式，然後可以疊加上不同的副模式。
+主模式主要提供檔案類型相關的設定(縮排、註解等)，而副模式多是按鍵設定或是介面、功能上的輔助。
+加上 Emacs 本身也是在 Lisp 這個古老語言的直譯器上堆出來的，
+這些特性使得 Emacs 的可定制性相對其他編輯器較為強大。
+甚至有人戲稱 Emacs 是偽裝成編輯器的作業系統。
+Emacs 的簡單背景介紹到此為止，接著談談 Emacs 的基本使用吧。
+</p>
+</div>
+</div>
+<div id="outline-container-org60c7007" class="outline-2">
+<h2 id="org60c7007">Emacs 基本操作</h2>
+<div class="outline-text-2" id="text-org60c7007">
+<p>
+首先，比起第一次進入 vim 按什麼鍵都不知道會發生什麼事。
+第一次進入 Emacs 至少還可以直接輸入文字，方向鍵也可以正常使用。
+因為 Emacs 一般狀態下跟常見編輯器相同是在插入模式。
+而問題就在於要如何存檔與離開編輯器，只要可以做到這兩個功能，至少就能做簡單的文字編輯。
+雖然 GUI 還有選單列可以救，但終端機版可就救不了了，連怎麼離開都不知道。
+前面提到，Emacs 編輯功能主要是透過修飾鍵來做到的，
+這兩個功能想當然爾也要配上 Ctrl 之類的按鍵。
+想要存檔，我們可以按下 <b>C-x C-s</b> (save)，而若是要離開編輯器則是按下 <b>C-x C-c</b> (cancel)。
+在這邊習慣上會用 C- 來表示 Ctrl 鍵，所以 <b>C-x C-s</b> 表示按著 Ctrl 鍵按下 x 鍵，
+然後再按著 Ctrl 鍵按下 s 鍵。
+值得一提的是，因為 Emacs 中有很多功能，如果只單純用一個修飾鍵配一個符號是表示不完的，
+所以許多編輯功能都是透過一串的按鍵組合觸發的(可以想像 Emacs 縮寫的戲稱了嗎)。
+<b>C-x</b> 就提供了最為按鍵前綴的功能，很多編輯功能都要先按下 <b>C-x</b> 再按下其他鍵。
+<b>C-c</b> 也和 <b>C-x</b> 一樣可以作為前綴鍵，而這多半是被副模式或是套件所採用，
+主要編輯功能的前綴多是 <b>C-x</b> 。
+</p>
+</div>
+</div>
+<div id="outline-container-org2305089" class="outline-2">
+<h2 id="org2305089">多一點操作</h2>
+<div class="outline-text-2" id="text-org2305089">
+<p>
+好啦，雖然前面講的兩個功能就能做基本的編輯，但我想多介紹一些其他的按鍵。
+學會這些有個主要的好處，那就是在 gnu 或是 *nux 上的軟體多會採用 Emacs 的按鍵按法，
+所以學一招就可以用在很多地方。
+</p>
+
+<p>
+首先講講 Emacs 中不用方向鍵移動游標的方法，
+上下左右分別對應： <b>C-p</b> (previous), <b>C-n</b> (next), <b>C-b</b> (backward), <b>C-f</b> (forward)。
+比起 vim 的上下左右算比較好記了(英文縮寫)，但使用上其實蠻不好按的。
+不過如果克服這關，其實也蠻好用的(在 bash 中)。
+在縱向移動中除了 <b>C-p</b>, <b>C-n</b> ，還可以用 <b>C-v</b>, <b>M-v</b> 來做 page down 與 page up。
+這裡 <b>M-</b> 代表 Meta 鍵，在現在鍵盤多對應到 Alt 鍵。
+至於橫向移動可以用 <b>C-a</b> (第一個字母), <b>C-e</b> (end) 來移動到行首與行尾。
+另外可以用 <b>M-f</b> 與 <b>M-b</b> 在 word 上左右移動。
+</p>
+
+<p>
+最後講幾個簡單的編輯操作。
+<b>&lt;BS&gt;</b> (backspace) 與 <b>C-d</b> 分別可以刪掉游標左邊與右邊的一個字元，
+而 <b>M-&lt;BS&gt;</b> 與 <b>M-d</b> 則是刪掉游標左邊與右邊的一個 word。
+<b>C-t</b> (transpose) 可以將游標左右邊的字元位置交換，這個按鍵蠻好用的，很常用到。
+<b>C-k</b> 會刪掉游標右邊到行尾的所有字，配合 <b>C-a</b> 就可以直接刪掉整行文字了，
+我自己是很常在 bash 中使用。
+</p>
+
+<p>
+基本上這些應該就蠻夠用了，想要更深入的了解 Emacs 操作，
+可以在 Emacs 中 <b>C-h t</b> 進入 30 分鐘簡單教學文件， <b>C-h r</b> 閱讀 Emacs 文檔，
+以及 <b>C-h i</b> 觀看所有相關 info 文檔。
+</p>
+<hr />
+<p>
+嘛，這篇文章基本上就是個簡單的導入，希望大家認識一下這個古老的編輯器。
+有興趣的話，強力推薦可以學學 Org Mode，真的超好用，但學習曲線有點高。
+也許有空可以簡單介紹一下 Org Mode。
+最後的最後推銷一下自己的 emacs 設定檔(雖然大家設定檔各有所好)，有興趣可以到<a href="https://github.com/flotisable/EmacsInit.git">這裡</a>看看。
+注意一下我設定檔把一些 GUI 功能關掉了，如果是習慣抱選單列大腿的人請小心服用。
+</p>
+<hr />
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+取自維基百科
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2019-04-27 週六 00:00</p>
+<p class="author">Author: 飄殘</p>
+<p class="date">Created: 2019-07-15 週一 19:47</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.2 (<a href="https://orgmode.org">Org</a> mode 9.2.3)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
