@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-05-02 Thu 23:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>新鍵盤與螢幕支架</title>
+<meta name="author" content="Flotisable" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">新鍵盤與螢幕支架</h1>
+<hr />
+<p>
+最近因為玩遊戲玩一玩螢幕突然開始閃，然後進階成幾乎整片變成粉紅色，完全就是死去無法繼續使用的狀態，所以只好來買新的電腦螢幕。
+之前本來就有在觀望螢幕支架跟想再新竹租屋處也買一隻 65% 鍵盤，就趁這次機會也都買下去了(雖然有稍微掙扎一下XD)。
+</p>
+
+<p>
+螢幕支架跟鍵盤是都拿到了，倒是主要的電腦螢幕因為想要的有兩個 HTML 孔的螢幕要等店家調貨，所以現在還在調的路上。
+關於螢幕支架，其中一個買的原因也是因為在將螢幕換成舊螢幕或是要換螢幕線的時候真的是有夠難用，常常底座都會卡到其他東西。
+用螢幕支架的一個好處就是可以不受限於原本螢幕附的底座，可以比較方便的去移動螢幕的位置。
+在沒有升降桌的情況下也可以作為簡單的替代方案，可以將螢幕調高站著用搖桿玩遊戲或是看影片。
+</p>
+
+<p>
+不過一個缺點是，要將螢幕條到中間就比較麻煩。我買回來裝的時候就條蠻久的，螢幕支架的底座就不能擺在中間而是要往左右調整。
+同時因為我是選擇用夾的，桌子也要夠厚、夠深才行。像我租屋處的桌子側邊可以夾的深度就不夠，所以就無法裝螢幕支架。
+</p>
+
+<p>
+裝完螢幕支架後可以自由的調整螢幕位置還蠻開心的XD。可惜的是舊螢幕後面那根底座支架拆不掉，所以螢幕沒辦法降很低。
+</p>
+
+<div id="orgbdb995d" class="figure">
+<p><img src="images/DSC_0177.JPG" alt="DSC_0177.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 1: </span>一般情況</p>
+</div>
+
+<div id="org02c718a" class="figure">
+<p><img src="images/DSC_0178.JPG" alt="DSC_0178.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 2: </span>站著的情況</p>
+</div>
+
+<p>
+至於另一位主角新鍵盤，自從買了第一把 65% 鍵盤後，就偶爾會看一下有啥其他的 65% 鍵盤。
+加上現在土城家裡跟公司都是 65% 鍵盤了，所以也有在想是不是也該在新竹租屋處也放一把 65% 鍵盤。
+原本也還在猶豫，因為現在新竹用的鍵盤也還算好用，大概從大學時就一直用到現在。
+也算是跟著其他要買的東西以及一時的衝動就買了XD (雖然是在不同地方買的)。
+</p>
+
+<p>
+這次買的是 keychron K6 pro 65% 茶軸的鍵盤，同時加購了有中文的鍵帽。
+會買這家的鍵盤主要是之前有在同學家看到有 keychron 的鍵盤，之後就有在想如果以後還有要買鍵盤的話可以看看這家的。
+而茶軸主要是因為之前有因為不想太大聲所以買了紅軸以及靜音紅軸，這兩種軸主要是從軸體本身去減少按鍵的聲音。
+之前也有看網路上別人講解鍵盤聲音主要來自兩處，一個是軸按下去的聲音，一個是按鍵按到底敲擊鍵盤底部的聲音。
+所以就想說這次就換個角度，改用觸發壓力比紅軸大，軸體本身也不會像常聽說的青軸那麼吵的茶軸。觸發壓力大就表示按鍵按到底要比較大力，所以同樣的按法，敲擊按鍵的聲音就會比較小聲。
+至於為啥是 K6 pro 呢，其實同學也有推薦說如果沒有要帶來帶去的，可以買比較重但質感比較好的 Q2。
+不過我是有比較想買有支援無線或藍芽的鍵盤，這樣如果要在家用公司筆電就不用另外接一個鍵盤了。
+而 Q2 是只有支援有線的連接方式，所以就改買有支援而且也算不錯的 K6 pro，價格也比較便宜就是了XD。
+</p>
+
+<p>
+買來後第一件事依舊是看說明書與先充電。然後說明書看一看發現這鍵盤好像沒有 delete 鍵可以用，雖然在終端機跟 emacs, vim 可以用別的鍵替代就是了。在不濟這隻鍵盤也支援自定義按鍵，應該有辦法解決才對?
+在開封確認內容物的過程中，意外發現ㄇ鍵沒擺正，以及簡易說明書頗髒的。買了三隻鍵盤加上看別人評論鍵盤，我也進化到會注意到這些東西的人了嗎XD。
+</p>
+
+
+<div id="org9954da7" class="figure">
+<p><img src="images/DSC_0190.JPG" alt="DSC_0190.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 3: </span>沒擺正的ㄇ(拍的頗爛)</p>
+</div>
+
+
+<div id="org0e5b73f" class="figure">
+<p><img src="images/DSC_0191.JPG" alt="DSC_0191.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 4: </span>髒髒的簡易說明書</p>
+</div>
+
+<p>
+在充電前，其實我有先換了幾顆按鍵。因為它預設是 macOS 的按鍵配置，所以像 Windows 鍵和 Alt 鍵的部份，它是先裝 Cmd 以及 Option 鍵的。
+雖然我現在在新竹用的作業系統既不是 Windows 也不是 macOS，不過畢竟還是比較習慣 Windows 的按鍵配置，所以還是換成了 Windows 鍵以及 Alt 鍵。
+</p>
+
+
+
+<div id="orgff26dad" class="figure">
+<p><img src="images/DSC_0188.JPG" alt="DSC_0188.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 5: </span>原本的按鍵配置</p>
+</div>
+
+
+<div id="org785ea50" class="figure">
+<p><img src="images/DSC_0192.JPG" alt="DSC_0192.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 6: </span>被拔掉的 Cmd 鍵與 Option 鍵</p>
+</div>
+
+
+<div id="orgdc9cb69" class="figure">
+<p><img src="images/DSC_0193.JPG" alt="DSC_0193.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 7: </span>Windows 按鍵配置</p>
+</div>
+
+<p>
+充完電隔天就是要來將鍵盤換成新的鍵盤。從 100% 鍵盤換成 65% 鍵盤，桌子瞬間感覺變大了許多XD
+</p>
+
+
+<div id="org74d6b89" class="figure">
+<p><img src="images/DSC_0196.JPG" alt="DSC_0196.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 8: </span>原本的鍵盤</p>
+</div>
+
+
+<div id="orgab05fe9" class="figure">
+<p><img src="images/DSC_0197.JPG" alt="DSC_0197.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 9: </span>新的鍵盤</p>
+</div>
+
+<p>
+同時也要來換一下中文鍵帽。雖然現在有在新竹的電腦嘗試用用看拼音輸入法，所以暫時也用不到注音就是了。不過身為僅存使用注音的台灣人，可以的話當然還是想在鍵盤上看到注音啊。
+說到這個，現在打拼音真的是超級卡。因為腦中會先想到注音，然後在轉成拼音，再接著要找到對應的英文。尤其是ㄗㄘㄙ、ㄓㄔㄕ、ㄑㄒ，這幾個拼音超不直覺，要打 z c s, zh ch sh, q x。另外就是一些像 ㄨㄢ、ㄩㄣ 等，在有沒有聲母的情況打法不一樣，wuan uan, yuen, uen，都會卡卡的。
+看來要習慣拼音輸入法還得要一陣子。這篇文章也是慢慢用拼音打出來的。
+話說回來，在換鍵帽的過程中，我發現英文鍵帽跟中文鍵帽高度好像有點差。而且不知道是不是我裝的問題，總覺得裝完後整個打字區高低起伏不一XD。
+嘛，總之應該會先就這樣用，等注音鍵帽壞掉才有機會在換回英文鍵帽吧(雖然不知道是何年何月就是了)。
+</p>
+
+
+<div id="org86fb410" class="figure">
+<p><img src="images/DSC_0199.JPG" alt="DSC_0199.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 10: </span>拔掉英文鍵帽</p>
+</div>
+
+
+<div id="org88f9949" class="figure">
+<p><img src="images/DSC_0201.JPG" alt="DSC_0201.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 11: </span>換成中文鍵帽</p>
+</div>
+
+
+<div id="orgae7e2b8" class="figure">
+<p><img src="images/DSC_0200.JPG" alt="DSC_0200.JPG" width="500" />
+</p>
+<p><span class="figure-number">Figure 12: </span>高低有落差的兩種鍵帽</p>
+</div>
+<hr />
+<p>
+好久沒打這麼長的文章了，打了兩天才打完。因為用拼音卡卡的關係，所以打的時候常常思路會被要想怎麼打某個字打斷。
+下次有要再打比較長的文章是不是還是該換回習慣的注音才對XD
+目前這把新鍵盤打了兩天，跟之前的兩把比起來是沒說到特別有感覺差很多，可能要再打久一點有差吧。
+不過三把打起來都還算不錯。
+目前只有體感聲音大小大概是 Keyboard Paradise 巨浪靜音紅軸 &lt; Keychron K6 Pro 茶軸 &lt; Royal Kludge RK68 紅軸。
+所以要小聲點目前來看還是要先選靜音紅軸了
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2024-05-02 Thu 23:29</p>
+<p class="author">Author: Flotisable</p>
+<p class="date">Created: 2024-05-02 Thu 23:33</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
