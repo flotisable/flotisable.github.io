@@ -1,0 +1,26 @@
+@import "nord.css";
+
+html
+{
+  color:            #2e3440;
+  background-color: #eceff4;
+}
+a:link
+{
+  color: #81a1c1;
+}
+a:visited
+{
+  font-weight: bolder;
+  color: #5e81ac;
+}
+a:hover
+{
+  color:            #5e81ac;
+  background-color: #8fbcbb;
+}
+a:active
+{
+  color:            #5e81ac;
+  background-color: #88c0d0;
+}
