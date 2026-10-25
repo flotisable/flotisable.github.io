@@ -3,7 +3,6 @@
 #+EMAIL: s09930698@gmail.com
 #+EXPORT_FILE_NAME: index
 #+OPTIONS: num:nil toc:nil author:t email:t creator:t
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="styles/style.css">
 
 -----
 * 倉庫
