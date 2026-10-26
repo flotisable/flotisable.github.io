@@ -2,25 +2,25 @@
 
 html
 {
-  color:            #2e3440;
-  background-color: #eceff4;
+  color:            var(--nord0);
+  background-color: var(--nord6);
 }
 a:link
 {
-  color: #81a1c1;
+  color: var(--nord9);
 }
 a:visited
 {
   font-weight: bolder;
-  color: #5e81ac;
+  color: var(--nord10);
 }
 a:hover
 {
-  color:            #5e81ac;
-  background-color: #8fbcbb;
+  color:            var(--nord10);
+  background-color: var(--nord7);
 }
 a:active
 {
-  color:            #5e81ac;
-  background-color: #88c0d0;
+  color:            var(--nord10);
+  background-color: var(--nord9);
 }
