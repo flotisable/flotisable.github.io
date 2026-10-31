@@ -25,3 +25,11 @@ a:active
   color:            var(--nord10);
   background-color: var(--nord9);
 }
+pre
+{
+  background-color: var(--nord4);
+}
+pre.src:before {
+  color:            var(--nord1);
+  background-color: var(--nord5);
+}
