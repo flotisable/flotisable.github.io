@@ -1,13 +1,15 @@
-var   colorSchemeElement  = document.getElementById( "colorScheme" );
-const params              = new URL( document.documentURI ).searchParams;
+var colorSchemeElement  = document.getElementById( "colorScheme"  );
+var lightThemeButton    = document.getElementById( "lightTheme"   );
+var darkThemeButton     = document.getElementById( "darkTheme"    );
 
-if      ( params.has( "lightTheme" ) )
+lightThemeButton.addEventListener( "click", () =>
 {
-  console.log( "apply light theme" );
+  console.log( "apply light theme from event" );
   colorSchemeElement.setAttribute( "href", "/styles/light.css" );
-}
-else if ( params.has( "darkTheme" ) )
+} );
+
+darkThemeButton.addEventListener( "click", () =>
 {
-  console.log( "apply dark theme" );
+  console.log( "apply dark theme from event" );
   colorSchemeElement.setAttribute( "href", "/styles/dark.css" );
-}
+} );
