@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-24 週六 15:17 -->
+<!-- 2026-11-22 週日 14:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git 簡介</title>
@@ -193,9 +193,16 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/styles/style.css">
+<link id="colorScheme" rel="stylesheet" type="text/css" href="/styles/style.css">
+<script defer src="/scripts/main.js"></script>
 </head>
 <body>
+<div id="preamble" class="status">
+<form>
+  <button id="lightTheme" name="lightTheme" type="button" value="true">Light</button>
+  <button id="darkTheme"  name="darkTheme"  type="button" value="true">Dark</button>
+</form>
+</div>
 <div id="content" class="content">
 <h1 class="title">git 簡介</h1>
 <p>
@@ -204,9 +211,9 @@
 </p>
 
 <hr />
-<div id="outline-container-org8103f37" class="outline-2">
-<h2 id="org8103f37">git 與版本控制</h2>
-<div class="outline-text-2" id="text-org8103f37">
+<div id="outline-container-orga0abbc6" class="outline-2">
+<h2 id="orga0abbc6">git 與版本控制</h2>
+<div class="outline-text-2" id="text-orga0abbc6">
 <p>
 git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 任何被修改過的檔案都可以被視為不同的版本，而版本控制顧名思義就是協助使用者管理不同版本的軟體。
@@ -262,15 +269,15 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 </div>
 </div>
-<div id="outline-container-org33ab827" class="outline-2">
-<h2 id="org33ab827">初心者</h2>
-<div class="outline-text-2" id="text-org33ab827">
+<div id="outline-container-org19a2fa0" class="outline-2">
+<h2 id="org19a2fa0">初心者</h2>
+<div class="outline-text-2" id="text-org19a2fa0">
 <p>
 首先，在第一次使用 git 時要先做一些設定。因為 git 強制要求每次儲存一個版本時要附上修改者的名字與電子郵件。
 請在終端機輸入以下指令做設定
 </p>
 
-<pre class="example" id="org7654d3d">
+<pre class="example" id="org3947ac3">
 git config --global user.name flotisable
 git config --global user.email s09930698@gmail.com
 </pre>
@@ -295,7 +302,7 @@ git config --global user.email s09930698@gmail.com
 接著我們要來建立 git 的倉庫。先到一個自己想要讓 git 做版本控制的資料夾，然後輸入以下指令
 </p>
 
-<pre class="example" id="org09737ba">
+<pre class="example" id="orgb742080">
 git init
 </pre>
 
@@ -314,7 +321,7 @@ git 也有良好的提示告訴我們現在可以對這些檔案做什麼。
 我們要先將它做暫存( stage )，請輸入以下指令
 </p>
 
-<pre class="example" id="orgd685274">
+<pre class="example" id="org3e1ba3d">
 git add test.txt
 </pre>
 
@@ -325,7 +332,7 @@ git add test.txt
 比方說我們想用 emacs 做編輯器，可以輸入以下指令
 </p>
 
-<pre class="example" id="orgaf1ddfc">
+<pre class="example" id="orga07ca7c">
 git config --global core.editor emacs
 </pre>
 
@@ -335,7 +342,7 @@ git config --global core.editor emacs
 下面是這篇文章的 git log 的一部分，作為參考
 </p>
 
-<pre class="example" id="org67b3324">
+<pre class="example" id="org9950dd7">
 commit 5b377dcda5b03d4b06d73a3049bc20614a46051f
 Author: flotisable &lt;s09930698@gmail.com&gt;
 Date:   Fri Apr 13 20:42:19 2018 +0800
@@ -368,7 +375,7 @@ first commit
 比如說要複製 git 的官方倉庫，可以輸入以下指令
 </p>
 
-<pre class="example" id="org462fb58">
+<pre class="example" id="org77550ae">
 git clone https://github.com/git/git.git
 </pre>
 
@@ -382,16 +389,16 @@ git clone https://github.com/git/git.git
 </p>
 </div>
 </div>
-<div id="outline-container-orge1cc52b" class="outline-2">
-<h2 id="orge1cc52b">升級</h2>
-<div class="outline-text-2" id="text-orge1cc52b">
+<div id="outline-container-org2c9ac47" class="outline-2">
+<h2 id="org2c9ac47">升級</h2>
+<div class="outline-text-2" id="text-org2c9ac47">
 <p>
 git 有一個方便開發的功能叫做分支，分支的特性讓我們可以針對不同需求讓版本的更迭不是線性的一條線。
 我先講講分支怎麼使用，再簡單介紹一兩個使用的方式。
 在還沒建立新的分支前，我們可以先看看 git status
 </p>
 
-<pre class="example" id="orgc24b321">
+<pre class="example" id="orgf04ae8e">
 On branch master
 Changes not staged for commit:
 (use "git add &lt;file&gt;..." to update what will be committed)
@@ -412,7 +419,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 那麼我們來建立新的分支，輸入下列指令
 </p>
 
-<pre class="example" id="org2cad98e">
+<pre class="example" id="org879432c">
 git branch develop
 </pre>
 
@@ -421,7 +428,7 @@ git branch develop
 我們可以利用 git checkout 來切換不同的分支
 </p>
 
-<pre class="example" id="org14a9281">
+<pre class="example" id="org16e1f29">
 git checkout develop
 </pre>
 
@@ -435,7 +442,7 @@ git checkout develop
 也就是說整個版本可以看成這樣
 </p>
 
-<pre class="example" id="orge5bdd9e">
+<pre class="example" id="org35ae4d1">
 +----------+    +----------+
 | test.txt |---&gt;| test.txt |
 |          |    | temp.txt |
@@ -448,7 +455,7 @@ git checkout develop
 現在我們可以 checkout 到 master 分支，然後輸入
 </p>
 
-<pre class="example" id="org3535af0">
+<pre class="example" id="org1a9d0ee">
 git merge develop
 </pre>
 
@@ -456,7 +463,7 @@ git merge develop
 這樣就會將 develop 這個分支並到 master 中。現在整個版本可以看成這樣
 </p>
 
-<pre class="example" id="org1a4a1c4">
+<pre class="example" id="org2ebb78d">
 +----------+    +----------+
 | test.txt |---&gt;| test.txt |
 |          |    | temp.txt |
@@ -480,18 +487,18 @@ git merge develop
 當然還有很多使用方式，這就要靠各位自己探索了。
 </p>
 </div>
-<div id="outline-container-org61be88e" class="outline-3">
-<h3 id="org61be88e">依性質建立分支</h3>
-<div class="outline-text-3" id="text-org61be88e">
+<div id="outline-container-org9794205" class="outline-3">
+<h3 id="org9794205">依性質建立分支</h3>
+<div class="outline-text-3" id="text-org9794205">
 <p>
 比方說，我們希望 master 是穩定沒問題的版本，並利用 develop 作為開發版。
 我們可以在 develop 做任意的嘗試，等到覺得夠穩定了在合併到 master 之中。
 </p>
 </div>
 </div>
-<div id="outline-container-org9231c60" class="outline-3">
-<h3 id="org9231c60">依功能建立分支</h3>
-<div class="outline-text-3" id="text-org9231c60">
+<div id="outline-container-orgdeaf64d" class="outline-3">
+<h3 id="orgdeaf64d">依功能建立分支</h3>
+<div class="outline-text-3" id="text-orgdeaf64d">
 <p>
 我們可以將 master 作為 base，並在不同分支開發不同功能。
 比如 ui 分支開發使用者介面，internet 分支開發連網功能。
@@ -505,7 +512,7 @@ git merge develop
 有衝突的檔案會在檔案中用下面方式標示衝突點
 </p>
 
-<pre class="example" id="org06f40fb">
+<pre class="example" id="orgbc4a357">
 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 if( a == b ) return;
 =============
@@ -519,9 +526,9 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </div>
 </div>
 </div>
-<div id="outline-container-org187a2c9" class="outline-2">
-<h2 id="org187a2c9">轉職</h2>
-<div class="outline-text-2" id="text-org187a2c9">
+<div id="outline-container-orgb8627d5" class="outline-2">
+<h2 id="orgb8627d5">轉職</h2>
+<div class="outline-text-2" id="text-orgb8627d5">
 <p>
 最後要來介紹如何跟伺服器端做溝通，這在多人開發時很常用到。
 基本上用 git clone 的方式建立倉庫，對於伺服器端的設定就被處理好了。
@@ -529,7 +536,7 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 下面是我另外一個倉庫 git status 的資訊
 </p>
 
-<pre class="example" id="org558fbd2">
+<pre class="example" id="org529928e">
 On branch master
 Your branch is up to date with 'github/master'.
 
@@ -550,7 +557,7 @@ git pull 基本上等於 git fetch + git merge。
 最簡單是每次 git push 跟 git pull 都指定伺服器端網址與分支，像是
 </p>
 
-<pre class="example" id="orgb85c2aa">
+<pre class="example" id="org5026b90">
 git pull https://github.com/git/git.git master
 </pre>
 
@@ -558,7 +565,7 @@ git pull https://github.com/git/git.git master
 可是每次這樣太累了，我們可以用 git remote 紀錄伺服器端的位置
 </p>
 
-<pre class="example" id="orge4f1a9e">
+<pre class="example" id="org2f8ae9d">
 git remote add github https://github.com/git/git.git
 </pre>
 
@@ -566,7 +573,7 @@ git remote add github https://github.com/git/git.git
 上面指令會用 github 紀錄 <a href="https://github.com/git/git.git">https://github.com/git/git.git</a> 的位置，所以用
 </p>
 
-<pre class="example" id="org07a9435">
+<pre class="example" id="orge90d7a6">
 git pull github master
 </pre>
 
@@ -574,7 +581,7 @@ git pull github master
 來取代剛剛的 pull 指令。至於要直接讓本地端分支連結到伺服器端分支，要使用
 </p>
 
-<pre class="example" id="org2bc30af">
+<pre class="example" id="orgcebf721">
 git branch --set-upstream-to=github master
 </pre>
 
@@ -593,9 +600,9 @@ git branch --set-upstream-to=github master
 </ul>
 </div>
 </div>
-<div id="outline-container-orge1da0de" class="outline-2">
-<h2 id="orge1da0de">結語</h2>
-<div class="outline-text-2" id="text-orge1da0de">
+<div id="outline-container-org451c96e" class="outline-2">
+<h2 id="org451c96e">結語</h2>
+<div class="outline-text-2" id="text-org451c96e">
 <p>
 以上就是我對 git 的簡單介紹，希望看這篇文章的人能對 git 有個簡單的認識與學會基本的使用。
 我會將這篇文章轉成 pdf 放在 <a href="https://github.com/flotisable/Articles">github</a> 供想看的人離線觀看。
@@ -620,7 +627,7 @@ git branch --set-upstream-to=github master
 <div id="postamble" class="status">
 <p class="date">Date: 2018-04-13 週五 00:00</p>
 <p class="author">Author: Flotisable</p>
-<p class="date">Created: 2026-10-24 週六 15:17</p>
+<p class="date">Created: 2026-11-22 週日 14:50</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.1 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

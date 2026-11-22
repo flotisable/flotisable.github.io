@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-24 週六 15:17 -->
+<!-- 2026-11-22 週日 14:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Makefile 簡介</title>
@@ -193,9 +193,16 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/styles/style.css">
+<link id="colorScheme" rel="stylesheet" type="text/css" href="/styles/style.css">
+<script defer src="/scripts/main.js"></script>
 </head>
 <body>
+<div id="preamble" class="status">
+<form>
+  <button id="lightTheme" name="lightTheme" type="button" value="true">Light</button>
+  <button id="darkTheme"  name="darkTheme"  type="button" value="true">Dark</button>
+</form>
+</div>
 <div id="content" class="content">
 <h1 class="title">Makefile 簡介</h1>
 <p>
@@ -204,9 +211,9 @@
 所以就雞婆的想來介紹一下。
 </p>
 <hr />
-<div id="outline-container-org9dc32c3" class="outline-2">
-<h2 id="org9dc32c3">Makefile 是什麼</h2>
-<div class="outline-text-2" id="text-org9dc32c3">
+<div id="outline-container-org69d2f0e" class="outline-2">
+<h2 id="org69d2f0e">Makefile 是什麼</h2>
+<div class="outline-text-2" id="text-org69d2f0e">
 <p>
 makefile 是對 make 這種程式所讀取的檔案的統稱，
 常被用於程式建置( build )的自動化。
@@ -231,9 +238,9 @@ make 程式有不同變體，
 </p>
 </div>
 </div>
-<div id="outline-container-orgbec11ea" class="outline-2">
-<h2 id="orgbec11ea">基本使用</h2>
-<div class="outline-text-2" id="text-orgbec11ea">
+<div id="outline-container-org8f4bd17" class="outline-2">
+<h2 id="org8f4bd17">基本使用</h2>
+<div class="outline-text-2" id="text-org8f4bd17">
 <p>
 就像前面提過的，makefile 中主要是描述一些規則( rule )。
 每個規則都是由下列三個項目所組成
@@ -366,13 +373,13 @@ make 就會根據所寫的步驟重新編譯出 test.o。
 </p>
 </div>
 </div>
-<div id="outline-container-orgd4f0d4f" class="outline-2">
-<h2 id="orgd4f0d4f">變數</h2>
-<div class="outline-text-2" id="text-orgd4f0d4f">
+<div id="outline-container-org8c55685" class="outline-2">
+<h2 id="org8c55685">變數</h2>
+<div class="outline-text-2" id="text-org8c55685">
 </div>
-<div id="outline-container-org3f0f822" class="outline-3">
-<h3 id="org3f0f822">一般變數</h3>
-<div class="outline-text-3" id="text-org3f0f822">
+<div id="outline-container-orgf720810" class="outline-3">
+<h3 id="orgf720810">一般變數</h3>
+<div class="outline-text-3" id="text-orgf720810">
 <p>
 有時候我們會想要修改 makefile 的一些部份，
 但這些部分在很多地方被用到，
@@ -455,9 +462,9 @@ make 就會根據所寫的步驟重新編譯出 test.o。
 </div>
 </div>
 </div>
-<div id="outline-container-org907af27" class="outline-3">
-<h3 id="org907af27">自動變數</h3>
-<div class="outline-text-3" id="text-org907af27">
+<div id="outline-container-org2d7ee13" class="outline-3">
+<h3 id="org2d7ee13">自動變數</h3>
+<div class="outline-text-3" id="text-org2d7ee13">
 <p>
 make 支援一些特別的變數，
 這些變數會根據規則而改變。
@@ -521,9 +528,9 @@ make 支援一些特別的變數，
 </div>
 </div>
 </div>
-<div id="outline-container-org588fdd3" class="outline-2">
-<h2 id="org588fdd3">函式</h2>
-<div class="outline-text-2" id="text-org588fdd3">
+<div id="outline-container-org980e5df" class="outline-2">
+<h2 id="org980e5df">函式</h2>
+<div class="outline-text-2" id="text-org980e5df">
 <p>
 make 提供了一些函式方便做文字的處理，
 這裡一樣只介紹幾個常用的，
@@ -577,9 +584,9 @@ $(shell COMMAND)
 </ul>
 </div>
 </div>
-<div id="outline-container-orge698ec8" class="outline-2">
-<h2 id="orge698ec8">其他好用功能</h2>
-<div class="outline-text-2" id="text-orge698ec8">
+<div id="outline-container-org6bcc772" class="outline-2">
+<h2 id="org6bcc772">其他好用功能</h2>
+<div class="outline-text-2" id="text-org6bcc772">
 </div>
 <div id="outline-container-orgfecef27" class="outline-3">
 <h3 id="orgfecef27">pattern rule</h3>
@@ -613,9 +620,9 @@ $(shell COMMAND)
 </p>
 </div>
 </div>
-<div id="outline-container-orgc499cdb" class="outline-3">
-<h3 id="orgc499cdb">隱式規則</h3>
-<div class="outline-text-3" id="text-orgc499cdb">
+<div id="outline-container-org6469a81" class="outline-3">
+<h3 id="org6469a81">隱式規則</h3>
+<div class="outline-text-3" id="text-org6469a81">
 <p>
 make 程式其實偷偷提供了一些常用的規則，
 如果知道的話在撰寫 makefile 時可以精簡一些。
@@ -624,9 +631,9 @@ make 程式其實偷偷提供了一些常用的規則，
 </p>
 </div>
 </div>
-<div id="outline-container-orgac24832" class="outline-3">
-<h3 id="orgac24832">包含其他檔案</h3>
-<div class="outline-text-3" id="text-orgac24832">
+<div id="outline-container-org16867ad" class="outline-3">
+<h3 id="org16867ad">包含其他檔案</h3>
+<div class="outline-text-3" id="text-org16867ad">
 <p>
 有時候將所有的規則寫在一份 makefile 的話，
 整份 makefile 可能會勒勒登。
@@ -674,9 +681,9 @@ make 程式其實偷偷提供了一些常用的規則，
 </div>
 </div>
 </div>
-<div id="outline-container-org5574408" class="outline-3">
-<h3 id="org5574408">假目標( Phony Target )</h3>
-<div class="outline-text-3" id="text-org5574408">
+<div id="outline-container-org155c1a9" class="outline-3">
+<h3 id="org155c1a9">假目標( Phony Target )</h3>
+<div class="outline-text-3" id="text-org155c1a9">
 <p>
 有些時候，我們並不想要產生目標檔案，
 比如常見的 clean 目標 ，
@@ -722,9 +729,9 @@ make 程式其實偷偷提供了一些常用的規則，
 </p>
 </div>
 </div>
-<div id="outline-container-org91c4574" class="outline-3">
-<h3 id="org91c4574">根據目標設定變數</h3>
-<div class="outline-text-3" id="text-org91c4574">
+<div id="outline-container-org0f79331" class="outline-3">
+<h3 id="org0f79331">根據目標設定變數</h3>
+<div class="outline-text-3" id="text-org0f79331">
 <p>
 很多時候我們會想要根據要產生的目標對變數做一些修改，
 比如我們想依照 release 和 debug 目標設定不一樣的 CXXFLAGS。
@@ -751,9 +758,9 @@ make 程式其實偷偷提供了一些常用的規則，
 </div>
 </div>
 </div>
-<div id="outline-container-orgb661fd9" class="outline-2">
-<h2 id="orgb661fd9">實例: 自動產生 c++ 原始碼規則</h2>
-<div class="outline-text-2" id="text-orgb661fd9">
+<div id="outline-container-org1e53cec" class="outline-2">
+<h2 id="org1e53cec">實例: 自動產生 c++ 原始碼規則</h2>
+<div class="outline-text-2" id="text-org1e53cec">
 <div class="org-src-container">
 <pre class="src src-makefile"><span class="linenr"> 1: </span><span style="color: #D8DEE9;">CXX</span>      := g++
 <span class="linenr"> 2: </span><span style="color: #D8DEE9;">CXXFLAGS</span> := -std=c++11
@@ -831,9 +838,9 @@ gnu make 有一條隱式規則可以簡化看成是
 </p>
 </div>
 </div>
-<div id="outline-container-org712eaf3" class="outline-2">
-<h2 id="org712eaf3">小結</h2>
-<div class="outline-text-2" id="text-org712eaf3">
+<div id="outline-container-org31bd2dd" class="outline-2">
+<h2 id="org31bd2dd">小結</h2>
+<div class="outline-text-2" id="text-org31bd2dd">
 <p>
 我是盡量將我覺得 makefile 好用的部分做個簡單的介紹，
 希望能讓大家稍微了解一下。
@@ -851,7 +858,7 @@ gnu make 有一條隱式規則可以簡化看成是
 <div id="postamble" class="status">
 <p class="date">Date: 2019-02-13 週三 00:00</p>
 <p class="author">Author: Flotisable</p>
-<p class="date">Created: 2026-10-24 週六 15:17</p>
+<p class="date">Created: 2026-11-22 週日 14:51</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.1 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

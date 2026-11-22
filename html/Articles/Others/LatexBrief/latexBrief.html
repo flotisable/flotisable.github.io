@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-24 週六 15:17 -->
+<!-- 2026-11-22 週日 14:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LaTeX 簡介</title>
@@ -193,9 +193,16 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/styles/style.css">
+<link id="colorScheme" rel="stylesheet" type="text/css" href="/styles/style.css">
+<script defer src="/scripts/main.js"></script>
 </head>
 <body>
+<div id="preamble" class="status">
+<form>
+  <button id="lightTheme" name="lightTheme" type="button" value="true">Light</button>
+  <button id="darkTheme"  name="darkTheme"  type="button" value="true">Dark</button>
+</form>
+</div>
 <div id="content" class="content">
 <h1 class="title">LaTeX 簡介</h1>
 <p>
@@ -204,9 +211,9 @@
 所以就想來簡單的介紹一下。
 </p>
 <hr />
-<div id="outline-container-orgf866174" class="outline-2">
-<h2 id="orgf866174">LaTeX 是什麼</h2>
-<div class="outline-text-2" id="text-orgf866174">
+<div id="outline-container-orgb26c977" class="outline-2">
+<h2 id="orgb26c977">LaTeX 是什麼</h2>
+<div class="outline-text-2" id="text-orgb26c977">
 <p>
 LaTeX 的前身是 Tex。
 TeX 是一個由 Donald Ervin Knuth 所開發的排版軟體，
@@ -249,9 +256,9 @@ large 的 la 或是 less 的 le。
 </p>
 </div>
 </div>
-<div id="outline-container-orgc15d610" class="outline-2">
-<h2 id="orgc15d610">開始使用 LaTeX</h2>
-<div class="outline-text-2" id="text-orgc15d610">
+<div id="outline-container-org0824aa0" class="outline-2">
+<h2 id="org0824aa0">開始使用 LaTeX</h2>
+<div class="outline-text-2" id="text-org0824aa0">
 <p>
 前面也提過了，
 LaTeX 主要是排版軟體，
@@ -276,9 +283,9 @@ TeX 相關的軟體發展到現在已經變得很複雜了，
 </p>
 </div>
 </div>
-<div id="outline-container-orgbc3f962" class="outline-2">
-<h2 id="orgbc3f962">基本的 LaTeX 文件</h2>
-<div class="outline-text-2" id="text-orgbc3f962">
+<div id="outline-container-orge15052b" class="outline-2">
+<h2 id="orge15052b">基本的 LaTeX 文件</h2>
+<div class="outline-text-2" id="text-orge15052b">
 <p>
 首先簡單介紹一下 LaTeX 的 command，
 LaTeX 的 command 基本上都是由 <code>\</code> 開頭，
@@ -329,23 +336,23 @@ LaTeX 提供幾個基本的類別，像是 article, report, book。
 </pre>
 </div>
 
-<div id="orgf77c6b4" class="figure">
+<div id="orgc2d3d57" class="figure">
 <p><img src="./Images/simpleLatex.png" alt="simpleLatex.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org55975ca" class="outline-2">
-<h2 id="org55975ca">撰寫文件</h2>
-<div class="outline-text-2" id="text-org55975ca">
+<div id="outline-container-orgb95af56" class="outline-2">
+<h2 id="orgb95af56">撰寫文件</h2>
+<div class="outline-text-2" id="text-orgb95af56">
 <p>
 介紹完基本的 LaTeX 文件，
 我們就接著介紹一些一般文件常需要的功能如何在 LaTeX 達成吧。
 </p>
 </div>
-<div id="outline-container-org42411fa" class="outline-3">
-<h3 id="org42411fa">文件結構</h3>
-<div class="outline-text-3" id="text-org42411fa">
+<div id="outline-container-org040354e" class="outline-3">
+<h3 id="org040354e">文件結構</h3>
+<div class="outline-text-3" id="text-org040354e">
 <p>
 首先在 LaTeX 中，
 空白行是很重要的，
@@ -415,15 +422,15 @@ package 是 LaTeX 用來提供額外功能的方法，
 </pre>
 </div>
 
-<div id="org5ca0731" class="figure">
+<div id="orgf8deeac" class="figure">
 <p><img src="./Images/documentStructure.png" alt="documentStructure.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf77a81b" class="outline-3">
-<h3 id="orgf77a81b">列表</h3>
-<div class="outline-text-3" id="text-orgf77a81b">
+<div id="outline-container-org4dc4b33" class="outline-3">
+<h3 id="org4dc4b33">列表</h3>
+<div class="outline-text-3" id="text-org4dc4b33">
 <p>
 如果想要產生一個列表，
 我們會需要使用 itemize 或 enumerate 這兩種 environment。
@@ -454,15 +461,15 @@ package 是 LaTeX 用來提供額外功能的方法，
 </pre>
 </div>
 
-<div id="org7b5e57b" class="figure">
+<div id="orgbd2868d" class="figure">
 <p><img src="./Images/list.png" alt="list.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd277914" class="outline-3">
-<h3 id="orgd277914">圖片</h3>
-<div class="outline-text-3" id="text-orgd277914">
+<div id="outline-container-org1366dd4" class="outline-3">
+<h3 id="org1366dd4">圖片</h3>
+<div class="outline-text-3" id="text-org1366dd4">
 <p>
 就我所知 LaTeX 本身好像沒有提供插入圖片的功能，
 都是要靠 package 來達成。
@@ -489,9 +496,9 @@ package 是 LaTeX 用來提供額外功能的方法，
 </p>
 </div>
 </div>
-<div id="outline-container-org7e8c603" class="outline-3">
-<h3 id="org7e8c603">表格</h3>
-<div class="outline-text-3" id="text-org7e8c603">
+<div id="outline-container-org2300c4d" class="outline-3">
+<h3 id="org2300c4d">表格</h3>
+<div class="outline-text-3" id="text-org2300c4d">
 <p>
 LaTeX 提供了 tabular 這個 environment 來製作一個表格，
 它的參數決定了表格的欄數與對齊方式。
@@ -517,7 +524,7 @@ LaTeX 提供了 tabular 這個 environment 來製作一個表格，
 </pre>
 </div>
 
-<div id="orge92a260" class="figure">
+<div id="org2656178" class="figure">
 <p><img src="./Images/table.png" alt="table.png" />
 </p>
 </div>
@@ -529,9 +536,9 @@ l, c, r，分別代表置左、置中、置右。
 </p>
 </div>
 </div>
-<div id="outline-container-orgb758001" class="outline-3">
-<h3 id="orgb758001">數學公式</h3>
-<div class="outline-text-3" id="text-orgb758001">
+<div id="outline-container-org25da5a5" class="outline-3">
+<h3 id="org25da5a5">數學公式</h3>
+<div class="outline-text-3" id="text-org25da5a5">
 <p>
 在 LaTeX 描述數學公式還蠻複雜的，
 這裡只簡單講幾個點。
@@ -549,7 +556,7 @@ l, c, r，分別代表置左、置中、置右。
 </pre>
 </div>
 
-<div id="orgd7feb03" class="figure">
+<div id="org6dfa140" class="figure">
 <p><img src="./Images/basicMath.png" alt="basicMath.png" />
 </p>
 </div>
@@ -570,15 +577,15 @@ l, c, r，分別代表置左、置中、置右。
 </pre>
 </div>
 
-<div id="org9f4037d" class="figure">
+<div id="org3e28df3" class="figure">
 <p><img src="./Images/equation.png" alt="equation.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org56c7578" class="outline-3">
-<h3 id="org56c7578">純文字</h3>
-<div class="outline-text-3" id="text-org56c7578">
+<div id="outline-container-orgecd2248" class="outline-3">
+<h3 id="orgecd2248">純文字</h3>
+<div class="outline-text-3" id="text-orgecd2248">
 <p>
 如果像我寫這篇文章，或是要在文件中顯示程式碼，
 我們可以用 verbatim 這個 environment。
@@ -601,7 +608,7 @@ int main()
 </pre>
 </div>
 
-<div id="orgb42a872" class="figure">
+<div id="org5bfa1a2" class="figure">
 <p><img src="./Images/verbatim.png" alt="verbatim.png" />
 </p>
 </div>
@@ -612,9 +619,9 @@ int main()
 </p>
 </div>
 </div>
-<div id="outline-container-org5bdca5b" class="outline-3">
-<h3 id="org5bdca5b">中文</h3>
-<div class="outline-text-3" id="text-org5bdca5b">
+<div id="outline-container-org53177dc" class="outline-3">
+<h3 id="org53177dc">中文</h3>
+<div class="outline-text-3" id="text-org53177dc">
 <p>
 用 LaTeX 要寫中文得使用 package 來達成，
 其中一個比較有名的 package 是 CJK。
@@ -641,7 +648,7 @@ int main()
 </pre>
 </div>
 
-<div id="org1114045" class="figure">
+<div id="orgda5833a" class="figure">
 <p><img src="./Images/cjk.png" alt="cjk.png" />
 </p>
 </div>
@@ -677,16 +684,16 @@ CJK 這個 package 是利用編碼轉換來處理中日韓的文字，
 </pre>
 </div>
 
-<div id="orgdc4a93c" class="figure">
+<div id="org9ec7d02" class="figure">
 <p><img src="./Images/cjkVert.png" alt="cjkVert.png" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd576b95" class="outline-2">
-<h2 id="orgd576b95">更深入了解 LaTeX</h2>
-<div class="outline-text-2" id="text-orgd576b95">
+<div id="outline-container-org50d0d16" class="outline-2">
+<h2 id="org50d0d16">更深入了解 LaTeX</h2>
+<div class="outline-text-2" id="text-org50d0d16">
 <p>
 想要更深入的了解如何使用 LaTeX，
 我想上網應該都蠻多資源的。
@@ -700,9 +707,9 @@ CJK 這個 package 是利用編碼轉換來處理中日韓的文字，
 </p>
 </div>
 </div>
-<div id="outline-container-org689b87d" class="outline-2">
-<h2 id="org689b87d">小結</h2>
-<div class="outline-text-2" id="text-org689b87d">
+<div id="outline-container-org2b0c1a4" class="outline-2">
+<h2 id="org2b0c1a4">小結</h2>
+<div class="outline-text-2" id="text-org2b0c1a4">
 <p>
 基本的 LaTeX 介紹就是這樣了，
 剩下更複雜的功能就得從文檔自學跟從經驗中學著如何使用。
@@ -731,7 +738,7 @@ CJK 這個 package 是利用編碼轉換來處理中日韓的文字，
 <div id="postamble" class="status">
 <p class="date">Date: 2019-07-14 週日 00:00</p>
 <p class="author">Author: Flotisable</p>
-<p class="date">Created: 2026-10-24 週六 15:17</p>
+<p class="date">Created: 2026-11-22 週日 14:51</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.1 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

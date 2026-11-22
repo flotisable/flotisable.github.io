@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-24 週六 15:17 -->
+<!-- 2026-11-22 週日 14:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>關於用 Verilog 設計的電路</title>
@@ -193,9 +193,16 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/styles/style.css">
+<link id="colorScheme" rel="stylesheet" type="text/css" href="/styles/style.css">
+<script defer src="/scripts/main.js"></script>
 </head>
 <body>
+<div id="preamble" class="status">
+<form>
+  <button id="lightTheme" name="lightTheme" type="button" value="true">Light</button>
+  <button id="darkTheme"  name="darkTheme"  type="button" value="true">Dark</button>
+</form>
+</div>
 <div id="content" class="content">
 <h1 class="title">關於用 Verilog 設計的電路</h1>
 <p>
@@ -210,9 +217,9 @@
 </p>
 
 <hr />
-<div id="outline-container-org43521c3" class="outline-2">
-<h2 id="org43521c3">寫出來的 code 與所合成出來的電路之間的關係</h2>
-<div class="outline-text-2" id="text-org43521c3">
+<div id="outline-container-org12ea024" class="outline-2">
+<h2 id="org12ea024">寫出來的 code 與所合成出來的電路之間的關係</h2>
+<div class="outline-text-2" id="text-org12ea024">
 <p>
 在我們學校一般在學 verilog 的時候，因為大一計概課的學習 c++ 寫程式的關係，多半的人在寫電路時習慣會以寫程式的思維去寫。
 當然 verilog 會被設計出來，也有部分原因是希望以類似寫程式的方式來描述電路，但是我認為這算是熟悉電路設計後以人類較直觀的方式讓 code 的可讀性與可維護性增加時的方法，本質上還是應該以電路的角度去思考，才能設計出比較沒有問題的電路。
@@ -352,9 +359,9 @@ enable[counter] = 1'b0;
 </p>
 </div>
 </div>
-<div id="outline-container-orgcc312d1" class="outline-2">
-<h2 id="orgcc312d1">一些較容易與習慣使用的設計思維</h2>
-<div class="outline-text-2" id="text-orgcc312d1">
+<div id="outline-container-org8d13cb6" class="outline-2">
+<h2 id="org8d13cb6">一些較容易與習慣使用的設計思維</h2>
+<div class="outline-text-2" id="text-org8d13cb6">
 <p>
 對於用 verilog 來設計電路，我自己是建議先去思考電路的 block diagram，想想電路畫出來應該是怎麼樣，畫出來的電路會如何運作，這樣的話只要照著畫出來的電路，map 到相對應的 code 在做些修正，就可以做出自己所想的電路。
 </p>
@@ -438,9 +445,9 @@ enable[counter] = 1'b0;
 </p>
 </div>
 </div>
-<div id="outline-container-org4529f46" class="outline-2">
-<h2 id="org4529f46">我自己認為不錯的 coding style 與設計方法</h2>
-<div class="outline-text-2" id="text-org4529f46">
+<div id="outline-container-org6193de3" class="outline-2">
+<h2 id="org6193de3">我自己認為不錯的 coding style 與設計方法</h2>
+<div class="outline-text-2" id="text-org6193de3">
 <p>
 最後講幾個我自己推薦的設計方式，多半是從我自己寫 c++ 得來的經驗。
 首先就是 module 的使用，在設計電路時最好先思考能不能把它拆成更小的單位，因為越小的單位設計上越簡單，同時也就代表出錯機會的下降，而能拆成多個 module 通常也意味著重複使用，例如七段顯示器電路，只要第一次好好設計，只後只要將這個 module 拿來用即可。
@@ -475,7 +482,7 @@ enable[counter] = 1'b0;
 <div id="postamble" class="status">
 <p class="date">Date: 2017-04-14 週五 00:00</p>
 <p class="author">Author: Flotisable</p>
-<p class="date">Created: 2026-10-24 週六 15:17</p>
+<p class="date">Created: 2026-11-22 週日 14:51</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.1 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

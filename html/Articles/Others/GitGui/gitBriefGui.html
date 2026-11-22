@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-24 週六 15:17 -->
+<!-- 2026-11-22 週日 14:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>git 簡介 GUI 版</title>
@@ -193,9 +193,16 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/styles/style.css">
+<link id="colorScheme" rel="stylesheet" type="text/css" href="/styles/style.css">
+<script defer src="/scripts/main.js"></script>
 </head>
 <body>
+<div id="preamble" class="status">
+<form>
+  <button id="lightTheme" name="lightTheme" type="button" value="true">Light</button>
+  <button id="darkTheme"  name="darkTheme"  type="button" value="true">Dark</button>
+</form>
+</div>
 <div id="content" class="content">
 <h1 class="title">git 簡介 GUI 版</h1>
 <p>
@@ -205,9 +212,9 @@
 </p>
 
 <hr />
-<div id="outline-container-org266dcdd" class="outline-2">
-<h2 id="org266dcdd">git 與版本控制</h2>
-<div class="outline-text-2" id="text-org266dcdd">
+<div id="outline-container-org8997551" class="outline-2">
+<h2 id="org8997551">git 與版本控制</h2>
+<div class="outline-text-2" id="text-org8997551">
 <p>
 git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 任何被修改過的檔案都可以被視為不同的版本，而版本控制顧名思義就是協助使用者管理不同版本的軟體。
@@ -266,15 +273,15 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 </div>
 </div>
-<div id="outline-container-org8ef1958" class="outline-2">
-<h2 id="org8ef1958">初心者</h2>
-<div class="outline-text-2" id="text-org8ef1958">
+<div id="outline-container-org543e3e3" class="outline-2">
+<h2 id="org543e3e3">初心者</h2>
+<div class="outline-text-2" id="text-org543e3e3">
 <p>
 先放個 gui 剛開啟的介面(不知道為啥我的介面是英文的，也許本身就是這樣，懶得找原因了)
 </p>
 
 
-<div id="org2c237f1" class="figure">
+<div id="org48cb76c" class="figure">
 <p><img src="./images/gitGui.png" alt="gitGui.png" width="60%" />
 </p>
 </div>
@@ -286,7 +293,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org449850d" class="figure">
+<div id="org747bbda" class="figure">
 <p><img src="./images/gitCreateRepo.png" alt="gitCreateRepo.png" width="60%" />
 </p>
 </div>
@@ -297,7 +304,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="orge4df2e9" class="figure">
+<div id="orge0d7310" class="figure">
 <p><img src="./images/gitEmptyRepo.png" alt="gitEmptyRepo.png" width="60%" />
 </p>
 </div>
@@ -313,7 +320,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org9182576" class="figure">
+<div id="orgb330c24" class="figure">
 <p><img src="./images/gitSettings.png" alt="gitSettings.png" width="60%" />
 </p>
 </div>
@@ -340,7 +347,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org1b65d38" class="figure">
+<div id="org62d0ae9" class="figure">
 <p><img src="./images/gitRescan.png" alt="gitRescan.png" width="60%" />
 </p>
 </div>
@@ -350,7 +357,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org757d97e" class="figure">
+<div id="orgd8c01f2" class="figure">
 <p><img src="./images/gitUntracked.png" alt="gitUntracked.png" width="60%" />
 </p>
 </div>
@@ -360,7 +367,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org61d3e0b" class="figure">
+<div id="org3b99f56" class="figure">
 <p><img src="./images/gitStageConfirm.png" alt="gitStageConfirm.png" width="60%" />
 </p>
 </div>
@@ -371,7 +378,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org0204271" class="figure">
+<div id="orga60b369" class="figure">
 <p><img src="./images/gitCommitMessage.png" alt="gitCommitMessage.png" width="60%" />
 </p>
 </div>
@@ -381,7 +388,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="orga0466be" class="figure">
+<div id="orgfee8a9b" class="figure">
 <p><img src="./images/gitMenuHistory.png" alt="gitMenuHistory.png" width="60%" />
 </p>
 </div>
@@ -391,7 +398,7 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org74c959e" class="figure">
+<div id="org37fc901" class="figure">
 <p><img src="./images/gitLog.png" alt="gitLog.png" width="60%" />
 </p>
 </div>
@@ -405,12 +412,12 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 
 
-<div id="org77a622d" class="figure">
+<div id="orgccd6784" class="figure">
 <p><img src="./images/gitGui.png" alt="gitGui.png" width="60%" />
 </p>
 </div>
 
-<div id="org0666c6f" class="figure">
+<div id="org0414c84" class="figure">
 <p><img src="./images/gitClone.png" alt="gitClone.png" width="60%" />
 </p>
 </div>
@@ -429,9 +436,9 @@ git 是由 Linux 的開發者 Linus 所做的一個版本控制系統。
 </p>
 </div>
 </div>
-<div id="outline-container-org8fd3ed2" class="outline-2">
-<h2 id="org8fd3ed2">升級</h2>
-<div class="outline-text-2" id="text-org8fd3ed2">
+<div id="outline-container-org3b70f88" class="outline-2">
+<h2 id="org3b70f88">升級</h2>
+<div class="outline-text-2" id="text-org3b70f88">
 <p>
 git 有一個方便開發的功能叫做分支，分支的特性讓我們可以針對不同需求讓版本的更迭不是線性的一條線。
 我先講講分支怎麼使用，再簡單介紹一兩個使用的方式。
@@ -439,7 +446,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="org9fe17eb" class="figure">
+<div id="orgad680bf" class="figure">
 <p><img src="./images/gitCurrentBranch.png" alt="gitCurrentBranch.png" width="60%" />
 </p>
 </div>
@@ -450,7 +457,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="org22ab0e5" class="figure">
+<div id="org2789d3d" class="figure">
 <p><img src="./images/gitCreateBranch.png" alt="gitCreateBranch.png" width="60%" />
 </p>
 </div>
@@ -460,7 +467,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="orgc27426e" class="figure">
+<div id="org77d5af3" class="figure">
 <p><img src="./images/gitCreateDevelop.png" alt="gitCreateDevelop.png" width="60%" />
 </p>
 </div>
@@ -472,13 +479,13 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="org04da227" class="figure">
+<div id="org5b5ac42" class="figure">
 <p><img src="./images/gitMenuCheckout.png" alt="gitMenuCheckout.png" width="60%" />
 </p>
 </div>
 
 
-<div id="org5e8ab59" class="figure">
+<div id="org9675539" class="figure">
 <p><img src="./images/gitBranch.png" alt="gitBranch.png" width="60%" />
 </p>
 </div>
@@ -493,7 +500,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 也就是說整個版本可以看成這樣
 </p>
 
-<pre class="example" id="org2cfc0b8">
+<pre class="example" id="org926f111">
 +----------+    +----------+
 | test.txt |---&gt;| test.txt |
 |          |    | temp.txt |
@@ -507,7 +514,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="org078d353" class="figure">
+<div id="org31e801b" class="figure">
 <p><img src="./images/gitVersionTree.png" alt="gitVersionTree.png" width="60%" />
 </p>
 </div>
@@ -517,7 +524,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="orgde83d3c" class="figure">
+<div id="orgc392d85" class="figure">
 <p><img src="./images/gitMenuMerge.png" alt="gitMenuMerge.png" width="60%" />
 </p>
 </div>
@@ -527,13 +534,13 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="org08e7825" class="figure">
+<div id="org32e33ce" class="figure">
 <p><img src="./images/gitMerge.png" alt="gitMerge.png" width="60%" />
 </p>
 </div>
 
 
-<div id="orgcbbfa61" class="figure">
+<div id="org63f5789" class="figure">
 <p><img src="./images/gitMergeResult.png" alt="gitMergeResult.png" width="60%" />
 </p>
 </div>
@@ -542,7 +549,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 這樣就會將 develop 這個分支並到 master 中。現在整個版本可以看成這樣
 </p>
 
-<pre class="example" id="orga5e18d9">
+<pre class="example" id="org580f122">
 +----------+    +----------+
 | test.txt |---&gt;| test.txt |
 |          |    | temp.txt |
@@ -556,7 +563,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 </p>
 
 
-<div id="orgb885f17" class="figure">
+<div id="org9a1fb8d" class="figure">
 <p><img src="./images/gitVersionTreeMerged.png" alt="gitVersionTreeMerged.png" width="60%" />
 </p>
 </div>
@@ -566,18 +573,18 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 當然還有很多使用方式，這就要靠各位自己探索了。
 </p>
 </div>
-<div id="outline-container-org2170dcc" class="outline-3">
-<h3 id="org2170dcc">依性質建立分支</h3>
-<div class="outline-text-3" id="text-org2170dcc">
+<div id="outline-container-orgc57f1af" class="outline-3">
+<h3 id="orgc57f1af">依性質建立分支</h3>
+<div class="outline-text-3" id="text-orgc57f1af">
 <p>
 比方說，我們希望 master 是穩定沒問題的版本，並利用 develop 作為開發版。
 我們可以在 develop 做任意的嘗試，等到覺得夠穩定了在合併到 master 之中。
 </p>
 </div>
 </div>
-<div id="outline-container-orged363bf" class="outline-3">
-<h3 id="orged363bf">依功能建立分支</h3>
-<div class="outline-text-3" id="text-orged363bf">
+<div id="outline-container-orgd8dd7da" class="outline-3">
+<h3 id="orgd8dd7da">依功能建立分支</h3>
+<div class="outline-text-3" id="text-orgd8dd7da">
 <p>
 我們可以將 master 作為 base，並在不同分支開發不同功能。
 比如 ui 分支開發使用者介面，internet 分支開發連網功能。
@@ -591,7 +598,7 @@ git 有一個方便開發的功能叫做分支，分支的特性讓我們可以�
 有衝突的檔案會在檔案中用下面方式標示衝突點
 </p>
 
-<pre class="example" id="org7431aeb">
+<pre class="example" id="orge13e695">
 &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 if( a == b ) return;
 =============
@@ -605,9 +612,9 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </div>
 </div>
 </div>
-<div id="outline-container-org0f48f37" class="outline-2">
-<h2 id="org0f48f37">轉職</h2>
-<div class="outline-text-2" id="text-org0f48f37">
+<div id="outline-container-org4976280" class="outline-2">
+<h2 id="org4976280">轉職</h2>
+<div class="outline-text-2" id="text-org4976280">
 <p>
 最後要來介紹如何跟伺服器端做溝通，這在多人開發時很常用到。
 基本上用 clone existing repository 的方式建立倉庫，對於伺服器端的設定就被處理好了。
@@ -619,7 +626,7 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="orga48ef23" class="figure">
+<div id="orgd116499" class="figure">
 <p><img src="./images/gitMenuRemote.png" alt="gitMenuRemote.png" width="60%" />
 </p>
 </div>
@@ -629,7 +636,7 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="org8bf2cd9" class="figure">
+<div id="org0af8299" class="figure">
 <p><img src="./images/gitMenuRemoteNo.png" alt="gitMenuRemoteNo.png" width="60%" />
 </p>
 </div>
@@ -643,7 +650,7 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="orgcee3956" class="figure">
+<div id="orgc34d284" class="figure">
 <p><img src="./images/gitMergeRemote.png" alt="gitMergeRemote.png" width="60%" />
 </p>
 </div>
@@ -653,13 +660,13 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="org29a07a1" class="figure">
+<div id="orge76e767" class="figure">
 <p><img src="./images/gitMenuPush.png" alt="gitMenuPush.png" width="60%" />
 </p>
 </div>
 
 
-<div id="orgd671fb6" class="figure">
+<div id="org68a5b46" class="figure">
 <p><img src="./images/gitPush.png" alt="gitPush.png" width="60%" />
 </p>
 </div>
@@ -670,7 +677,7 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="orge37575a" class="figure">
+<div id="orgd6b5b26" class="figure">
 <p><img src="./images/gitPushNoRemote.png" alt="gitPushNoRemote.png" width="60%" />
 </p>
 </div>
@@ -680,13 +687,13 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="org2d4b154" class="figure">
+<div id="orgfea46cc" class="figure">
 <p><img src="./images/gitMenuRemoteAdd.png" alt="gitMenuRemoteAdd.png" width="60%" />
 </p>
 </div>
 
 
-<div id="orga6a6f10" class="figure">
+<div id="orga8a5cd7" class="figure">
 <p><img src="./images/gitRemoteAdd.png" alt="gitRemoteAdd.png" width="60%" />
 </p>
 </div>
@@ -700,15 +707,15 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 </p>
 
 
-<div id="org42d126a" class="figure">
+<div id="org491c10e" class="figure">
 <p><img src="./images/gitNewRemote.png" alt="gitNewRemote.png" width="60%" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orga5ed166" class="outline-2">
-<h2 id="orga5ed166">結語</h2>
-<div class="outline-text-2" id="text-orga5ed166">
+<div id="outline-container-org1e1229f" class="outline-2">
+<h2 id="org1e1229f">結語</h2>
+<div class="outline-text-2" id="text-org1e1229f">
 <p>
 以上就是我對 git gui 的簡單介紹，希望看這篇文章的人能對 git 有個簡單的認識與學會 gui 基本的使用。
 我會將這篇文章轉成 pdf 放在 <a href="https://github.com/flotisable/Articles">github</a> 供想看的人離線觀看。
@@ -732,7 +739,7 @@ HEAD 是指要合併到的分支，在這裡是 master，而 internet 就是指 
 <div id="postamble" class="status">
 <p class="date">Date: 2018-08-05 週日 00:00</p>
 <p class="author">Author: Flotisble</p>
-<p class="date">Created: 2026-10-24 週六 15:17</p>
+<p class="date">Created: 2026-11-22 週日 14:50</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 30.1 (<a href="https://orgmode.org">Org</a> mode 9.7.11)</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
